@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'OpenSans-Bold'; /*a name to be used later*/
+    src: url('/Fonts/OpenSans-Bold.ttf'); /*URL to font*/
+}
+@font-face {
+    font-family: 'OpenSans-BoldItalic'; /*a name to be used later*/
+    src: url('/Fonts/OpenSans-BoldItalic.ttf'); /*URL to font*/
+}
+@font-face {
+    font-family: 'OpenSans-ExtraBold'; /*a name to be used later*/
+    src: url('/Fonts/OpenSans-ExtraBold.ttf'); /*URL to font*/
+}
+@font-face {
+    font-family: 'OpenSans-ExtraBoldItalic'; /*a name to be used later*/
+    src: url('/Fonts/OpenSans-ExtraBoldItalic.ttf'); /*URL to font*/
+}
+@font-face {
+    font-family: 'OpenSans-Italic'; /*a name to be used later*/
+    src: url('/Fonts/OpenSans-Italic.ttf'); /*URL to font*/
+}
+@font-face {
+    font-family: 'OpenSans-Light'; /*a name to be used later*/
+    src: url('/Fonts/OpenSans-Light.ttf'); /*URL to font*/
+}
+@font-face {
+    font-family: 'OpenSans-LightItalic'; /*a name to be used later*/
+    src: url('/Fonts/OpenSans-LightItalic.ttf'); /*URL to font*/
+}
+@font-face {
+    font-family: 'OpenSans-Regular'; /*a name to be used later*/
+    src: url('/Fonts/OpenSans-Regular.ttf'); /*URL to font*/
+}
+@font-face {
+    font-family: 'OpenSans-Semibold'; /*a name to be used later*/
+    src: url('/Fonts/OpenSans-Semibold.ttf'); /*URL to font*/
+}
+@font-face {
+    font-family: 'OpenSans-SemiboldItalic'; /*a name to be used later*/
+    src: url('/Fonts/OpenSans-SemiboldItalic.ttf'); /*URL to font*/
+}
+
+h4, h5, h6,
+h1, h2, h3 {
+	font-family: 'OpenSans-Regular';
+	}
+ul, ol {
+	margin: 0;
+	font-family: 'OpenSans-Regular';
+	list-style: none;
+    margin: 0;
+    padding: 0;
+}
+p {margin: 0;}
+html, body{
+	font-family: 'OpenSans-Regular';
+	background:#fff;
+	font-size: 100%;
+}
+
+.container{
+	width: 960px;
+	min-height: 2000px;
+}
