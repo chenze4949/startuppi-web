@@ -5,9 +5,9 @@ import { Auth } from './service/auth.service'
 
 import { MD_SIDENAV_DIRECTIVES } from '@angular2-material/sidenav';
 import { MD_BUTTON_DIRECTIVES } from '@angular2-material/button';
-import {SlimLoadingBarService, SlimLoadingBarComponent} from 'ng2-slim-loading-bar';
-import {FORM_DIRECTIVES} from '@angular/common';
-import {Subject, Observable, Subscription} from 'rxjs/Rx';
+import { SlimLoadingBarService, SlimLoadingBarComponent} from 'ng2-slim-loading-bar';
+import { FORM_DIRECTIVES} from '@angular/common';
+import { Subject, Observable, Subscription} from 'rxjs/Rx';
 
 // Services.
 import { Locale, LocaleService, LocalizationService } from 'angular2localization/angular2localization';

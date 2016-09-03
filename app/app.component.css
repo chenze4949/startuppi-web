@@ -61,3 +61,41 @@ html, body{
 	width: 960px;
 	min-height: 2000px;
 }
+
+.header-top-left{
+    float: left;
+}
+
+.header-top-left ul li {
+    display: inline-block;
+	margin-right:15px;
+    
+}
+
+.header-top-left a{
+    color: black;
+    font-size: 12px;
+}
+
+.header-top-left a:hover{
+    color: orange;
+}
+
+.header-top-right{
+    float: right;
+}
+
+.header-top-right ul li{
+    display: inline-block;
+	margin-left:15px;
+}
+
+.header-top-right a{
+    color: black;
+    font-size: 12px;
+}
+
+.header-top-right a:hover{
+    color: orange;
+}
+
