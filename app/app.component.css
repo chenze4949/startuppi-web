@@ -59,7 +59,6 @@ html, body{
 
 .container{
 	width: 960px;
-	min-height: 2000px;
 }
 
 .header-top-left{
@@ -97,5 +96,109 @@ html, body{
 
 .header-top-right a:hover{
     color: orange;
+}
+
+#footer {
+    float: left;
+    width: 100%;
+    margin-top: 20px;
+    min-height: 15.125rem;
+    background: linear-gradient(#313131 0,#313131 142px,#2c2c2c 143px,#2c2c2c 100%);
+    color: #999;
+}
+
+#footer .layout-inner {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+}
+.layout-inner {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#footer .inner {
+    height: 15.125rem;
+    margin-left: 23.4375rem;
+}
+
+#footer .footer-qrcode {
+    float: left;
+    display: flex;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 15.5rem;
+    height: 100%;
+    margin-left: -20.5rem;
+}
+
+#footer .footer-qrcode img{
+    object-fit: cover;
+    object-position: center;
+    height: 100px;
+    width: 100px;
+}
+
+#footer .footer-info {
+    float: right;
+    width: 100%;
+}
+
+#footer .footer-info .contact {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-items: flex-end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    height: 8.875rem;
+    margin-bottom: .9375rem;
+    padding-bottom: 1.375rem;
+}
+
+#footer .footer-info .img-wrap img{
+    object-fit: cover;
+    object-position: center;
+    width: 180px;
+    height: 70px;
+}
+
+#footer .footer-info .contact .join {
+    width: 13.75rem;
+    margin-right: 2.5rem;
+    color: #c5c5c5;
+    font-size: 1.875rem;
+    text-align: center;
+}
+
+#footer .footer-info .contact .btn-join {
+    display: block;
+    width: 11.5rem;
+    height: 2.5rem;
+    margin: 0 auto 5px;
+    border: .125rem solid #ea5514;
+    border-radius: .3125rem;
+    color: #ea5514;
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+}
+
+#footer .links {
+    margin-bottom: 1.125rem;
+    font-size: 1rem;
+}
+
+#footer .links a {
+    margin-right: 1.875rem;
+}
+#footer a {
+    color: #fff;
 }
 

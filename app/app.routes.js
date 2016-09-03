@@ -4,6 +4,7 @@ var auth_guard_service_1 = require('./auth-guard.service');
 var auth_service_1 = require('./service/auth.service');
 var home_component_1 = require('./components/home.component');
 var activity_component_1 = require('./components/activity.component');
+var product_component_1 = require('./components/product.component');
 var routes = [
     {
         path: '',
@@ -12,6 +13,10 @@ var routes = [
     {
         path: 'activity',
         component: activity_component_1.ActivityComponent
+    },
+    {
+        path: 'product',
+        component: product_component_1.ProductComponent
     }
 ];
 exports.APP_ROUTER_PROVIDERS = [
