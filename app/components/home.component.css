@@ -204,14 +204,6 @@
   border-radius: 3px 0 0 3px;
 }
 
-.products-pages-container a{
-    color: black;
-    font-family: OpenSans;
-	font-size: 12px;
-	letter-spacing: 0.1px;
-    padding: 0 10px 0 10px;
-}
-
 .products-list-item{
 	margin: 0px;
     display: inline-block;

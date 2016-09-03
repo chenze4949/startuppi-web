@@ -1,0 +1,49 @@
+.activity-item{
+	margin-top: 10px;
+    display: inline-block;
+    width:48%;
+    background-color: white;
+    border-width: 1px;
+    border-color: lightgray;
+    border-style: solid;
+    margin-right: 2%;
+}
+
+.item-activity-image{
+	float: left;
+	height: 200px;
+	width: 200px;
+}
+
+.item-activity-details{
+	float: left;
+	width: 200px;
+}
+
+.item-activity-details-name{
+    font-family: OpenSans-Bold;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 0.1px;
+	text-align: left;
+	color: #000000;
+}
+
+.item-activity-details-price{
+    font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+}
+
+.item-activity-details-type{
+    margin-top: 20px;
+    font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+}
+
+.item-activity-details-quantity{
+    font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+}
