@@ -202,3 +202,8 @@ html, body{
     color: #fff;
 }
 
+:host .slim-loading-bar-progress{
+	height:4px !important;
+	color: #ea5514 !important;
+	background-color: #ea5514 !important;
+}

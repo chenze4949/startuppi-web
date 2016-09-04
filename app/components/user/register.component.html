@@ -1,0 +1,42 @@
+<main id="main" class="passport">
+    <!-- layout-inner -->
+    <div class="layout-inner">
+        <div class="passport-wrap">
+            <form action="/user/register" id="registerForm" method="post" class="form passport-form" novalidate="novalidate">
+                <h2 class="legend">注册新用户<a href="/user/login" class="top-link">使用已有账户登录</a></h2>
+
+                <div class="form-item">
+                    <div class="form-cont">
+                        <input type="text" name="mobile" value="" class="txt txt-h-xlarge" placeholder="手机号">
+                        
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div class="form-cont">
+                        <input type="text" name="validCode" class="txt txt-h-xlarge w-large float-left" placeholder="验证码">
+                        <div class="img-code float-right">
+                            <img id="validCode" src="images/verify_code_sample.png" alt="" width="120" height="40" class="js-refresh">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-item">
+                    <div class="form-cont">
+                        <input type="password" name="password" value="" class="txt txt-h-xlarge" placeholder="密码">
+                        
+                    </div>
+                </div>
+                <div class="form-item form-item-agreement">
+                    <div class="form-cont">
+                        <label><input name="agree" class="{required:true}" type="checkbox" checked="checked">同意并已阅读</label><a href="/views/user/agreement-register.jsp" target="_blank">协议</a>
+                    </div>
+                </div>
+                <div class="form-item form-item-submit">
+                    <div class="form-cont">
+                        <button type="submit" class="btn btn-primary btn-h-large">注&nbsp;&nbsp;&nbsp;册</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/ layout-inner -->
+</main>
