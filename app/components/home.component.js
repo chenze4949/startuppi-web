@@ -9,21 +9,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
+var scheduler_component_1 = require('../common/scheduler.component');
 var HomeComponent = (function () {
-    function HomeComponent(router) {
+    function HomeComponent(router, http) {
         this.router = router;
+        this.http = http;
     }
+    HomeComponent.prototype.getEvents = function () {
+        return this.http.get('../app/data/events.json')
+            .toPromise()
+            .then(function (res) { return res.json(); });
+    };
     HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.resources = [
+            {
+                id: '1',
+                title: 'Room A'
+            },
+            {
+                id: '2',
+                title: 'Room B'
+            }
+        ];
+        this.getEvents().then(function (events) {
+            _this.events = events;
+            console.log(_this.events);
+        });
     };
     HomeComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'sp-home',
             templateUrl: 'home.component.html',
-            styleUrls: ['home.component.css']
+            styleUrls: ['home.component.css'],
+            directives: [scheduler_component_1.SchedulerComponent],
+            providers: [http_1.HTTP_PROVIDERS]
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, http_1.Http])
     ], HomeComponent);
     return HomeComponent;
 }());
