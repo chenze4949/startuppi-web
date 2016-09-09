@@ -64,8 +64,8 @@
     <div class="banner">
         <img src="images/home_sample.png"  style=""  alt=""/>
     </div>
-    </div>
-    <div class="recommended-product-list" style="margin-top:40px">
+</div>
+<div class="recommended-product-list" style="margin-top:40px">
     <div class="products-list-item" (click)='gotoDetail(product)' *ngFor="let product of [1,2,3,4,5,6,7,8]">
         <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
         <a class="cbp-vm-image">
@@ -91,3 +91,16 @@
             </div>
     </div>
 </div>
+<ds-scheduler 
+    editable="false"  
+    defaultView="month" 
+    [events]="events" 
+    [resources]="resources"
+    [defaultDate]="defaultDate"        
+    slotLabelFormat="HH:mm"          
+    resourceAreaWidth="120" 
+    resourceLabelText="&nbsp;" 
+    titleFormat="YYYY-MM-DD dddd" 
+    nowIndicator="true"
+    lang="zh-cn"       
+></ds-scheduler>   
