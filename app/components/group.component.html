@@ -1,0 +1,81 @@
+<div class="activity-category-container">
+    <div class="activity-category-group">
+        <div class="header">活動分類:</div>
+        <ul>
+            <li><a href=""><span class="all">全部</span></a></li>
+            <li><a href="">投融資</a></li>
+            <li><a href="">創業交流</a></li>
+            <li><a href="">路演活動</a></li>
+            <li><a href="">創業培訓</a></li>
+            <li><a href="">企業發佈會</a></li>
+            <li><a href="">創客空間</a></li>
+            <li><a href="">找合夥人</a></li>
+        </ul>
+    </div>
+    <div class="activity-category-group">
+        <div class="header">活動地點:</div>
+        <ul>
+            <li><a href=""><span class="all">全部</span></a></li>
+            <li><a href="">深圳</a></li>
+            <li><a href="">香港</a></li>
+            <li><a href="">澳門</a></li>
+            <li><a href="">廣州</a></li>
+            <li><a href="">中山</a></li>
+            <li><a href="">惠州</a></li>
+            <li><a href="">珠海</a></li>
+            <li><a href="">東莞</a></li>
+            <li><a href="">其他</a></li>			
+        </ul>
+    </div>
+    <div class="activity-category-group">
+        <div class="header">活動費用:</div>
+        <ul>
+            <li><a href=""><span class="all">全部</span></a></li>
+            <li><a href="">免費</a></li>
+            <li><a href="">0﹣50元</a></li>
+            <li><a href="">50﹣100元</a></li>
+            <li><a href="">100﹣200元</a></li>
+            <li><a href="">200﹣500元</a></li>
+            <li><a href="">500以上</a></li>		
+        </ul>
+    </div>
+    <div class="activity-category-group">
+        <div class="header">活動時間:</div>
+        <ul>
+            <li><a href=""><span class="all">全部</span></a></li>
+            <li><a href="">今天</a></li>
+            <li><a href="">0﹣3天</a></li>
+            <li><a href="">本週內</a></li>
+            <li><a href="">一月內</a></li>	
+            <li><a href="">三月內</a></li>	
+            <li><a href="">半年內</a></li>	
+            <li><a href="">其他</a></li>			
+        </ul>
+    </div>
+</div>
+<div class="product-list" style="width:70%">
+        <div class="products-list-item" (click)='gotoDetail(product)' *ngFor="let product of [1,2,3,4,5,6,7,8]">
+            <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+            <a class="cbp-vm-image">
+                    <div class="simpleCart_shelfItem">
+                        <div class="view view-first">
+                            <div class="inner_content clearfix">
+                                <div class="product-image">
+                                    <!--<img *ngIf='product.product_images.length>0' [src]="products[0].product_images[0].image_medium_url"  style=""  alt=""/>-->
+                                    <img src="images/product_sample.png"  style=""  alt=""/>
+                                    <div class="product_container">
+                                        <div class="product-name">企業網站建設</div>
+                                        <div class="product-category">網站建設</div>
+                                        <div class="product-like"><span style="color:red">554</span> 人氣</div>
+                                        <div class="clearfix"></div>
+                                    </div>		
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <div class="cbp-vm-details">
+                    在互聯網中建設自己的網站，從而領軍行業，成為第一家征戰互聯網的企業...
+                </div>
+        </div>
+    </div>
