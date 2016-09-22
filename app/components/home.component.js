@@ -9,48 +9,74 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
-var scheduler_component_1 = require('../common/scheduler.component');
 var HomeComponent = (function () {
-    function HomeComponent(router, http) {
+    function HomeComponent(router) {
         this.router = router;
-        this.http = http;
+        this.dialogVisible = false;
     }
     HomeComponent.prototype.getEvents = function () {
-        return this.http.get('../app/data/events.json')
-            .toPromise()
-            .then(function (res) { return res.json(); });
+    };
+    HomeComponent.prototype.handleEventClick = function (e) {
+        this.event = new MyEvent();
+        this.event.title = e.calEvent.title;
+        var start = e.calEvent.start;
+        var end = e.calEvent.end;
+        if (e.view.name === 'month') {
+            start.stripTime();
+        }
+        if (end) {
+            end.stripTime();
+            this.event.end = end.format();
+        }
+        this.event.id = e.calEvent.id;
+        this.event.start = start.format();
+        this.event.allDay = e.calEvent.allDay;
+        this.dialogVisible = true;
     };
     HomeComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.resources = [
+        this.events = [
             {
-                id: '1',
-                title: 'Room A'
+                "title": "All Day Event",
+                "start": "2016-09-01"
             },
             {
-                id: '2',
-                title: 'Room B'
+                "title": "Long Event",
+                "start": "2016-09-07",
+                "end": "2016-09-10"
+            },
+            {
+                "title": "Repeating Event",
+                "start": "2016-09-09T16:00:00"
+            },
+            {
+                "title": "Repeating Event",
+                "start": "2016-09-16T16:00:00"
+            },
+            {
+                "title": "Conference",
+                "start": "2016-09-11",
+                "end": "2016-09-13"
             }
         ];
-        this.getEvents().then(function (events) {
-            _this.events = events;
-            console.log(_this.events);
-        });
     };
     HomeComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'sp-home',
             templateUrl: 'home.component.html',
-            styleUrls: ['home.component.css'],
-            directives: [scheduler_component_1.SchedulerComponent],
-            providers: [http_1.HTTP_PROVIDERS]
+            styleUrls: ['home.component.css']
         }), 
-        __metadata('design:paramtypes', [router_1.Router, http_1.Http])
+        __metadata('design:paramtypes', [router_1.Router])
     ], HomeComponent);
     return HomeComponent;
 }());
 exports.HomeComponent = HomeComponent;
+var MyEvent = (function () {
+    function MyEvent() {
+        this.allDay = true;
+    }
+    return MyEvent;
+}());
+exports.MyEvent = MyEvent;
 //# sourceMappingURL=home.component.js.map
