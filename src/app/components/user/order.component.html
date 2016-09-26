@@ -1,0 +1,53 @@
+<div id="content">
+    <div class="content-inner">
+        <md-tab-group class="demo-tab-group">
+        <md-tab *ngFor="let tab of tabs; let i = index">
+            <template md-tab-label>{{tab.label}}</template>
+            <template md-tab-content>
+                <div class="order-list" style="">
+                    <div class="orders-list-item" (click)='gotoDetail(product)' *ngFor="let product of [1,2,3,4,5,6,7,8]">
+                        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+                        <div class="product-image">
+                            <!--<img *ngIf='product.product_images.length>0' [src]="products[0].product_images[0].image_medium_url"  style=""  alt=""/>-->
+                            <img src="images/product_sample.png"  style=""  alt=""/>
+                            <div class="product_container" style="background-color:white;">
+                                <div class="product-name">企業網站建設</div>
+                                <div class="product-category">網站建設</div>
+                                <div class="product-like"><span style="color:red">554</span>人氣</div>
+                                <div class="cbp-vm-details">
+                                    在互聯網中建設自己的網站，從而領軍行業，成為第一家征戰互聯網的企業...
+                                </div>
+                                <div class="product-company">创派科技有限公司</div>
+                                <div class="product-price"><span style="color:red">￥2000</span></div>
+                                <div class="order-detail">
+
+                                    <div class="order-category">選擇：<span style="color:green">套餐一</span></div>
+                                    <div class="order-title">付款方式：</div>
+                                    <div class="order-label">預付款<span style="color:red">￥2000</span></div>
+
+                                    <div class="order-title">訂單狀態：</div>
+                                    <div class="order-label"><span style="color:red">已完成</span></div>
+
+                                    <div class="order-title">下單時間：</div>
+                                    <div class="order-label">2016-01-01</div>
+
+                                    <div class="order-title">完成時間：</div>
+                                    <div class="order-label">2016-06-01</div>
+                                    <button type="submit" class="btn btn-primary btn-h-large">私信商家</button>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>		
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </md-tab>
+        <md-tab *ngFor="let tab of [0,1,2]; let i = index" [disabled]="true">
+            <template md-tab-label></template>
+            <template md-tab-content>
+            </template>
+        </md-tab>
+        </md-tab-group>
+    </div>
+    <!-- / content-inner -->
+</div>

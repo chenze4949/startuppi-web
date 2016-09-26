@@ -1,0 +1,187 @@
+/**/
+#content {
+    float: right;
+    width: 930px;
+    padding: 0 20px 20px;
+    min-height: 450px;
+    background-color: #f1f2f2;
+    border-radius: 4px;
+}
+
+.content-inner {
+    float: left;
+    padding: 20px 0px;
+}
+
+.order-list{
+  float: right;
+  width: 890px;
+  background-color: #f1f2f2;
+  padding: 20px 12px;
+}
+
+.orders-list-item{
+  margin: 0px;
+  display: inline-block;
+  width:33.33%;
+  background-color: #f1f2f2;
+  padding: 10px;
+  border-width: 1px;
+  border-color: #f1f2f2;
+  border-style: solid;
+}
+
+
+.orders-list-item:hover {
+   border-color: #ea5514;
+}
+
+
+.product-image img{
+    object-fit: cover;
+    object-position: center;
+    height: 120px;
+    width: 100%;
+}
+
+.product-name{
+  float: left;
+  width: 100%;
+  color: black;
+  font-family: PingFang SC Bold;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  padding: 0 10px 0 10px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.product-category{
+  float: left;
+  width: 50%;
+  color: black;
+  font-family: PingFang SC Bold;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+  padding: 0 10px 0 10px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.product-like{
+  float: right;
+  width: 50%;
+  text-align: right;
+  color: black;
+  font-family: PingFang SC Bold;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+  padding: 0 10px 0 10px;
+  margin-top: 10px;
+}
+
+.cbp-vm-details{
+  float: left;
+  width: 100%;/* Fallback for non-webkit */
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  font-family: PingFang SC Regular;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  color: #999999;
+  line-height: 1.5em;
+  height: 3em;       /* height is 2x line-height, so two lines will display */
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 10px 0 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.product-company{
+  float: left;
+  width: 50%;
+  color: black;
+  font-family: PingFang SC Regular;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+  padding: 0 10px 0 10px;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.product-price{
+  float: right;
+  width: 50%;
+  text-align: right;
+  color: black;
+  font-family: PingFang SC Regular;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+  padding: 0 10px 0 10px;
+  margin: 10px 0;
+}
+
+.order-detail{
+    float: left;
+    width: 100%;
+    height: 258px;
+    background-color: lightgreen;
+    padding-top: 20px;
+}
+
+.order-category{
+  float: left;
+  width: 100%;
+  color: black;
+  font-family: PingFang SC Bold;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.1px;
+  padding: 0 10px 0 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}   
+
+.order-title{
+  float: left;
+  width: 50%;
+  color: black;
+  font-family: PingFang SC Bold;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+  padding: 0 10px 0 10px;
+  margin: 10px 0;
+  text-align: left;
+}
+
+.order-label{
+    float: right;
+    width: 50%;
+    text-align: right;
+    color: black;
+    font-family: PingFang SC Bold;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1px;
+    padding: 0 10px 0 10px;
+    margin: 10px 0;
+}
+
+.order-detail .btn-primary {
+    background: #ea5514;
+    border-color: #ea5514;
+    color: #fff;
+    width: 120px;
+    margin-top: 10px;
+}

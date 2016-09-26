@@ -1,0 +1,64 @@
+<ng2-slim-loading-bar></ng2-slim-loading-bar>
+<div class="container">
+    <div class="header">
+        <img src="/assets/img/logo59.png" alt="">
+        <div class="header-top-left">
+        <ul>
+            <li></li>
+            <li><a href="">首頁</a></li>
+            <li><a [routerLink]="['/products']" routerLinkActive="active">創業服務庫</a></li>
+            <li><a [routerLink]="['/group']" routerLinkActive="active">創業社群</a></li>
+            <li><a [routerLink]="['/activity']" routerLinkActive="active">創業活動</a></li>			
+        </ul>
+        </div>
+        <div class="header-top-right">
+            <ul>
+            <li><a href="">商家進駐</a></li>
+            <li><a href="">聯繫客服</a></li>
+            <li><a [routerLink]="['/login']" routerLinkActive="active">登錄</a></li>
+            <li><a [routerLink]="['/register']" routerLinkActive="active">註冊</a></li>			
+            </ul>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+    <hr style="margin-top:10px">
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+  <footer id="footer">
+    <div class="layout-inner">
+        <div class="inner">
+            <!-- qrcode -->
+            <div class="footer-qrcode">
+                <a href="/appDownload"><img src="images/Dragonite.png" alt=""></a>
+            </div>
+            <!--/ qrcode -->
+            <!-- footer-info -->
+            <div class="footer-info">
+                <div class="contact">
+                    <div class="img-wrap">
+                        <img src="images/Dragonite.png" alt="">
+                    </div>
+                    <div class="join">
+                        <a href="/booking/create" class="btn-join">我要入驻</a> 400-1188-891
+                    </div>
+                </div>
+                <!-- footer-links -->
+                <div class="links">
+                    <a href="/hide">隐私政策</a>
+                    <a href="/law">法律声明</a>
+                    <a href="/contactus">联系我们</a>
+                    <a href="/aboutus">关于我们</a>
+                </div>
+                <!--/ footer-links -->
+                <p class="copyright">
+                    <span>©2015-2016 优客工场</span>
+                    <span>版权所有</span>
+                    <span>京ICP备15021969号-1</span>
+                </p>
+            </div>
+            <!--/ footer-info -->
+        </div>
+    </div>
+  </footer>
+</div>

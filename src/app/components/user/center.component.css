@@ -1,0 +1,78 @@
+#sidebar {
+    float: left;
+    width: 220px;
+}
+
+.profile {
+    margin-bottom: 20px;
+    padding: 20px;
+    height: 150px;
+}
+
+.profile, .user-menu {
+    background-color: #f1f2f2;
+    border-radius: 4px;
+}
+
+
+.profile .user-name {
+    width: 100%;
+    float: right;
+    color: #666;
+    padding-top: 10px;
+}
+
+ol, ul {
+    list-style: none; 
+    background-color: #f1f2f2;
+}
+
+.user-menu li:not(:last-child) {
+    border-bottom: 1px solid #e5e5e5;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+li:hover{
+    background-color: #ea5514;
+}
+
+.user-menu a {
+    display: block;
+    padding: 5px 20px;
+    color: #666;
+    font-size: 14px;
+    line-height: 30px;
+}
+
+.user-menu a:hover{
+    color: white;
+}
+
+.btn, .btn:hover, a {
+    text-decoration: none;
+}
+
+.user-menu .uricon {
+    float: right;
+    margin-top: 8px;
+}
+
+[class*=" uricon-"], [class^=uricon-] {
+    display: inline-block;
+    font-family: uricon!important;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+

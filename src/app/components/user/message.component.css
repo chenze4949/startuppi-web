@@ -1,0 +1,98 @@
+/**/
+#content {
+    float: right;
+    width: 930px;
+    padding: 0 20px 20px;
+    min-height: 450px;
+    background-color: #f1f2f2;
+    border-radius: 4px;
+}
+
+.content-inner {
+    float: left;
+    padding: 20px 0px;
+}
+
+.message-list{
+    margin-top: 20px;
+}
+
+.message-item{
+    display: inline-block;
+    width:100%;
+    background-color: white;
+    border-width: 1px;
+    border-color: #e8e8e8;
+    border-style: solid;
+    height: 70px;
+    box-shadow: 0 1px 1px -1px gray;
+}
+
+.message-item:hover {
+   border-color: #ea5514;
+}
+
+.item-message-image{
+	float: left;
+	height: 50px;
+	width: 50px;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.item-message-details{
+	float: left;
+    width: 90%;
+}
+
+.item-message-details-name{
+	float: left;
+    width: 70%;
+    font-family: PingFang SC Bold;
+	font-size: 12px;
+	font-weight: bold;
+	letter-spacing: 0.1px;
+	text-align: left;
+	color: #000000;
+    line-height: 1.5em;
+    height: 1.5em;       /* height is 2x line-height, so two lines will display */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.item-message-details-time{
+    float: right;
+    width: 20%;
+    font-family: PingFang SC Regular;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+	text-align: right;
+    margin: 10px;
+}
+
+.item-message-details-message{
+	float: left;
+    margin-left: 10px;
+    font-family: PingFang SC Regular;
+    font-size: 12px;
+    letter-spacing: 0.1px;
+    line-height: 1.5em;
+    height: 1.5em;       /* height is 2x line-height, so two lines will display */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+	text-align: left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.item-message-details-quantity{
+    font-family: PingFang SC Regular;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+}

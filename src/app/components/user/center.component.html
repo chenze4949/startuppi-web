@@ -1,0 +1,30 @@
+<div id="sidebar">
+    <!-- profile -->
+    <div class="profile">
+        <div class="profile-inner">
+            <div class="user-pic">
+                <img src="images/Dragonite.png" alt="" style="width: 60px; height: 60px; ">
+            </div>
+            <div class="user-name">
+                <div class="name">
+                    <div>14714303821</div>
+                </div>
+                <div>普通會員<i class="uricon uricon-badge"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- / profile -->
+    <!-- user-menu -->
+    <ul class="user-menu">
+        <li> <a [routerLink]="['profile']">個人資料<i class="uricon uricon-arrow-right"></i></a></li>
+        <li><a [routerLink]="['security']">安全設置<i class="uricon uricon-arrow-right"></i></a></li>
+        <li><a [routerLink]="['order']">我的訂單<i class="uricon uricon-arrow-right"></i></a></li>
+        <li><a [routerLink]="['account']">我的賬戶<i class="uricon uricon-arrow-right"></i></a></li>
+        <li><a [routerLink]="['message']">我的消息<i class="uricon uricon-arrow-right"></i></a></li>
+        <li><a [routerLink]="['company']">我的公司<i class="uricon uricon-arrow-right"></i></a></li>
+    </ul>
+    <!-- / user-menu -->
+</div>
+<router-outlet></router-outlet>

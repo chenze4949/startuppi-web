@@ -1,0 +1,53 @@
+<div id="content">
+    <div class="content-inner">
+        <md-tab-group class="demo-tab-group">
+        <md-tab>
+            <template md-tab-label>私信</template>
+            <template md-tab-content>
+                <div class="message-list">
+                    <div class="message-item" (click)='gotoDetail(product)' *ngFor="let product of [1,2,3,4,5,6,7,8]">
+                        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+                        <div class="item-message-image">
+                            <img src="images/Dragonite.png" style="max-width: 100%; max-height: 100%;" alt=""/>
+                        </div>
+                        <div class="item-message-details">
+                            <div class="message">
+                                <div class="item-message-details-name">
+                                    Vincent
+                                </div>
+                                <div class="item-message-details-time">2016-09-26 19:00</div>
+                                <div class="item-message-details-message">感謝您的關注</div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </md-tab>
+        <md-tab>
+            <template md-tab-label>系统消息</template>
+            <template md-tab-content>
+                <div class="message-list">
+                    <div class="message-item" (click)='gotoDetail(product)' *ngFor="let product of [1,2,3,4,5,6,7,8]">
+                        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+                        <div class="item-message-image">
+                            <img src="images/Dragonite.png" style="max-width: 100%; max-height: 100%;" alt=""/>
+                        </div>
+                        <div class="item-message-details">
+                            <div class="message">
+                                <div class="item-message-details-name">
+                                    Vincent
+                                </div>
+                                <div class="item-message-details-time">2016-09-26 19:00</div>
+                                <div class="item-message-details-message">感謝您的關注</div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </md-tab>
+        </md-tab-group>
+    </div>
+    <!-- / content-inner -->
+</div>
