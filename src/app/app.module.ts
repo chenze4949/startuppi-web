@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
 import { MdTabsModule } from '@angular2-material/tabs';
-import {Overlay} from 'angular2-modal';
+import { Overlay } from 'angular2-modal';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap/index';
 
 /*
@@ -43,6 +43,8 @@ import { RadioButtonModule } from 'primeng/primeng';
 import { ModalModule } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { GroupModal } from './components/modal/group-modal';
+import { GroupCreateModal } from './components/modal/group-create-modal';
+import { FileUploadModule } from 'ng2-file-upload/components/file-upload/file-upload.module';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -81,7 +83,8 @@ type StoreType = {
     ProfileComponent,
     SecurityComponent,
     MessageComponent,
-    GroupModal
+    GroupModal,
+    GroupCreateModal
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -94,7 +97,8 @@ type StoreType = {
     RadioButtonModule,
     MdTabsModule,
     ModalModule.forRoot(),
-    BootstrapModalModule
+    BootstrapModalModule,
+    FileUploadModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
@@ -103,7 +107,7 @@ type StoreType = {
     Overlay,
     BootstrapModalModule.getProviders()
   ],
-  entryComponents: [ GroupModal ]
+  entryComponents: [ GroupModal, GroupCreateModal ]
 })
 export class AppModule {
   constructor(public appRef: ApplicationRef, public appState: AppState) {}

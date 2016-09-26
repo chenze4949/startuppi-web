@@ -1,4 +1,5 @@
 .activity-category-container{
+    float: left;
 	width: 70%;
 	height: 180px;
 	border-width: 1px;
@@ -69,7 +70,7 @@
     float: left;
     width: 100%;
     color: black;
-    font-family: OpenSans-Semibold;
+    font-family: PingFang SC Bold;
 	font-size: 12px;
 	font-weight: 600;
 	letter-spacing: 0.1px;
@@ -80,9 +81,23 @@
     float: left;
     width: 100%;
     color: lawngreen;
-    font-family: OpenSans-Semibold;
+    font-family: PingFang SC Bold;
 	font-size: 12px;
 	font-weight: 600;
 	letter-spacing: 0.1px;
     text-align: center;
 }
+
+.group-aside{
+    float: right;
+    width: 300px;
+}
+.group-aside .btn-primary {
+    background: #ea5514;
+    border-color: #ea5514;
+    color: #fff;
+    width: 100%;
+    font-family: PingFang SC Bold;
+	font-size: 16px;
+}
+

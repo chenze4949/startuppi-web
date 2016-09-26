@@ -53,6 +53,9 @@
         </ul>
     </div>
 </div>
+<div class="group-aside">
+    <button type="submit" class="btn btn-primary btn-h-large" (click)="createGroup()">我要登記我的創業社群</button>
+</div>
 <div class="group-list" style="width:70%">
     <div class="groups-list-item" (click)='gotoDetail(group)' *ngFor="let group of [1,2,3,4,5,6,7,8]">
         <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
@@ -67,3 +70,4 @@
         </div>
     </div>
 </div>
+<span defaultOverlayTarget></span>

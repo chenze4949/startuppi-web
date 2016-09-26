@@ -299,6 +299,37 @@
   margin-bottom: 10px;
 }
 
+.group-image img{
+  object-fit: cover;
+  object-position: center;
+  height: 174px;
+  width: 100%;
+  border-radius: 87px;
+}
+
+
+.group-name{
+  float: left;
+  width: 100%;
+  color: black;
+  font-family: OpenSans-Semibold;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+  text-align: center;
+}
+
+.group-category{
+    float: left;
+    width: 100%;
+    color: lawngreen;
+    font-family: OpenSans-Semibold;
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.1px;
+    text-align: center;
+}
+
 .floor-title{
   float: left;
   width: 100%;
@@ -339,35 +370,4 @@
   width:16.66%;
   background-color: white;
   padding: 10px;
-}
-
-.group-image img{
-  object-fit: cover;
-  object-position: center;
-  height: 174px;
-  width: 100%;
-  border-radius: 87px;
-}
-
-
-.group-name{
-  float: left;
-  width: 100%;
-  color: black;
-  font-family: OpenSans-Semibold;
-	font-size: 12px;
-	font-weight: 600;
-	letter-spacing: 0.1px;
-  text-align: center;
-}
-
-.group-category{
-    float: left;
-    width: 100%;
-    color: lawngreen;
-    font-family: OpenSans-Semibold;
-	font-size: 12px;
-	font-weight: 600;
-	letter-spacing: 0.1px;
-    text-align: center;
 }
