@@ -257,3 +257,19 @@ md-ink-bar{
 .md-tab-label:focus{
     background-color: rgba(234, 85, 20, 0.2) !important;
 }
+
+.ui-state-hover{
+    background-color: rgba(234, 85, 20, 0.5) !important;
+}
+
+.ui-state-active{
+    background-color: rgba(234, 85, 20, 1) !important;
+}
+
+.ui-state-highlight{
+    background-color: rgba(234, 85, 20, 1) !important;
+}
+
+.ui-datatable{
+    font-size: 14px !important;
+}

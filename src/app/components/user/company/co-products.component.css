@@ -13,99 +13,41 @@
     padding: 20px 0px;
 }
 
-.product-list{
-    background-color: white;
-    margin-top: 20px;
-    width: 800px;
-}
-
-.product-item{
-    background-color: white;
-    height: 40px;
-    box-shadow: 0 1px 1px -1px gray;
-    cursor: pointer;
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-color: #f2f2f5;
-    padding: 0px 12px;
-}
-
-.product-item:hover {
-    background-color: rgba(234, 85, 20, 0.5);
-    color: white;
-}
-
-.product-item:hover .item-product-details-name{
-    color: white;
-}
-
-.product-item:hover .item-product-details-time{
-    color: white;
-}
-
-.product-item:hover .item-product-details-product{
-    color: white;
-}
-
-.item-product-details{
-	float: left;
-    width: 500px;
-}
-
-.item-product-details-name{
-	float: left;
-    width: 100px;
-    font-family: PingFang SC Regular;
-	font-size: 14px;
-	font-weight: bold;
-	letter-spacing: 0.1px;
-	text-align: left;
-	color: #333;
-    line-height: 40px;
+#crumbs {
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-wrap: normal;
-    margin-left: 10px;
-    height: 40px;
+    zoom: 1;
+    color: #000;
+    margin: 20px 0 20px 0;
+    font-size: 8px;
 }
 
-.item-product-details-time{
+#crumbs a, #empty a {
+    color: #36C;
+    text-decoration: none;
+}
+
+#crumbs strong {
     float: left;
-    width: 100px;
-    font-family: PingFang SC Regular;
-	font-size: 12px;
-	letter-spacing: 0.1px;
-	text-align: right;
-    color: #808080;
-    line-height: 40px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    word-wrap: normal;
-    height: 40px;
+    font-weight: 400;
 }
 
-.item-product-details-product{
-	float: left;
-    font-family: PingFang SC Regular;
-    font-size: 12px;
-    letter-spacing: 0.1px;
-    line-height: 1.5em;
-    height: 1.5em;       /* height is 2x line-height, so two lines will display */
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-	text-align: left;
-    margin-top: 10px;
-    margin-left: 10px;
-    color: #808080;
+.crumbs {
+    float: left;
+    margin-left: -5px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-.item-product-details-quantity{
-    font-family: PingFang SC Regular;
-	font-size: 12px;
-	letter-spacing: 0.1px;
+.crumbs .current {
+    background: 0 0;
+}
+.crumbs li {
+    float: left;
+    padding: 0 0 0 5px;
 }
 
+#crumbs span.cart-tip {
+    float: right;
+    color: gray;
+}

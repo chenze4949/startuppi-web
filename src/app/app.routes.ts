@@ -17,6 +17,7 @@ import { OrderComponent } from './components/user/order.component';
 import { ProfileComponent } from './components/user/profile.component';
 import { SecurityComponent } from './components/user/security.component';
 import { MessageComponent } from './components/user/message.component';
+import { CoProductsComponent } from './components/user/company/co-products.component';
 
 
 export const ROUTES: Routes = [
@@ -53,7 +54,14 @@ export const ROUTES: Routes = [
           { path: 'security',  component: SecurityComponent },
           { path: 'account',  component: AccountComponent },
           { path: 'order',  component: OrderComponent },
-          { path: 'company',  component: CompanyComponent },
+          { 
+            path: 'company',  
+            component: CompanyComponent,
+            children:[
+              { path: '', redirectTo: 'products', pathMatch: 'full' },
+              { path: 'products',  component: CoProductsComponent }
+            ] 
+          },
           { path: 'message',  component: MessageComponent },
       ]
   }

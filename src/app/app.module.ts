@@ -35,10 +35,12 @@ import { OrderComponent } from './components/user/order.component';
 import { ProfileComponent } from './components/user/profile.component';
 import { SecurityComponent } from './components/user/security.component';
 import { MessageComponent } from './components/user/message.component';
+import { CoProductsComponent } from './components/user/company/co-products.component';
 
 import { DialogModule } from 'primeng/primeng';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
-import { ScheduleModule} from 'primeng/primeng';
+import { ScheduleModule } from 'primeng/primeng';
+import { DataTableModule } from 'primeng/primeng';
 import { RadioButtonModule } from 'primeng/primeng';
 import { ModalModule } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
@@ -79,6 +81,7 @@ type StoreType = {
     CenterComponent,
     AccountComponent,
     CompanyComponent,
+    CoProductsComponent,
     OrderComponent,
     ProfileComponent,
     SecurityComponent,
@@ -98,7 +101,8 @@ type StoreType = {
     MdTabsModule,
     ModalModule.forRoot(),
     BootstrapModalModule,
-    FileUploadModule
+    FileUploadModule,
+    DataTableModule
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,

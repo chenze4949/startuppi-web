@@ -1,8 +1,28 @@
-<div style='width:60%;display:inline-block;'>
-<datatable
-    style='width:100%'
-    class='material'
-    [rows]='rows'
-    [options]='options'>
-    </datatable>
+<div id="content">
+    <div class="content-inner">
+        <div id="crumbs">
+            <strong>您的位置：</strong>
+            <ol class="crumbs">
+                <li><a [routerLink]="['/center']" routerLinkActive="active">个人中心</a></li>
+                <li class="current">></li>
+                <li><a [routerLink]="['/center/company']" routerLinkActive="active">我的公司</a></li>
+                <li class="current">></li>
+                <li class="current">商品管理</li>
+            </ol>
+            <span class="cart-tip">帮您完成商品管理，上传更便捷，更简单！
+                <!--<a href="//service.taobao.com/support/help-11746.htm?spm=a1z0d.1.0.0.ogEwpx" target="_blank" data-spm-anchor-id="a1z0d.1.0.0">如何使用购物车</a>-->
+            </span>
+        </div>
+        <div class="ui-widget-header ui-helper-clearfix" style="padding:4px 10px;border-bottom: 0 none">
+            <i class="fa fa-search" style="float:left;margin:4px 4px 0 0"></i>
+            <input #gb type="text" pInputText size="50" style="float:left" placeholder="搜索">
+        </div>
+        <p-dataTable [value]="rows" selectionMode="single" (onRowSelect)="onRowSelect($event)" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10,20]" [rows]="15" [globalFilter]="gb" [resizableColumns]="true">
+            <header>商品管理</header>
+            <p-column field="name" header="商品名" [sortable]="true"></p-column>
+            <p-column field="gender" header="商品類別" [sortable]="true"></p-column>
+            <p-column field="company" header="商品簡介" [sortable]="true"></p-column>
+            <footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add">創建商品</button></div></footer>
+        </p-dataTable>
+    </div>
 </div>
