@@ -1,16 +1,35 @@
 /**/
 #content {
     float: right;
-    width: 930px;
-    padding: 0 20px 20px;
+    width: 960px;
     min-height: 450px;
-    background-color: #f1f2f2;
-    border-radius: 4px;
 }
 
 .content-inner {
     float: left;
-    padding: 40px 0px;
+    width: 100%;
+}
+
+.W_tips.tips_warn {
+    border: 1px solid #e4e7f8;
+    background: #f8f9fe;
+    line-height: 12px;
+    color: #808080;
+}
+.W_tips {
+    font-size: 12px;
+    overflow: hidden;
+    padding: 5px 7px 4px 10px;
+    _width: auto;
+    text-align: center;
+    letter-spacing: normal;
+    word-spacing: normal;
+}
+
+.W_tips .txt {
+    display: inline;
+    line-height: 18px;
+    text-align: left;
 }
 
 .form {
@@ -61,7 +80,7 @@
     position: relative;
 }
 
-.txt {
+.form .form-cont .txt {
     width: 100px;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     border: 1px solid #ccc;

@@ -1,10 +1,26 @@
 <div id="content">
     <div class="content-inner">
-        <md-tab-group class="demo-tab-group">
-        <md-tab>
-            <template md-tab-label>私信</template>
-            <template md-tab-content>
+         <div id="crumbs">
+            <strong>您的位置：</strong>
+            <ol class="crumbs">
+                <li><a [routerLink]="['/center']" routerLinkActive="active">个人中心</a></li>
+                <li class="current">></li>
+                <li><a [routerLink]="['/center/company']" routerLinkActive="active">消息管理</a></li>
+                <li class="current">></li>
+                <li class="current">互动消息</li>
+            </ol>
+            <span class="cart-tip">帮您完成商品管理，上传更便捷，更简单！
+                <!--<a href="//service.taobao.com/support/help-11746.htm?spm=a1z0d.1.0.0.ogEwpx" target="_blank" data-spm-anchor-id="a1z0d.1.0.0">如何使用购物车</a>-->
+            </span>
+        </div>
+        <div class="message-back">
+            <div class="message-container">
                 <div class="message-list">
+                    <div class="app-quick-entry">
+                     <span class="entry-wrap">
+                     <span class="title">私信</span>
+                     </span>
+                    </div>
                     <div class="message-item" (click)='gotoDetail(product)' *ngFor="let product of [1,2,3,4,5,6,7,8]">
                         <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
                         <div class="item-message-image">
@@ -22,32 +38,52 @@
                         </div>
                     </div>
                 </div>
-            </template>
-        </md-tab>
-        <md-tab>
-            <template md-tab-label>系统消息</template>
-            <template md-tab-content>
-                <div class="message-list">
-                    <div class="message-item" (click)='gotoDetail(product)' *ngFor="let product of [1,2,3,4,5,6,7,8]">
-                        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
-                        <div class="item-message-image">
-                            <img src="images/Dragonite.png" style="max-width: 100%; max-height: 100%;" alt=""/>
+                <div class="chat-window-container">
+                  <div class="chat-window">
+                    <div class="panel-container">
+                      <div class="panel panel-default">
+
+                        <div class="panel-heading top-bar">
+                          <div class="panel-title-container">
+                            <h3 class="panel-title">
+                              <span class="glyphicon glyphicon-comment"></span>
+                              Chat
+                            </h3>
+                          </div>
+                          <div class="panel-buttons-container">
+                            <!-- you could put minimize or close buttons here -->
+                          </div>
                         </div>
-                        <div class="item-message-details">
-                            <div class="message">
-                                <div class="item-message-details-name">
-                                    Vincent
-                                </div>
-                                <div class="item-message-details-time">2016-09-26 19:00</div>
-                                <div class="item-message-details-message">感謝您的關注</div>
-                                <div class="clearfix"></div>
-                            </div>
+
+                        <div class="panel-body msg-container-base">
+                          <!-- <chat-message
+                               *ngFor="let message of messages | async"
+                               [message]="message">
+                          </chat-message> -->
                         </div>
+
+                        <div class="panel-footer">
+                          <div class="input-group">
+                            <input type="text" 
+                                   class="chat-input"
+                                   placeholder="Write your message here..."
+                                   (keydown.enter)="onEnter($event)"/>
+                            <span class="input-group-btn">
+                              <button class="btn-chat"
+                                 (click)="onEnter($event)"
+                                 >Send</button>
+                            </span>
+                          </div>
+                        </div>
+
+                      </div>
                     </div>
+                  </div>
                 </div>
-            </template>
-        </md-tab>
-        </md-tab-group>
+            </div>
+        </div>
+        
+        
     </div>
     <!-- / content-inner -->
 </div>

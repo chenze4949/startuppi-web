@@ -17,6 +17,11 @@
     
     <!-- / profile -->
     <!-- user-menu -->
+    <div class="app-quick-entry">
+     <span class="entry-wrap">
+     <span class="title">我的应用</span>
+     </span>
+    </div>
     <div class="app-list">
        <ul class="user-menu">
             <li class="category">
@@ -24,12 +29,30 @@
                 <ol class="category-app clearfix">
                     <li class="common-app"><a [routerLink]="['profile']">個人資料</a></li>
                     <li class="common-app"><a [routerLink]="['security']">安全設置</a></li>
+                    <li class="common-app"><a [routerLink]="['security']">我的賬戶</a></li>
                 </ol>
             </li>
-            <li class="category"><a [routerLink]="['order']">我的訂單<i class="uricon uricon-arrow-right"></i></a></li>
-            <li class="category"><a [routerLink]="['account']">我的賬戶<i class="uricon uricon-arrow-right"></i></a></li>
-            <li class="category"><a [routerLink]="['message']">我的消息<i class="uricon uricon-arrow-right"></i></a></li>
-            <li class="category"><a [routerLink]="['company']">我的公司<i class="uricon uricon-arrow-right"></i></a></li>
+            <li class="category">
+                <div class="category-name">交易管理</div>
+                <ol class="category-app clearfix">
+                    <li class="common-app"><a [routerLink]="['order']">我的订单</a></li>
+                </ol>
+            </li>
+            <li class="category">
+                <div class="category-name">消息管理</div>
+                <ol class="category-app clearfix">
+                    <li class="common-app"><a [routerLink]="['message']">互动消息</a></li>
+                    <li class="common-app"><a [routerLink]="['message']">系统消息</a></li>
+                </ol>
+            </li>
+            <li class="category">
+                <div class="category-name">我的公司</div>
+                <ol class="category-app clearfix">
+                    <li class="common-app"><a [routerLink]="['company']">公司资料</a></li>
+                    <li class="common-app"><a [routerLink]="['company']">发布商品</a></li>
+                    <li class="common-app"><a [routerLink]="['company']">出售中的商品</a></li>
+                </ol>
+            </li>
         </ul>
     </div>
     <!-- / user-menu -->

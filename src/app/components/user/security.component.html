@@ -1,5 +1,22 @@
 <div id="content">
     <div class="content-inner">
+        <div id="crumbs">
+            <strong>您的位置：</strong>
+            <ol class="crumbs">
+                <li><a [routerLink]="['/center']" routerLinkActive="active">个人中心</a></li>
+                <li class="current">></li>
+                <li><a [routerLink]="['/center/company']" routerLinkActive="active">安全设置</a></li>
+                <li class="current">></li>
+                <li class="current">個人資料</li>
+            </ol>
+            <span class="cart-tip">帮您完成商品管理，上传更便捷，更简单！
+                <!--<a href="//service.taobao.com/support/help-11746.htm?spm=a1z0d.1.0.0.ogEwpx" target="_blank" data-spm-anchor-id="a1z0d.1.0.0">如何使用购物车</a>-->
+            </span>
+        </div>
+        <div class="W_tips tips_warn clearfix">
+            <p class="txt">为保障您的帐号安全，修改密码前请填写原密码</p>
+            <!-- <a class="form_help" href="http://help.weibo.com/faq/q/225" target="_blank">帮助</a></p> -->
+        </div>
         <form action="/user/saveProfile" method="post" id="profile" class="form form-profile" novalidate="novalidate">
             <div class="form-item">
                 <label class="form-label">舊密碼</label>

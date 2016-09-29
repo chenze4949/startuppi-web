@@ -10,6 +10,30 @@
     box-shadow: 1px 1px 2px 1px #e3e3e3;
 }
 
+#sidebar .app-ordered, #sidebar .app-quick-entry {
+    height: 42px;
+    line-height: 42px;
+    width: 186px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #F5F5F5;
+}
+
+#sidebar .app-ordered .entry-wrap, #sidebar .app-quick-entry .entry-wrap {
+    position: relative;
+    display: block;
+    width: 173px;
+    height: 42px;
+    line-height: 42px;
+    padding-left: 8px;
+    text-decoration: none;
+    text-align: left;
+}
+
+#sidebar .app-quick-entry .entry-wrap .title {
+    font-size: 14px;
+    color: #333;
+}
+
 #sidebar .app-list {
     min-height: 200px;
     background: #fff;
@@ -79,8 +103,6 @@ ol, ul {
     white-space: nowrap;
     text-overflow: ellipsis;
     margin-top: 5px;
-    margin: 0;
-    padding: 0;
 }
 
 .btn, .btn:hover, a {

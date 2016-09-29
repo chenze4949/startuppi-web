@@ -1,5 +1,18 @@
 <div id="content">
     <div class="content-inner">
+        <div id="crumbs">
+            <strong>您的位置：</strong>
+            <ol class="crumbs">
+                <li><a [routerLink]="['/center']" routerLinkActive="active">个人中心</a></li>
+                <li class="current">></li>
+                <li><a [routerLink]="['/center/company']" routerLinkActive="active">交易管理</a></li>
+                <li class="current">></li>
+                <li class="current">我的订单</li>
+            </ol>
+            <span class="cart-tip">帮您完成商品管理，上传更便捷，更简单！
+                <!--<a href="//service.taobao.com/support/help-11746.htm?spm=a1z0d.1.0.0.ogEwpx" target="_blank" data-spm-anchor-id="a1z0d.1.0.0">如何使用购物车</a>-->
+            </span>
+        </div>
         <md-tab-group class="demo-tab-group">
         <md-tab *ngFor="let tab of tabs; let i = index">
             <template md-tab-label>{{tab.label}}</template>
