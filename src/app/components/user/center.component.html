@@ -1,6 +1,6 @@
 <div id="sidebar">
     <!-- profile -->
-    <div class="profile">
+   <!--  <div class="profile">
         <div class="profile-inner">
             <div class="user-pic">
                 <img src="images/Dragonite.png" alt="" style="width: 60px; height: 60px; ">
@@ -13,18 +13,25 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     
     <!-- / profile -->
     <!-- user-menu -->
-    <ul class="user-menu">
-        <li> <a [routerLink]="['profile']">個人資料<i class="uricon uricon-arrow-right"></i></a></li>
-        <li><a [routerLink]="['security']">安全設置<i class="uricon uricon-arrow-right"></i></a></li>
-        <li><a [routerLink]="['order']">我的訂單<i class="uricon uricon-arrow-right"></i></a></li>
-        <li><a [routerLink]="['account']">我的賬戶<i class="uricon uricon-arrow-right"></i></a></li>
-        <li><a [routerLink]="['message']">我的消息<i class="uricon uricon-arrow-right"></i></a></li>
-        <li><a [routerLink]="['company']">我的公司<i class="uricon uricon-arrow-right"></i></a></li>
-    </ul>
+    <div class="app-list">
+       <ul class="user-menu">
+            <li class="category">
+                <div class="category-name">账号管理</div>
+                <ol class="category-app clearfix">
+                    <li class="common-app"><a [routerLink]="['profile']">個人資料</a></li>
+                    <li class="common-app"><a [routerLink]="['security']">安全設置</a></li>
+                </ol>
+            </li>
+            <li class="category"><a [routerLink]="['order']">我的訂單<i class="uricon uricon-arrow-right"></i></a></li>
+            <li class="category"><a [routerLink]="['account']">我的賬戶<i class="uricon uricon-arrow-right"></i></a></li>
+            <li class="category"><a [routerLink]="['message']">我的消息<i class="uricon uricon-arrow-right"></i></a></li>
+            <li class="category"><a [routerLink]="['company']">我的公司<i class="uricon uricon-arrow-right"></i></a></li>
+        </ul>
+    </div>
     <!-- / user-menu -->
 </div>
 <router-outlet></router-outlet>

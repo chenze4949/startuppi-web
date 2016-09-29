@@ -2,23 +2,23 @@
 #content {
     float: right;
     width: 900px;
-    padding: 0 20px 20px;
     min-height: 450px;
-    background-color: #f1f2f2;
     border-radius: 4px;
 }
 
 .content-inner {
     float: left;
-    padding: 20px 0px;
 }
 
 #crumbs {
     overflow: hidden;
     zoom: 1;
     color: #000;
-    margin: 20px 0 20px 0;
+    padding: 12px 0 12px 15px;
     font-size: 8px;
+    border: 1px dashed #e0e0e0;
+    background: #fafafa;
+    margin-bottom: 15px;
 }
 
 #crumbs a, #empty a {

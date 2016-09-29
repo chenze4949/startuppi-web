@@ -273,3 +273,12 @@ md-ink-bar{
 .ui-datatable{
     font-size: 14px !important;
 }
+
+.ui-widget-header{
+    background-color: #fafafa !important;
+    background: #fafafa !important;
+}
+
+th.ui-state-default{
+    background: #fafafa !important;
+}
