@@ -48,9 +48,10 @@
             <li class="category">
                 <div class="category-name">我的公司</div>
                 <ol class="category-app clearfix">
-                    <li class="common-app"><a [routerLink]="['company']">公司资料</a></li>
-                    <li class="common-app"><a [routerLink]="['company']">发布商品</a></li>
-                    <li class="common-app"><a [routerLink]="['company']">出售中的商品</a></li>
+                    <li class="common-app"><a [routerLink]="['company/profile']">公司资料</a></li>
+                    <li class="common-app"><a [routerLink]="['company/products']">商品管理</a></li>
+                    <li class="common-app"><a [routerLink]="['company/create_product']">发布商品</a></li>
+                    <li class="common-app"><a [routerLink]="['company/plans']">套餐管理</a></li>
                 </ol>
             </li>
         </ul>

@@ -1,0 +1,69 @@
+<div id="content">
+    <div class="content-inner">
+        <div id="crumbs">
+            <strong>您的位置：</strong>
+            <ol class="crumbs">
+                <li><a [routerLink]="['/center']" routerLinkActive="active">个人中心</a></li>
+                <li class="current">></li>
+                <li><a [routerLink]="['/center/company']" routerLinkActive="active">我的公司</a></li>
+                <li class="current">></li>
+                <li class="current">發佈商品</li>
+            </ol>
+            <span class="cart-tip">帮您完成商品管理，上传更便捷，更简单！
+                <!--<a href="//service.taobao.com/support/help-11746.htm?spm=a1z0d.1.0.0.ogEwpx" target="_blank" data-spm-anchor-id="a1z0d.1.0.0">如何使用购物车</a>-->
+            </span>
+        </div>
+        <div class="W_tips tips_warn clearfix">
+            <p class="txt">为保障您商品信息完整呈現，請準確填寫</p>
+            <!-- <a class="form_help" href="http://help.weibo.com/faq/q/225" target="_blank">帮助</a></p> -->
+        </div>
+        <div class="form-header">
+            1. 基本信息
+        </div>
+        <ul class="form_list">
+            <li class="item clearfix">
+                <span class="tit">商品名稱：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">商品類別：</span>
+                <select class="W_select">
+                    <option value="" selected="">全部类目</option>
+                </select>
+            </li>
+            <li class="item clearfix">
+                <span class="tit">價格區間：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">預計工期：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">商品介紹：</span>
+                <textarea class="W_textarea"></textarea>
+            </li>
+        </ul>
+        <div class="form-header">
+            2. 圖片上傳
+        </div>    
+        <ul class="form_list">
+            <li class="item clearfix">
+                <span class="tit">商品圖片：</span>
+                <input type="file" style="float: left;" ng2FileSelect [uploader]="uploader" />
+            </li>
+            <li class="item clearfix">
+                <span class="tit">簡介圖片：</span>
+                <input type="file" style="float: left;" ng2FileSelect [uploader]="uploader" />
+            </li>
+        </ul>    
+        <ul class="quesa_mod S_line2">
+            <li class="question_mod S_txt2" id="question_mod_a"><a class="S_txt2"><span class="icon_ques"></span>填錯商品屬性，可能會引起商品下架，影響您的正常銷售及評分。請認真準確填寫</a></li>
+            <li class="answer_mod S_txt2" id="answer_mod_a"><span class="icon_answ"></span>如果您對商品上傳有任何疑問請咨詢
+                <a href="https://security.weibo.com/iforgot/loginname?entry=weibo">幫助中心 </a>的方式来了解。</li>
+        </ul>
+        <div class="form_btn S_line2">
+            <a id="subBtn" href="javascript:;" class="W_btn_a btn_34px">下一步</a>
+        </div>
+    </div>
+</div>

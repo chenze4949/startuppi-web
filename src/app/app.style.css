@@ -1,45 +1,4 @@
 @font-face {
-    font-family: 'OpenSans-Bold'; /*a name to be used later*/
-    src: url('/Fonts/OpenSans-Bold.ttf'); /*URL to font*/
-}
-@font-face {
-    font-family: 'OpenSans-BoldItalic'; /*a name to be used later*/
-    src: url('/Fonts/OpenSans-BoldItalic.ttf'); /*URL to font*/
-}
-@font-face {
-    font-family: 'OpenSans-ExtraBold'; /*a name to be used later*/
-    src: url('/Fonts/OpenSans-ExtraBold.ttf'); /*URL to font*/
-}
-@font-face {
-    font-family: 'OpenSans-ExtraBoldItalic'; /*a name to be used later*/
-    src: url('/Fonts/OpenSans-ExtraBoldItalic.ttf'); /*URL to font*/
-}
-@font-face {
-    font-family: 'OpenSans-Italic'; /*a name to be used later*/
-    src: url('/Fonts/OpenSans-Italic.ttf'); /*URL to font*/
-}
-@font-face {
-    font-family: 'OpenSans-Light'; /*a name to be used later*/
-    src: url('/Fonts/OpenSans-Light.ttf'); /*URL to font*/
-}
-@font-face {
-    font-family: 'OpenSans-LightItalic'; /*a name to be used later*/
-    src: url('/Fonts/OpenSans-LightItalic.ttf'); /*URL to font*/
-}
-@font-face {
-    font-family: 'OpenSans-Regular'; /*a name to be used later*/
-    src: url('/Fonts/OpenSans-Regular.ttf'); /*URL to font*/
-}
-@font-face {
-    font-family: 'OpenSans-Semibold'; /*a name to be used later*/
-    src: url('/Fonts/OpenSans-Semibold.ttf'); /*URL to font*/
-}
-@font-face {
-    font-family: 'OpenSans-SemiboldItalic'; /*a name to be used later*/
-    src: url('/Fonts/OpenSans-SemiboldItalic.ttf'); /*URL to font*/
-}
-
-@font-face {
     font-family: 'PingFang SC Regular';
     src: url('/assets/font/PingFang-SC-Regular.ttf');
 }
@@ -243,11 +202,12 @@ html, body{
 }
 
 md-ink-bar{
-    background-color: #ea5514 !important;
+    background-color: #b10000 !important;
 }
 
 .md-tab-header{
     background-color: white !important;
+    border: 1px solid #e0e0e0 !important;
 }
 
 .md-tab-label{
@@ -255,15 +215,15 @@ md-ink-bar{
 }
 
 .md-tab-label:focus{
-    background-color: rgba(234, 85, 20, 0.2) !important;
+    background-color: rgba(177, 0, 0, 0.2) !important;
 }
 
-.ui-state-hover{
-    background-color: rgba(234, 85, 20, 0.5) !important;
+p-datatable .ui-state-hover{
+    background-color: #f8f9fe !important;
 }
 
-.ui-state-active{
-    background-color: rgba(234, 85, 20, 1) !important;
+p-datatable .ui-state-active{
+    background-color: #0579C4 !important;
 }
 
 .ui-state-highlight{
@@ -271,16 +231,21 @@ md-ink-bar{
 }
 
 .ui-datatable{
-    font-size: 14px !important;
+    font-size: 12px !important;
+}
+
+.ui-datatable-odd{
+    background-color: white !important;
 }
 
 .ui-widget-header{
-    background-color: #fafafa !important;
-    background: #fafafa !important;
+    background-color: #f8f9fe !important;
+    background: #f8f9fe !important;
 }
 
 th.ui-state-default{
-    background: #fafafa !important;
+    background: white !important;
+    color: #0579C4 !important;
 }
 
 

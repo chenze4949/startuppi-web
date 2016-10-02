@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 
 @Component({
   moduleId: module.id,
-  selector: 'product',
-  templateUrl: 'product.component.html',
-  styleUrls: ['product.component.css']
+  selector: 'co-plan-create',
+  templateUrl: 'co-plan-create.component.html',
+  styleUrls: ['co-plan-create.component.css']
 })
-export class ProductComponent implements OnInit {
+export class CoPlanCreateComponent implements OnInit {
 
   constructor(
     private router: Router

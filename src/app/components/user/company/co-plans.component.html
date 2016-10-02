@@ -7,7 +7,7 @@
                 <li class="current">></li>
                 <li><a [routerLink]="['/center/company']" routerLinkActive="active">我的公司</a></li>
                 <li class="current">></li>
-                <li class="current">商品管理</li>
+                <li class="current">套餐管理</li>
             </ol>
             <span class="cart-tip">帮您完成商品管理，上传更便捷，更简单！
                 <!--<a href="//service.taobao.com/support/help-11746.htm?spm=a1z0d.1.0.0.ogEwpx" target="_blank" data-spm-anchor-id="a1z0d.1.0.0">如何使用购物车</a>-->
@@ -22,18 +22,17 @@
             <input #gb type="text" pInputText size="50" style="float:left; font-size: 12px;" placeholder="搜索">
         </div>
         <p-dataTable [value]="rows" [paginator]="true" [pageLinks]="5" [rowsPerPageOptions]="[5,10,20]" [rows]="15" [globalFilter]="gb">
-            <header>商品管理</header>
-            <p-column field="name" header="商品名" [sortable]="true"></p-column>
-            <p-column field="gender" header="商品价格" [sortable]="true"></p-column>
-            <p-column field="company" header="发布时间" [sortable]="true"></p-column>
+            <header>套餐管理</header>
+            <p-column field="name" header="套餐名" [sortable]="true"></p-column>
+            <p-column field="gender" header="搭配商品" [sortable]="true"></p-column>
+            <p-column field="company" header="价格" [sortable]="true"></p-column>
             <p-column field="gender" header="当前状态" [sortable]="true"></p-column>
             <p-column styleClass="col-button">
                 <template pTemplate type="header">
                     <div class="col-act">操作</div>
                 </template>
                 <template let-car="rowData" pTemplate type="body">
-                    <a class="col-plan" (click)="selectCar(car)">創建套餐</a>
-                    <a class="col-edit" (click)="selectCar(car)">编辑商品</a>
+                    <a class="col-edit" (click)="selectCar(car)">编辑套餐</a>
                     <a class="col-delete" (click)="selectCar(car)">下架</a>
                 </template>
             </p-column>

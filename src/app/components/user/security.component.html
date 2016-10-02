@@ -17,31 +17,29 @@
             <p class="txt">为保障您的帐号安全，修改密码前请填写原密码</p>
             <!-- <a class="form_help" href="http://help.weibo.com/faq/q/225" target="_blank">帮助</a></p> -->
         </div>
-        <form action="/user/saveProfile" method="post" id="profile" class="form form-profile" novalidate="novalidate">
-            <div class="form-item">
-                <label class="form-label">舊密碼</label>
-                <div class="form-cont">
-                    <input type="text" name="realname" class="txt input-large" value="">
-                </div>
-            </div>
-            <div class="form-item">
-                <label class="form-label">新密碼</label>
-                <div class="form-cont">
-                    <input type="text" name="nickname" class="txt input-large" value="">
-                </div>
-            </div>
-            <div class="form-item">
-                <label class="form-label">新密碼確認</label>
-                <div class="form-cont">
-                    <input type="text" name="nickname" class="txt input-large" value="">
-                </div>
-            </div>
-            <div class="form-item">
-                <div class="form-cont">
-                    <button type="submit" class="btn btn-primary btn-h-large input-large">保 存</button>
-                </div>
-            </div>
-        </form>
+        <ul class="form_list">
+            <li class="item">
+                <span class="tit">原密碼：</span>
+                <input id="passwordInput" type="password" class="W_input" value="" placeholder="请输入原密码">
+            </li>
+            <li class="item">
+                <span class="tit">新密碼：</span>
+                <input id="passwordInput" type="password" class="W_input" value="" placeholder="请输入原密码">
+            </li>
+            <li class="item">
+                <span class="tit">確認新密碼：</span>
+                <input id="passwordInput" type="password" class="W_input" value="" placeholder="请输入原密码">
+            </li>
+        </ul>        
+        <ul class="quesa_mod S_line2">
+            <li class="question_mod S_txt2" id="question_mod_a"><a class="S_txt2"><span class="icon_ques"></span>修改密码不记得原密码时怎么办？</a></li>
+            <li class="answer_mod S_txt2" id="answer_mod_a"><span class="icon_answ"></span>如果您修改密码时不记得原密码，建议您通过
+                <a href="https://security.weibo.com/iforgot/loginname?entry=weibo">找回密码 </a>的方式来完成修改密码！</li>
+        </ul>
+        <div class="form_btn S_line2">
+            <a id="subBtn" href="javascript:;" class="W_btn_a btn_34px">下一步</a>
+        </div>
+
     </div>
     <!-- / content-inner -->
 </div>

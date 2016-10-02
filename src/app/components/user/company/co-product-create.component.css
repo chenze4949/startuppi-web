@@ -32,30 +32,39 @@
     text-align: left;
 }
 
+.form-header{
+    margin-top: 10px;
+    margin-bottom: 10px;
+	font-size: 14px;
+	font-weight: bold;
+    text-align: left;
+}
 .form_list {
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin: 15px;
     list-style: none;
 }
 
 .form_list .item {
-    line-height: 35px;
-    margin-bottom: 7px;
+    line-height: 22px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 12px;
 }
 
 .form_list .tit {
+	float: left;
     display: inline-block;
     width: 80px;
     margin-right: 3px;
-    text-align: right;
+    text-align: left;
 }
 
 .form_list .W_input {
-    width: 196px;
+	float: left;
+    width: 400px;
     padding: 0 0 0 2px;
-    height: 33px;
-    line-height: 33px;
+    height: 22px;
+    line-height: 22px;
     background-color: #fff;
     border-color: #cccccc;
     color: #808080;
@@ -65,6 +74,26 @@
     vertical-align: middle;
     outline-style: none;
     box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.15)
+}
+
+.form_list .W_textarea{
+	float: left;
+    width: 400px;
+    height: 150px;
+    border-color: #cccccc;
+    color: #808080;
+    border-width: 1px;
+    border-style: solid;
+    outline-style: none;
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.15);
+    resize: none;
+}
+
+.form_list .W_select{
+	float: left;
+	width: 160px;
+    height: 22px;
+    border: 1px solid #ddd;
 }
 
 .S_line2 {

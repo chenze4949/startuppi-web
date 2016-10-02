@@ -25,6 +25,7 @@ import { XLarge } from './home/x-large';
 
 import { ActivityComponent } from './components/activity.component';
 import { ProductComponent } from './components/product.component';
+import { ProductDetailComponent } from './components/product-detail.component';
 import { GroupComponent } from './components/group.component';
 import { LoginComponent } from './components/user/login.component';
 import { RegisterComponent } from './components/user/register.component';
@@ -36,12 +37,20 @@ import { ProfileComponent } from './components/user/profile.component';
 import { SecurityComponent } from './components/user/security.component';
 import { MessageComponent } from './components/user/message.component';
 import { CoProductsComponent } from './components/user/company/co-products.component';
+import { CoProductCreateComponent } from './components/user/company/co-product-create.component';
+import { CoProductEditComponent } from './components/user/company/co-product-edit.component';
+import { CoPlansComponent } from './components/user/company/co-plans.component';
+import { CoProfileComponent } from './components/user/company/co-profile.component';
+import { CoPlanCreateComponent } from './components/user/company/co-plan-create.component';
+import { CoPlanEditComponent } from './components/user/company/co-plan-edit.component';
 
 import { DialogModule } from 'primeng/primeng';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ScheduleModule } from 'primeng/primeng';
 import { DataTableModule } from 'primeng/primeng';
+import { DataListModule } from 'primeng/primeng';
 import { RadioButtonModule } from 'primeng/primeng';
+import { TabViewModule } from 'primeng/primeng';
 import { ModalModule } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { GroupModal } from './components/modal/group-modal';
@@ -75,6 +84,7 @@ type StoreType = {
     XLarge,
     ActivityComponent,
     ProductComponent,
+    ProductDetailComponent,
     GroupComponent,
     LoginComponent,
     RegisterComponent,
@@ -82,6 +92,12 @@ type StoreType = {
     AccountComponent,
     CompanyComponent,
     CoProductsComponent,
+    CoProductCreateComponent,
+    CoProductEditComponent,
+    CoProfileComponent,
+    CoPlansComponent,
+    CoPlanCreateComponent,
+    CoPlanEditComponent,
     OrderComponent,
     ProfileComponent,
     SecurityComponent,
@@ -98,6 +114,7 @@ type StoreType = {
     ScheduleModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     RadioButtonModule,
+    TabViewModule,
     MdTabsModule,
     ModalModule.forRoot(),
     BootstrapModalModule,
