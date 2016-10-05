@@ -28,9 +28,13 @@ export class CoProductsComponent implements OnInit {
 
     onRowSelect(event) {
     
-}
+    }
 
     ngOnInit() {
+    }
+
+    createPlan(){
+        
     }
 
 }

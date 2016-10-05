@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   moduleId: module.id,
@@ -8,12 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['account.component.css']
 })
 export class AccountComponent implements OnInit {
-
+  src;
   constructor(
-    private router: Router
+    private router: Router,private domSanitizer : DomSanitizer
     ) {}
 
   ngOnInit() {
+      this.src = this.domSanitizer.bypassSecurityTrustResourceUrl('https://blog.mozilla.org/security/files/2015/05/HTTPS-FAQ.pdf');
   }
 
 }

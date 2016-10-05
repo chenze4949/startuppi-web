@@ -212,10 +212,12 @@ md-ink-bar{
 
 .md-tab-label{
     background-color: white !important;
+    color: black !important;
 }
 
 .md-tab-label:focus{
-    background-color: rgba(177, 0, 0, 0.2) !important;
+    background-color: white !important;
+    color: #b10000 !important;
 }
 
 p-datatable .ui-state-hover{

@@ -1,0 +1,11 @@
+/**/
+#content {
+    float: right;
+    width: 960px;
+    min-height: 450px;
+}
+
+.content-inner {
+    float: left;
+    width: 100%;
+}
