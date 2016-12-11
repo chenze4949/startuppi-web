@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var Panel = (function () {
-    function Panel() {
+    function Panel(el) {
+        this.el = el;
         this.collapsed = false;
         this.collapsedChange = new core_1.EventEmitter();
         this.onBeforeToggle = new core_1.EventEmitter();
@@ -41,6 +42,9 @@ var Panel = (function () {
     Panel.prototype.collapse = function (event) {
         this.collapsed = true;
         this.collapsedChange.emit(this.collapsed);
+    };
+    Panel.prototype.getBlockableElement = function () {
+        return this.el.nativeElement.children[0];
     };
     __decorate([
         core_1.Input(), 
@@ -91,7 +95,7 @@ var Panel = (function () {
                 ])
             ]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.ElementRef])
     ], Panel);
     return Panel;
 }());

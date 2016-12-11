@@ -1,11 +1,32 @@
 
+v1.5.0 (2016-12-05)
+-------------------
+
+- dynamically refetch resources upon navigation (#12):
+	- `refetchResourcesOnNavigate`
+- only display resources with events (#98):
+	- `filterResourcesWithEvents`
+- `navLinks` support (#218)
+- timeline vertical scrolling wrongly resetting (#238)
+- missing bottom border on last resource (#162)
+- businessHours occupying whole view wouldn't display (#233)
+- text-decoration on event elements lost when scrolling (#229)
+- fc-today and other day-related classes in timeline header cells
+- fix touch scrolling glitchiness regression
+- made gulp-based build system consistent with core project
+- as with the corresponding core project release, there was an internal refactor
+  related to timing of rendering and firing handlers. calls to rerender the current
+  date-range/events/resources from within handlers might not execute immediately.
+  instead, will execute after handler finishes.
+
+
 v1.4.0 (2016-09-04)
 -------------------
 
 - `eventResourceEditable` for control over events changing resources (#140)
 - `eventConstraint` accepts `resourceId` or `resourceIds` (#50)
 - `eventAllow`, programmatic control over event dragging (#50)
-- `selectAllow`,  programmatic over allowed selection
+- `selectAllow`,  programmatic control over allowed selection
 - adjustments to work with v3 of the core project
 
 

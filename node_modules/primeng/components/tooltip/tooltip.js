@@ -39,10 +39,13 @@ var Tooltip = (function () {
         }
     };
     Tooltip.prototype.show = function () {
+        if (!this.text) {
+            return;
+        }
         this.create();
-        var rect = this.el.nativeElement.getBoundingClientRect();
-        var targetTop = rect.top + document.body.scrollTop;
-        var targetLeft = rect.left + document.body.scrollLeft;
+        var offset = this.domHandler.getOffset(this.el.nativeElement);
+        var targetTop = offset.top;
+        var targetLeft = offset.left;
         var left;
         var top;
         this.container.style.display = 'block';
@@ -107,25 +110,25 @@ var Tooltip = (function () {
     __decorate([
         core_1.HostListener('mouseenter', ['$event']), 
         __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:paramtypes', [Event]), 
         __metadata('design:returntype', void 0)
     ], Tooltip.prototype, "onMouseEnter", null);
     __decorate([
         core_1.HostListener('mouseleave', ['$event']), 
         __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:paramtypes', [Event]), 
         __metadata('design:returntype', void 0)
     ], Tooltip.prototype, "onMouseLeave", null);
     __decorate([
         core_1.HostListener('focus', ['$event']), 
         __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:paramtypes', [Event]), 
         __metadata('design:returntype', void 0)
     ], Tooltip.prototype, "onFocus", null);
     __decorate([
         core_1.HostListener('blur', ['$event']), 
         __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:paramtypes', [Event]), 
         __metadata('design:returntype', void 0)
     ], Tooltip.prototype, "onBlur", null);
     Tooltip = __decorate([

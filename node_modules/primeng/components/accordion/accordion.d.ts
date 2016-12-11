@@ -1,6 +1,7 @@
-import { ElementRef, EventEmitter } from '@angular/core';
-export declare class Accordion {
-    protected el: ElementRef;
+import { ElementRef, EventEmitter, QueryList } from '@angular/core';
+import { BlockableUI } from '../common/api';
+export declare class Accordion implements BlockableUI {
+    el: ElementRef;
     multiple: boolean;
     onClose: EventEmitter<any>;
     onOpen: EventEmitter<any>;
@@ -9,18 +10,21 @@ export declare class Accordion {
     tabs: AccordionTab[];
     constructor(el: ElementRef);
     addTab(tab: AccordionTab): void;
+    getBlockableElement(): HTMLElement;
 }
 export declare class AccordionTab {
-    protected accordion: Accordion;
+    accordion: Accordion;
     header: string;
     selected: boolean;
     disabled: boolean;
     selectedChange: EventEmitter<any>;
-    headerFacet: any;
-    protected animating: boolean;
+    headerFacet: QueryList<AccordionTab>;
+    animating: boolean;
+    hover: boolean;
     constructor(accordion: Accordion);
-    toggle(event: any): void;
+    toggle(event: any): boolean;
     findTabIndex(): number;
+    readonly hasHeaderFacet: boolean;
 }
 export declare class AccordionModule {
 }

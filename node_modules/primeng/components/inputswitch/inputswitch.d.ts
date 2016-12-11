@@ -1,10 +1,10 @@
-import { ElementRef, AfterViewInit, EventEmitter } from '@angular/core';
+import { ElementRef, AfterViewInit, AfterViewChecked, EventEmitter } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { DomHandler } from '../dom/domhandler';
 export declare const INPUTSWITCH_VALUE_ACCESSOR: any;
-export declare class InputSwitch implements ControlValueAccessor, AfterViewInit {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
+export declare class InputSwitch implements ControlValueAccessor, AfterViewInit, AfterViewChecked {
+    el: ElementRef;
+    domHandler: DomHandler;
     onLabel: string;
     offLabel: string;
     disabled: boolean;
@@ -15,16 +15,18 @@ export declare class InputSwitch implements ControlValueAccessor, AfterViewInit 
     focused: boolean;
     onModelChange: Function;
     onModelTouched: Function;
-    protected container: any;
-    protected handle: any;
-    protected onContainer: any;
-    protected offContainer: any;
-    protected onLabelChild: any;
-    protected offLabelChild: any;
-    protected offset: any;
+    container: any;
+    handle: any;
+    onContainer: any;
+    offContainer: any;
+    onLabelChild: any;
+    offLabelChild: any;
+    offset: any;
     initialized: boolean;
     constructor(el: ElementRef, domHandler: DomHandler);
     ngAfterViewInit(): void;
+    ngAfterViewChecked(): void;
+    render(): void;
     toggle(event: any, checkbox: any): void;
     checkUI(): void;
     uncheckUI(): void;

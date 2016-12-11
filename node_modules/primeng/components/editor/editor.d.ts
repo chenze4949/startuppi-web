@@ -3,8 +3,8 @@ import { DomHandler } from '../dom/domhandler';
 import { ControlValueAccessor } from '@angular/forms';
 export declare const EDITOR_VALUE_ACCESSOR: any;
 export declare class Editor implements AfterViewInit, ControlValueAccessor {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
+    el: ElementRef;
+    domHandler: DomHandler;
     onTextChange: EventEmitter<any>;
     onSelectionChange: EventEmitter<any>;
     toolbar: any;

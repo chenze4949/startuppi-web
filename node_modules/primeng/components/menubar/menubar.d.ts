@@ -3,8 +3,8 @@ import { DomHandler } from '../dom/domhandler';
 import { MenuItem } from '../common/api';
 import { Router } from '@angular/router';
 export declare class MenubarSub {
-    protected domHandler: DomHandler;
-    protected router: Router;
+    domHandler: DomHandler;
+    router: Router;
     item: MenuItem;
     root: boolean;
     constructor(domHandler: DomHandler, router: Router);
@@ -16,9 +16,9 @@ export declare class MenubarSub {
     listClick(event: any): void;
 }
 export declare class Menubar implements OnDestroy {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
-    protected renderer: Renderer;
+    el: ElementRef;
+    domHandler: DomHandler;
+    renderer: Renderer;
     model: MenuItem[];
     style: any;
     styleClass: string;

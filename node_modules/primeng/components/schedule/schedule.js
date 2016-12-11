@@ -26,6 +26,7 @@ var Schedule = (function () {
         this.dragOpacity = .75;
         this.dragScroll = true;
         this.onDayClick = new core_1.EventEmitter();
+        this.onDrop = new core_1.EventEmitter();
         this.onEventClick = new core_1.EventEmitter();
         this.onEventMouseover = new core_1.EventEmitter();
         this.onEventMouseout = new core_1.EventEmitter();
@@ -39,7 +40,12 @@ var Schedule = (function () {
         this.differ = differs.find([]).create(null);
         this.initialized = false;
     }
-    Schedule.prototype.ngAfterViewInit = function () {
+    Schedule.prototype.ngAfterViewChecked = function () {
+        if (!this.initialized && this.el.nativeElement.offsetParent) {
+            this.initialize();
+        }
+    };
+    Schedule.prototype.initialize = function () {
         var _this = this;
         this.schedule = jQuery(this.el.nativeElement.children[0]);
         var options = {
@@ -57,6 +63,7 @@ var Schedule = (function () {
             eventLimit: this.eventLimit,
             defaultDate: this.defaultDate,
             editable: this.editable,
+            droppable: this.droppable,
             eventStartEditable: this.eventStartEditable,
             eventDurationEditable: this.eventDurationEditable,
             defaultView: this.defaultView,
@@ -76,6 +83,7 @@ var Schedule = (function () {
             eventOverlap: this.eventOverlap,
             eventConstraint: this.eventConstraint,
             eventRender: this.eventRender,
+            dayRender: this.dayRender,
             events: function (start, end, timezone, callback) {
                 callback(_this.events);
             },
@@ -84,6 +92,13 @@ var Schedule = (function () {
                     'date': date,
                     'jsEvent': jsEvent,
                     'view': view
+                });
+            },
+            drop: function (date, jsEvent, ui, resourceId) {
+                _this.onDrop.emit({
+                    'date': date,
+                    'jsEvent': jsEvent,
+                    'resourceId': resourceId
                 });
             },
             eventClick: function (calEvent, jsEvent, view) {
@@ -270,6 +285,10 @@ var Schedule = (function () {
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
+    ], Schedule.prototype, "droppable", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
     ], Schedule.prototype, "eventStartEditable", void 0);
     __decorate([
         core_1.Input(), 
@@ -348,9 +367,17 @@ var Schedule = (function () {
         __metadata('design:type', Function)
     ], Schedule.prototype, "eventRender", void 0);
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Function)
+    ], Schedule.prototype, "dayRender", void 0);
+    __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], Schedule.prototype, "onDayClick", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', core_1.EventEmitter)
+    ], Schedule.prototype, "onDrop", void 0);
     __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
@@ -394,7 +421,7 @@ var Schedule = (function () {
     Schedule = __decorate([
         core_1.Component({
             selector: 'p-schedule',
-            template: "\n        <div [ngStyle]=\"style\" [class]=\"styleClass\"></div>\n    "
+            template: '<div [ngStyle]="style" [class]="styleClass"></div>'
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef, core_1.IterableDiffers])
     ], Schedule);

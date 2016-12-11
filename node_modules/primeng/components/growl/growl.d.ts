@@ -2,14 +2,15 @@ import { ElementRef, AfterViewInit, DoCheck, OnDestroy, IterableDiffers } from '
 import { Message } from '../common/api';
 import { DomHandler } from '../dom/domhandler';
 export declare class Growl implements AfterViewInit, DoCheck, OnDestroy {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
+    el: ElementRef;
+    domHandler: DomHandler;
     sticky: boolean;
     life: number;
     value: Message[];
+    containerViewChild: ElementRef;
     differ: any;
     zIndex: number;
-    container: any;
+    container: HTMLDivElement;
     stopDoCheckPropagation: boolean;
     timeout: any;
     constructor(el: ElementRef, domHandler: DomHandler, differs: IterableDiffers);

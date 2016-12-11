@@ -24,28 +24,28 @@ var Spinner = (function () {
         this.domHandler = domHandler;
         this.onChange = new core_1.EventEmitter();
         this.step = 1;
+        this.decimalSeparator = '.';
+        this.thousandSeparator = ',';
+        this.valueAsString = '';
         this.onModelChange = function () { };
         this.onModelTouched = function () { };
+        this.keyPattern = /[0-9\+\-]/;
     }
-    Spinner.prototype.ngAfterViewInit = function () {
+    Spinner.prototype.ngOnInit = function () {
         if (Math.floor(this.step) === 0) {
             this.precision = this.step.toString().split(/[,]|[.]/)[1].length;
         }
-        this.inputtext = this.domHandler.findSingle(this.el.nativeElement, 'input');
-        if ((this.value !== null && this.value !== undefined)) {
-            this.inputtext.value = this.value;
-        }
     };
-    Spinner.prototype.repeat = function (interval, dir, input) {
+    Spinner.prototype.repeat = function (interval, dir) {
         var _this = this;
         var i = interval || 500;
         this.clearTimer();
         this.timer = setTimeout(function () {
-            _this.repeat(40, dir, input);
+            _this.repeat(40, dir);
         }, i);
-        this.spin(dir, input);
+        this.spin(dir);
     };
-    Spinner.prototype.spin = function (dir, inputElement) {
+    Spinner.prototype.spin = function (dir) {
         var step = this.step * dir;
         var currentValue = this.value || 0;
         var newValue = null;
@@ -62,7 +62,7 @@ var Spinner = (function () {
         if (this.max !== undefined && this.value > this.max) {
             this.value = this.max;
         }
-        inputElement.value = this.value;
+        this.formatValue();
         this.onModelChange(this.value);
     };
     Spinner.prototype.toFixed = function (value, precision) {
@@ -73,7 +73,8 @@ var Spinner = (function () {
         if (!this.disabled) {
             input.focus();
             this.activeUp = true;
-            this.repeat(null, 1, input);
+            this.repeat(null, 1);
+            this.updateFilledState();
             event.preventDefault();
         }
     };
@@ -99,7 +100,8 @@ var Spinner = (function () {
         if (!this.disabled) {
             input.focus();
             this.activeDown = true;
-            this.repeat(null, -1, input);
+            this.repeat(null, -1);
+            this.updateFilledState();
             event.preventDefault();
         }
     };
@@ -121,36 +123,48 @@ var Spinner = (function () {
             this.clearTimer();
         }
     };
-    Spinner.prototype.onInputKeydown = function (event, inputElement) {
+    Spinner.prototype.onInputKeydown = function (event) {
         if (event.which == 38) {
-            this.spin(1, inputElement);
+            this.spin(1);
             event.preventDefault();
         }
         else if (event.which == 40) {
-            this.spin(-1, inputElement);
+            this.spin(-1);
             event.preventDefault();
         }
     };
-    Spinner.prototype.onInput = function (event) {
-        this.value = this.parseValue(event.target.value);
-        this.onModelChange(this.value);
-    };
-    Spinner.prototype.onBlur = function (inputElement) {
-        if (this.value !== undefined && this.value !== null) {
-            inputElement.value = this.value;
+    Spinner.prototype.onInputKeyPress = function (event) {
+        var inputChar = String.fromCharCode(event.charCode);
+        if (!this.keyPattern.test(inputChar) && inputChar != this.decimalSeparator) {
+            event.preventDefault();
         }
+    };
+    Spinner.prototype.onInput = function (event, inputValue) {
+        this.value = this.parseValue(inputValue);
+        this.formatValue();
+        this.onModelChange(this.value);
+        this.updateFilledState();
+    };
+    Spinner.prototype.onBlur = function () {
         this.onModelTouched();
+        this.focus = false;
+    };
+    Spinner.prototype.onFocus = function () {
+        this.focus = true;
     };
     Spinner.prototype.parseValue = function (val) {
         var value;
+        val = val.split(this.thousandSeparator).join('');
         if (val.trim() === '') {
             value = this.min !== undefined ? this.min : null;
         }
         else {
-            if (this.precision)
-                value = parseFloat(val);
-            else
+            if (this.precision) {
+                value = parseFloat(val.replace(',', '.'));
+            }
+            else {
                 value = parseInt(val);
+            }
             if (!isNaN(value)) {
                 if (this.max !== undefined && value > this.max) {
                     value = this.max;
@@ -165,6 +179,16 @@ var Spinner = (function () {
         }
         return value;
     };
+    Spinner.prototype.formatValue = function () {
+        if (this.value !== null && this.value !== undefined) {
+            var textValue = String(this.value).replace('.', this.decimalSeparator);
+            textValue = textValue.replace(/\B(?=(\d{3})+(?!\d))/g, this.thousandSeparator);
+            this.valueAsString = textValue;
+        }
+        else {
+            this.valueAsString = '';
+        }
+    };
     Spinner.prototype.handleChange = function (event) {
         this.onChange.emit(event);
     };
@@ -175,9 +199,8 @@ var Spinner = (function () {
     };
     Spinner.prototype.writeValue = function (value) {
         this.value = value;
-        if (this.inputtext && (this.value !== null && this.value !== undefined)) {
-            this.inputtext.value = this.value;
-        }
+        this.formatValue();
+        this.updateFilledState();
     };
     Spinner.prototype.registerOnChange = function (fn) {
         this.onModelChange = fn;
@@ -187,6 +210,9 @@ var Spinner = (function () {
     };
     Spinner.prototype.setDisabledState = function (val) {
         this.disabled = val;
+    };
+    Spinner.prototype.updateFilledState = function () {
+        this.filled = (this.value !== undefined && this.value != null);
     };
     __decorate([
         core_1.Output(), 
@@ -216,11 +242,27 @@ var Spinner = (function () {
         core_1.Input(), 
         __metadata('design:type', Boolean)
     ], Spinner.prototype, "disabled", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], Spinner.prototype, "readonly", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], Spinner.prototype, "decimalSeparator", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], Spinner.prototype, "thousandSeparator", void 0);
     Spinner = __decorate([
         core_1.Component({
             selector: 'p-spinner',
-            template: "\n        <span class=\"ui-spinner ui-widget ui-corner-all\">\n            <input #in pInputText type=\"text\" class=\"ui-spinner-input\"\n            [attr.size]=\"size\" [attr.maxlength]=\"maxlength\" [attr.readonly]=\"readonly\" [attr.disabled]=\"disabled\"\n            (keydown)=\"onInputKeydown($event,in)\" (input)=\"onInput($event)\" (blur)=\"onBlur(in)\" (change)=\"handleChange($event)\">\n            <a class=\"ui-spinner-button ui-spinner-up ui-corner-tr ui-button ui-widget ui-state-default ui-button-text-only\"\n                [ngClass]=\"{'ui-state-hover':hoverUp,'ui-state-active':activeUp,'ui-state-disabled':disabled}\"\n                (mouseenter)=\"onUpButtonMouseenter($event)\" (mouseleave)=\"onUpButtonMouseleave($event)\" (mousedown)=\"onUpButtonMousedown($event,in)\" (mouseup)=\"onUpButtonMouseup($event)\">\n                <span class=\"ui-button-text\">\n                    <span class=\"fa fa-fw fa-caret-up\"></span>\n                </span>\n            </a>\n            <a class=\"ui-spinner-button ui-spinner-down ui-corner-br ui-button ui-widget ui-state-default ui-button-text-only\"\n                [ngClass]=\"{'ui-state-hover':hoverDown,'ui-state-active':activeDown,'ui-state-disabled':disabled}\"\n                (mouseenter)=\"onDownButtonMouseenter($event)\" (mouseleave)=\"onDownButtonMouseleave($event)\" (mousedown)=\"onDownButtonMousedown($event,in)\" (mouseup)=\"onDownButtonMouseup($event)\">\n                <span class=\"ui-button-text\">\n                    <span class=\"fa fa-fw fa-caret-down\"></span>\n                </span>\n            </a>\n        </span>\n    ",
-            providers: [domhandler_1.DomHandler, exports.SPINNER_VALUE_ACCESSOR]
+            template: "\n        <span class=\"ui-spinner ui-widget ui-corner-all\">\n            <input #in pInputText type=\"text\" class=\"ui-spinner-input\" [value]=\"valueAsString\"\n            [attr.size]=\"size\" [attr.maxlength]=\"maxlength\" [disabled]=\"disabled\" [readonly]=\"readonly\"\n            (keydown)=\"onInputKeydown($event)\" (keyup)=\"onInput($event,in.value)\" (keypress)=\"onInputKeyPress($event)\" (blur)=\"onBlur()\" (change)=\"handleChange($event)\" (focus)=\"onFocus()\">\n            <a class=\"ui-spinner-button ui-spinner-up ui-corner-tr ui-button ui-widget ui-state-default ui-button-text-only\"\n                [ngClass]=\"{'ui-state-hover':hoverUp,'ui-state-active':activeUp,'ui-state-disabled':disabled}\"\n                (mouseenter)=\"onUpButtonMouseenter($event)\" (mouseleave)=\"onUpButtonMouseleave($event)\" (mousedown)=\"onUpButtonMousedown($event,in)\" (mouseup)=\"onUpButtonMouseup($event)\">\n                <span class=\"ui-button-text\">\n                    <span class=\"fa fa-fw fa-caret-up\"></span>\n                </span>\n            </a>\n            <a class=\"ui-spinner-button ui-spinner-down ui-corner-br ui-button ui-widget ui-state-default ui-button-text-only\"\n                [ngClass]=\"{'ui-state-hover':hoverDown,'ui-state-active':activeDown,'ui-state-disabled':disabled}\"\n                (mouseenter)=\"onDownButtonMouseenter($event)\" (mouseleave)=\"onDownButtonMouseleave($event)\" (mousedown)=\"onDownButtonMousedown($event,in)\" (mouseup)=\"onDownButtonMouseup($event)\">\n                <span class=\"ui-button-text\">\n                    <span class=\"fa fa-fw fa-caret-down\"></span>\n                </span>\n            </a>\n        </span>\n    ",
+            host: {
+                '[class.ui-inputwrapper-filled]': 'filled',
+                '[class.ui-inputwrapper-focus]': 'focus'
+            },
+            providers: [domhandler_1.DomHandler, exports.SPINNER_VALUE_ACCESSOR],
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef, domhandler_1.DomHandler])
     ], Spinner);

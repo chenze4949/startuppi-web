@@ -84,6 +84,9 @@ var DataList = (function () {
             rows: this.rows
         };
     };
+    DataList.prototype.getBlockableElement = function () {
+        return this.el.nativeElement.children[0];
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Array)

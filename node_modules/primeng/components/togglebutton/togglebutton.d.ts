@@ -13,9 +13,9 @@ export declare class ToggleButton implements ControlValueAccessor {
     checked: boolean;
     onModelChange: Function;
     onModelTouched: Function;
-    protected hover: boolean;
+    hover: boolean;
     getIconClass(): string;
-    toggle(event: any): void;
+    toggle(event: Event): void;
     writeValue(value: any): void;
     registerOnChange(fn: Function): void;
     registerOnTouched(fn: Function): void;

@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
-import { Home } from './home';
-import { About } from './about';
-import { NoContent } from './no-content';
+import { HomeComponent } from './home';
+import { AboutComponent } from './about';
+import { NoContentComponent } from './no-content';
 
 import { DataResolver } from './app.resolver';
 
@@ -27,11 +27,10 @@ import { CoPlanCreateComponent } from './components/user/company/co-plan-create.
 import { CoPlanEditComponent } from './components/user/company/co-plan-edit.component';
 
 
-
 export const ROUTES: Routes = [
   {
     path: '',
-    component: Home
+    component: HomeComponent
   },
   {
     path: 'activity',
@@ -78,5 +77,5 @@ export const ROUTES: Routes = [
           },
           { path: 'message',  component: MessageComponent },
       ]
-  }
+  },
 ];

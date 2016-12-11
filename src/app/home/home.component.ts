@@ -1,4 +1,4 @@
-import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AppState } from '../app.service';
 import { Title } from './title';
@@ -17,11 +17,12 @@ import { GroupModalContext, GroupModal } from '../components/modal/group-modal';
     Title
   ],
   // Our list of styles in our component. We may add more to compose many styles together
-  styles: [require("./home.style.css")],
+  styleUrls: [ './home.component.css' ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
-  template: require("./home.template.html")
+  templateUrl: './home.component.html'
 })
-export class Home {
+export class HomeComponent {
+
   events: any [];
   resources: any[];
   dialogVisible: boolean = false;
@@ -94,6 +95,7 @@ export class Home {
     }
 }
 
+
 export class MyEvent {
     id: number;
     title: string;
@@ -101,4 +103,3 @@ export class MyEvent {
     end: string;
     allDay: boolean = true;
 }
-

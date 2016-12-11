@@ -9,6 +9,7 @@ export declare class Paginator {
     pageLinks: number[];
     _totalRecords: number;
     _first: number;
+    hoveredItem: Element;
     totalRecords: number;
     first: number;
     isFirstPage(): boolean;

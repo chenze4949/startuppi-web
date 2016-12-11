@@ -71,12 +71,13 @@ var DomHandler = (function () {
         var targetHeight = target.offsetHeight;
         var targetWidth = target.offsetWidth;
         var targetOffset = target.getBoundingClientRect();
+        var viewport = this.getViewport();
         var top, left;
-        if ((targetOffset.top + targetHeight + elementDimensions.height) > window.innerHeight)
+        if ((targetOffset.top + targetHeight + elementDimensions.height) > viewport.height)
             top = -1 * (elementDimensions.height);
         else
             top = targetHeight;
-        if ((targetOffset.left + elementDimensions.width) > window.innerWidth)
+        if ((targetOffset.left + elementDimensions.width) > viewport.width)
             left = targetWidth - elementDimensions.width;
         else
             left = 0;
@@ -92,12 +93,13 @@ var DomHandler = (function () {
         var targetOffset = target.getBoundingClientRect();
         var windowScrollTop = this.getWindowScrollTop();
         var windowScrollLeft = this.getWindowScrollLeft();
+        var viewport = this.getViewport();
         var top, left;
-        if (targetOffset.top + targetOuterHeight + elementOuterHeight > window.innerHeight)
+        if (targetOffset.top + targetOuterHeight + elementOuterHeight > viewport.height)
             top = targetOffset.top + windowScrollTop - elementOuterHeight;
         else
             top = targetOuterHeight + targetOffset.top + windowScrollTop;
-        if (targetOffset.left + targetOuterWidth + elementOuterWidth > window.innerWidth)
+        if (targetOffset.left + targetOuterWidth + elementOuterWidth > viewport.width)
             left = targetOffset.left + windowScrollLeft + targetOuterWidth - elementOuterWidth;
         else
             left = targetOffset.left + windowScrollLeft;
@@ -189,43 +191,62 @@ var DomHandler = (function () {
         var width = el.offsetWidth;
         if (margin) {
             var style = getComputedStyle(el);
-            width += parseInt(style.paddingLeft) + parseInt(style.paddingRight);
+            width += parseFloat(style.marginLeft) + parseFloat(style.marginRight);
         }
         return width;
     };
+    DomHandler.prototype.getHorizontalPadding = function (el) {
+        var style = getComputedStyle(el);
+        return parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+    };
     DomHandler.prototype.getHorizontalMargin = function (el) {
         var style = getComputedStyle(el);
-        return parseInt(style.marginLeft) + parseInt(style.marginRight);
+        return parseFloat(style.marginLeft) + parseFloat(style.marginRight);
     };
     DomHandler.prototype.innerWidth = function (el) {
         var width = el.offsetWidth;
         var style = getComputedStyle(el);
-        width += parseInt(style.paddingLeft) + parseInt(style.paddingRight);
+        width += parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
         return width;
     };
     DomHandler.prototype.width = function (el) {
         var width = el.offsetWidth;
         var style = getComputedStyle(el);
-        width -= parseInt(style.paddingLeft) + parseInt(style.paddingRight);
+        width -= parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
         return width;
     };
     DomHandler.prototype.getOuterHeight = function (el, margin) {
         var height = el.offsetHeight;
         if (margin) {
             var style = getComputedStyle(el);
-            height += parseInt(style.marginTop) + parseInt(style.marginBottom);
+            height += parseFloat(style.marginTop) + parseFloat(style.marginBottom);
         }
         return height;
     };
     DomHandler.prototype.getHeight = function (el) {
         var height = el.offsetHeight;
         var style = getComputedStyle(el);
-        height -= parseInt(style.paddingTop) + parseInt(style.paddingBottom) + parseInt(style.borderTopWidth) + parseInt(style.borderBottomWidth);
+        height -= parseFloat(style.paddingTop) + parseFloat(style.paddingBottom) + parseFloat(style.borderTopWidth) + parseFloat(style.borderBottomWidth);
         return height;
+    };
+    DomHandler.prototype.getWidth = function (el) {
+        var width = el.offsetWidth;
+        var style = getComputedStyle(el);
+        width -= parseFloat(style.paddingLeft) + parseFloat(style.paddingRight) + parseFloat(style.borderLeftWidth) + parseFloat(style.borderRightWidth);
+        return width;
     };
     DomHandler.prototype.getViewport = function () {
         var win = window, d = document, e = d.documentElement, g = d.getElementsByTagName('body')[0], w = win.innerWidth || e.clientWidth || g.clientWidth, h = win.innerHeight || e.clientHeight || g.clientHeight;
         return { width: w, height: h };
+    };
+    DomHandler.prototype.getOffset = function (el) {
+        var x = el.offsetLeft;
+        var y = el.offsetTop;
+        while (el = el.offsetParent) {
+            x += el.offsetLeft;
+            y += el.offsetTop;
+        }
+        return { left: x, top: y };
     };
     DomHandler.prototype.equals = function (obj1, obj2) {
         if (obj1 == null && obj2 == null) {
@@ -235,16 +256,20 @@ var DomHandler = (function () {
             return false;
         }
         if (obj1 == obj2) {
+            delete obj1._$visited;
             return true;
         }
         if (typeof obj1 == 'object' && typeof obj2 == 'object') {
+            obj1._$visited = true;
             for (var p in obj1) {
+                if (p === "_$visited")
+                    continue;
                 if (obj1.hasOwnProperty(p) !== obj2.hasOwnProperty(p)) {
                     return false;
                 }
                 switch (typeof (obj1[p])) {
                     case 'object':
-                        if (!this.equals(obj1[p], obj2[p]))
+                        if (obj1[p] && obj1[p]._$visited || !this.equals(obj1[p], obj2[p]))
                             return false;
                         break;
                     case 'function':
@@ -261,8 +286,33 @@ var DomHandler = (function () {
                 if (typeof (obj1[p]) == 'undefined')
                     return false;
             }
+            delete obj1._$visited;
             return true;
         }
+        return false;
+    };
+    DomHandler.prototype.getUserAgent = function () {
+        return navigator.userAgent;
+    };
+    DomHandler.prototype.isIE = function () {
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf('MSIE ');
+        if (msie > 0) {
+            // IE 10 or older => return version number
+            return true;
+        }
+        var trident = ua.indexOf('Trident/');
+        if (trident > 0) {
+            // IE 11 => return version number
+            var rv = ua.indexOf('rv:');
+            return true;
+        }
+        var edge = ua.indexOf('Edge/');
+        if (edge > 0) {
+            // Edge (IE 12+) => return version number
+            return true;
+        }
+        // other browser
         return false;
     };
     DomHandler.zindex = 1000;

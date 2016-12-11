@@ -1,6 +1,6 @@
 import { ElementRef, OnInit } from '@angular/core';
 export declare class InputTextarea implements OnInit {
-    protected el: ElementRef;
+    el: ElementRef;
     autoResize: boolean;
     rows: number;
     cols: number;
@@ -14,9 +14,10 @@ export declare class InputTextarea implements OnInit {
     onMouseout(e: any): void;
     onFocus(e: any): void;
     onBlur(e: any): void;
-    isDisabled(): any;
     onKeyup(e: any): void;
     resize(): void;
+    readonly disabled: boolean;
+    readonly filled: boolean;
 }
 export declare class InputTextareaModule {
 }

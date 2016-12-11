@@ -161,6 +161,10 @@ var Column = (function () {
         __metadata('design:type', String)
     ], Column.prototype, "selectionMode", void 0);
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], Column.prototype, "filterPlaceholder", void 0);
+    __decorate([
         core_1.Output(), 
         __metadata('design:type', core_1.EventEmitter)
     ], Column.prototype, "sortFunction", void 0);
@@ -182,6 +186,57 @@ var Column = (function () {
     return Column;
 }());
 exports.Column = Column;
+var Row = (function () {
+    function Row() {
+    }
+    __decorate([
+        core_1.ContentChildren(Column), 
+        __metadata('design:type', core_1.QueryList)
+    ], Row.prototype, "columns", void 0);
+    Row = __decorate([
+        core_2.Component({
+            selector: 'p-row',
+            template: ""
+        }), 
+        __metadata('design:paramtypes', [])
+    ], Row);
+    return Row;
+}());
+exports.Row = Row;
+var HeaderColumnGroup = (function () {
+    function HeaderColumnGroup() {
+    }
+    __decorate([
+        core_1.ContentChildren(Row), 
+        __metadata('design:type', core_1.QueryList)
+    ], HeaderColumnGroup.prototype, "rows", void 0);
+    HeaderColumnGroup = __decorate([
+        core_2.Component({
+            selector: 'p-headerColumnGroup',
+            template: ""
+        }), 
+        __metadata('design:paramtypes', [])
+    ], HeaderColumnGroup);
+    return HeaderColumnGroup;
+}());
+exports.HeaderColumnGroup = HeaderColumnGroup;
+var FooterColumnGroup = (function () {
+    function FooterColumnGroup() {
+    }
+    __decorate([
+        core_1.ContentChildren(Row), 
+        __metadata('design:type', core_1.QueryList)
+    ], FooterColumnGroup.prototype, "rows", void 0);
+    FooterColumnGroup = __decorate([
+        core_2.Component({
+            selector: 'p-footerColumnGroup',
+            template: ""
+        }), 
+        __metadata('design:paramtypes', [])
+    ], FooterColumnGroup);
+    return FooterColumnGroup;
+}());
+exports.FooterColumnGroup = FooterColumnGroup;
 var ColumnBodyTemplateLoader = (function () {
     function ColumnBodyTemplateLoader(viewContainer) {
         this.viewContainer = viewContainer;
@@ -290,8 +345,8 @@ var SharedModule = (function () {
     SharedModule = __decorate([
         core_1.NgModule({
             imports: [common_1.CommonModule],
-            exports: [Header, Footer, Column, TemplateWrapper, ColumnHeaderTemplateLoader, ColumnBodyTemplateLoader, ColumnFooterTemplateLoader, PrimeTemplate, TemplateLoader],
-            declarations: [Header, Footer, Column, TemplateWrapper, ColumnHeaderTemplateLoader, ColumnBodyTemplateLoader, ColumnFooterTemplateLoader, PrimeTemplate, TemplateLoader]
+            exports: [Header, Footer, Column, TemplateWrapper, ColumnHeaderTemplateLoader, ColumnBodyTemplateLoader, ColumnFooterTemplateLoader, PrimeTemplate, TemplateLoader, Row, HeaderColumnGroup, FooterColumnGroup],
+            declarations: [Header, Footer, Column, TemplateWrapper, ColumnHeaderTemplateLoader, ColumnBodyTemplateLoader, ColumnFooterTemplateLoader, PrimeTemplate, TemplateLoader, Row, HeaderColumnGroup, FooterColumnGroup]
         }), 
         __metadata('design:paramtypes', [])
     ], SharedModule);

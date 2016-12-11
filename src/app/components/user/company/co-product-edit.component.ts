@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  moduleId: module.id,
   selector: 'co-product-edit',
   templateUrl: 'co-product-edit.component.html',
   styleUrls: ['co-product-edit.component.css']

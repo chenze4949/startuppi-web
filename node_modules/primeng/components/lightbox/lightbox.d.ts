@@ -1,25 +1,25 @@
 import { ElementRef, Renderer, AfterViewInit, OnDestroy } from '@angular/core';
 import { DomHandler } from '../dom/domhandler';
 export declare class Lightbox implements AfterViewInit, OnDestroy {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
-    protected renderer: Renderer;
+    el: ElementRef;
+    domHandler: DomHandler;
+    renderer: Renderer;
     images: any[];
     type: string;
     style: any;
     styleClass: string;
     easing: 'ease-out';
     effectDuration: any;
-    protected visible: boolean;
-    protected loading: boolean;
-    protected currentImage: any;
-    protected captionText: string;
-    protected zindex: any;
-    protected panel: any;
-    protected index: number;
-    protected mask: any;
-    protected preventDocumentClickListener: boolean;
-    protected documentClickListener: any;
+    visible: boolean;
+    loading: boolean;
+    currentImage: any;
+    captionText: string;
+    zindex: any;
+    panel: any;
+    index: number;
+    mask: any;
+    preventDocumentClickListener: boolean;
+    documentClickListener: any;
     constructor(el: ElementRef, domHandler: DomHandler, renderer: Renderer);
     onImageClick(event: any, image: any, i: any, content: any): void;
     ngAfterViewInit(): void;
@@ -31,8 +31,8 @@ export declare class Lightbox implements AfterViewInit, OnDestroy {
     onImageLoad(event: any, content: any): void;
     prev(placeholder: any): void;
     next(placeholder: any): void;
-    leftVisible: boolean;
-    rightVisible: boolean;
+    readonly leftVisible: boolean;
+    readonly rightVisible: boolean;
     ngOnDestroy(): void;
 }
 export declare class LightboxModule {

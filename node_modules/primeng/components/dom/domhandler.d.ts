@@ -20,11 +20,19 @@ export declare class DomHandler {
     getWindowScrollLeft(): number;
     matches(element: any, selector: string): boolean;
     getOuterWidth(el: any, margin?: any): any;
+    getHorizontalPadding(el: any): number;
     getHorizontalMargin(el: any): number;
     innerWidth(el: any): any;
     width(el: any): any;
     getOuterHeight(el: any, margin?: any): any;
     getHeight(el: any): number;
+    getWidth(el: any): number;
     getViewport(): any;
+    getOffset(el: any): {
+        left: any;
+        top: any;
+    };
     equals(obj1: any, obj2: any): boolean;
+    getUserAgent(): string;
+    isIE(): boolean;
 }

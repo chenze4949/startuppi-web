@@ -20,15 +20,6 @@ var UIChart = (function () {
         this.initChart();
         this.initialized = true;
     };
-    UIChart.prototype.ngDoCheck = function () {
-        var changes = this.differ.diff(this.data.datasets);
-        if (changes && this.initialized) {
-            if (this.chart) {
-                this.chart.destroy();
-            }
-            this.initChart();
-        }
-    };
     UIChart.prototype.onCanvasClick = function (event) {
         if (this.chart) {
             var element = this.chart.getElementAtEvent(event);
@@ -50,6 +41,12 @@ var UIChart = (function () {
     };
     UIChart.prototype.getBase64Image = function () {
         return this.chart.toBase64Image();
+    };
+    UIChart.prototype.refresh = function () {
+        if (this.chart) {
+            this.chart.destroy();
+            this.initChart();
+        }
     };
     UIChart.prototype.ngOnDestroy = function () {
         if (this.chart) {

@@ -16,6 +16,7 @@ var Button = (function () {
         this.el = el;
         this.domHandler = domHandler;
         this.iconPos = 'left';
+        this.cornerStyleClass = 'ui-corner-all';
     }
     Button.prototype.ngAfterViewInit = function () {
         this.domHandler.addMultipleClasses(this.el.nativeElement, this.getStyleClass());
@@ -54,7 +55,7 @@ var Button = (function () {
         return this.el.nativeElement.disabled;
     };
     Button.prototype.getStyleClass = function () {
-        var styleClass = 'ui-button ui-widget ui-state-default ui-corner-all';
+        var styleClass = 'ui-button ui-widget ui-state-default ' + this.cornerStyleClass;
         if (this.icon) {
             if (this.label != null && this.label != undefined) {
                 if (this.iconPos == 'left')
@@ -99,39 +100,43 @@ var Button = (function () {
         __metadata('design:type', String)
     ], Button.prototype, "iconPos", void 0);
     __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], Button.prototype, "cornerStyleClass", void 0);
+    __decorate([
         core_1.HostListener('mouseenter', ['$event']), 
         __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:paramtypes', [Event]), 
         __metadata('design:returntype', void 0)
     ], Button.prototype, "onMouseenter", null);
     __decorate([
         core_1.HostListener('mouseleave', ['$event']), 
         __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:paramtypes', [Event]), 
         __metadata('design:returntype', void 0)
     ], Button.prototype, "onMouseleave", null);
     __decorate([
         core_1.HostListener('mousedown', ['$event']), 
         __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:paramtypes', [Event]), 
         __metadata('design:returntype', void 0)
     ], Button.prototype, "onMouseDown", null);
     __decorate([
         core_1.HostListener('mouseup', ['$event']), 
         __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:paramtypes', [Event]), 
         __metadata('design:returntype', void 0)
     ], Button.prototype, "onMouseUp", null);
     __decorate([
         core_1.HostListener('focus', ['$event']), 
         __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:paramtypes', [Event]), 
         __metadata('design:returntype', void 0)
     ], Button.prototype, "onFocus", null);
     __decorate([
         core_1.HostListener('blur', ['$event']), 
         __metadata('design:type', Function), 
-        __metadata('design:paramtypes', [Object]), 
+        __metadata('design:paramtypes', [Event]), 
         __metadata('design:returntype', void 0)
     ], Button.prototype, "onBlur", null);
     __decorate([

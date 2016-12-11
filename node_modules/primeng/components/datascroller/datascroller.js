@@ -65,6 +65,11 @@ var DataScroller = (function () {
         }
         this.first = this.first + this.rows;
     };
+    DataScroller.prototype.reset = function () {
+        this.first = 0;
+        this.dataToRender = [];
+        this.load();
+    };
     DataScroller.prototype.isEmpty = function () {
         return !this.dataToRender || (this.dataToRender.length == 0);
     };

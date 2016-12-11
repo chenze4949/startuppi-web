@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
-  moduleId: module.id,
   selector: 'account',
   templateUrl: 'account.component.html',
   styleUrls: ['account.component.css']

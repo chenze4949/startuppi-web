@@ -92,6 +92,25 @@ var TabView = (function () {
         event.preventDefault();
     };
     TabView.prototype.close = function (event, tab) {
+        var _this = this;
+        if (this.controlClose) {
+            this.onClose.emit({
+                originalEvent: event,
+                index: this.findTabIndex(tab),
+                close: function () {
+                    _this.closeTab(tab);
+                } });
+        }
+        else {
+            this.closeTab(tab);
+            this.onClose.emit({
+                originalEvent: event,
+                index: this.findTabIndex(tab)
+            });
+        }
+        event.stopPropagation();
+    };
+    TabView.prototype.closeTab = function (tab) {
         if (tab.selected) {
             tab.selected = false;
             for (var i = 0; i < this.tabs.length; i++) {
@@ -103,8 +122,6 @@ var TabView = (function () {
             }
         }
         tab.closed = true;
-        this.onClose.emit({ originalEvent: event, index: this.findTabIndex(tab) });
-        event.stopPropagation();
     };
     TabView.prototype.findSelectedTab = function () {
         for (var i = 0; i < this.tabs.length; i++) {
@@ -131,6 +148,9 @@ var TabView = (function () {
         }
         return styleClass;
     };
+    TabView.prototype.getBlockableElement = function () {
+        return this.el.nativeElement.children[0];
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
@@ -143,6 +163,10 @@ var TabView = (function () {
         core_1.Input(), 
         __metadata('design:type', String)
     ], TabView.prototype, "styleClass", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], TabView.prototype, "controlClose", void 0);
     __decorate([
         core_1.ContentChildren(TabPanel), 
         __metadata('design:type', core_1.QueryList)
@@ -158,7 +182,7 @@ var TabView = (function () {
     TabView = __decorate([
         core_1.Component({
             selector: 'p-tabView',
-            template: "\n        <div [ngClass]=\"'ui-tabview ui-widget ui-widget-content ui-corner-all ui-tabview-' + orientation\" [ngStyle]=\"style\" [class]=\"styleClass\">\n            <ul class=\"ui-tabview-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all\" role=\"tablist\">\n                <template ngFor let-tab [ngForOf]=\"tabs\">\n                    <li [class]=\"getDefaultHeaderClass(tab)\" [ngStyle]=\"tab.headerStyle\" role=\"tab\"\n                        [ngClass]=\"{'ui-tabview-selected ui-state-active': tab.selected, 'ui-state-hover': tab.hoverHeader&&!tab.disabled, 'ui-state-disabled': tab.disabled}\"\n                        (mouseenter)=\"tab.hoverHeader=true\" (mouseleave)=\"tab.hoverHeader=false\" (click)=\"open($event,tab)\" *ngIf=\"!tab.closed\"\n                        [attr.aria-expanded]=\"tab.selected\" [attr.aria-selected]=\"tab.selected\">\n                        <a href=\"#\">\n                            <span class=\"ui-tabview-left-icon fa\" [ngClass]=\"tab.leftIcon\" *ngIf=\"tab.leftIcon\"></span>\n                            {{tab.header}}\n                            <span class=\"ui-tabview-right-icon fa\" [ngClass]=\"tab.rightIcon\" *ngIf=\"tab.rightIcon\"></span>\n                        </a>\n                        <span *ngIf=\"tab.closable\" class=\"ui-tabview-close fa fa-close\" (click)=\"close($event,tab)\"></span>\n                    </li>\n                </template>\n            </ul>\n            <div class=\"ui-tabview-panels\">\n                <ng-content></ng-content>\n            </div>\n        </div>\n    ",
+            template: "\n        <div [ngClass]=\"'ui-tabview ui-widget ui-widget-content ui-corner-all ui-tabview-' + orientation\" [ngStyle]=\"style\" [class]=\"styleClass\">\n            <ul *ngIf=\"orientation!='bottom'\" class=\"ui-tabview-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all\" role=\"tablist\">\n                <template ngFor let-tab [ngForOf]=\"tabs\">\n                    <li [class]=\"getDefaultHeaderClass(tab)\" [ngStyle]=\"tab.headerStyle\" role=\"tab\"\n                        [ngClass]=\"{'ui-tabview-selected ui-state-active': tab.selected, 'ui-state-hover': tab.hoverHeader&&!tab.disabled, 'ui-state-disabled': tab.disabled}\"\n                        (mouseenter)=\"tab.hoverHeader=true\" (mouseleave)=\"tab.hoverHeader=false\" (click)=\"open($event,tab)\" *ngIf=\"!tab.closed\"\n                        [attr.aria-expanded]=\"tab.selected\" [attr.aria-selected]=\"tab.selected\">\n                        <a href=\"#\">\n                            <span class=\"ui-tabview-left-icon fa\" [ngClass]=\"tab.leftIcon\" *ngIf=\"tab.leftIcon\"></span>\n                            {{tab.header}}\n                            <span class=\"ui-tabview-right-icon fa\" [ngClass]=\"tab.rightIcon\" *ngIf=\"tab.rightIcon\"></span>\n                        </a>\n                        <span *ngIf=\"tab.closable\" class=\"ui-tabview-close fa fa-close\" (click)=\"close($event,tab)\"></span>\n                    </li>\n                </template>\n            </ul>\n            <div class=\"ui-tabview-panels\">\n                <ng-content></ng-content>\n            </div>\n            <ul *ngIf=\"orientation=='bottom'\" class=\"ui-tabview-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all\" role=\"tablist\">\n                <template ngFor let-tab [ngForOf]=\"tabs\">\n                    <li [class]=\"getDefaultHeaderClass(tab)\" [ngStyle]=\"tab.headerStyle\" role=\"tab\"\n                        [ngClass]=\"{'ui-tabview-selected ui-state-active': tab.selected, 'ui-state-hover': tab.hoverHeader&&!tab.disabled, 'ui-state-disabled': tab.disabled}\"\n                        (mouseenter)=\"tab.hoverHeader=true\" (mouseleave)=\"tab.hoverHeader=false\" (click)=\"open($event,tab)\" *ngIf=\"!tab.closed\"\n                        [attr.aria-expanded]=\"tab.selected\" [attr.aria-selected]=\"tab.selected\">\n                        <a href=\"#\">\n                            <span class=\"ui-tabview-left-icon fa\" [ngClass]=\"tab.leftIcon\" *ngIf=\"tab.leftIcon\"></span>\n                            {{tab.header}}\n                            <span class=\"ui-tabview-right-icon fa\" [ngClass]=\"tab.rightIcon\" *ngIf=\"tab.rightIcon\"></span>\n                        </a>\n                        <span *ngIf=\"tab.closable\" class=\"ui-tabview-close fa fa-close\" (click)=\"close($event,tab)\"></span>\n                    </li>\n                </template>\n            </ul>\n        </div>\n    ",
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef])
     ], TabView);

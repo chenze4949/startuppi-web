@@ -1,8 +1,8 @@
 import { ElementRef, AfterViewChecked, TemplateRef, EventEmitter } from '@angular/core';
 import { DomHandler } from '../dom/domhandler';
 export declare class OrderList implements AfterViewChecked {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
+    el: ElementRef;
+    domHandler: DomHandler;
     value: any[];
     header: string;
     style: any;

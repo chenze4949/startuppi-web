@@ -105,7 +105,7 @@ angular2-webpack-starter/
  │   │
  |   ├──polyfills.ts           * our polyfills file
  │   │
- |   ├──vendor.ts              * our vendor file
+ |   ├──vendor.browser.ts      * our vendor file
  │   │
  │   ├──app/                   * WebApp: folder
  │   │   ├──app.spec.ts        * a simple test of components in app.ts
@@ -146,7 +146,7 @@ Once you have those, you should install these globals with `npm install --global
 * `fork` this repo
 * `clone` your fork
 * `npm install webpack-dev-server rimraf webpack -g` to install required global dependencies
-* `npm install` to install all dependencies
+* `npm install` to install all dependencies or `yarn`
 * `npm run server` to start the dev server in another tab
 
 ## Running the app
@@ -300,11 +300,11 @@ import * as _ from 'lodash';
 * How do I run protractor with node 0.12.x?
   * please check out this repo to use the old version of protractor [#146](https://github.com/AngularClass/angular2-webpack-starter/pull/146/files)
 * Where do I write my tests?
-  * You can write your tests next to your component files. See [`/src/app/home/home.spec.ts`](/src/app/home/home.spec.ts)
+  * You can write your tests next to your component files. See [`/src/app/home/home.component.spec.ts`](/src/app/home/home.component.spec.ts)
 * How do I start the app when I get `EACCES` and `EADDRINUSE` errors?
   * The `EADDRINUSE` error means the port `3000` is currently being used and `EACCES` is lack of permission for webpack to build files to `./dist/`
 * How to use `sass` for css?
- * `loaders: ['raw-loader','sass-loader']` and `@Component({ styles: [ require('./filename.scss') ] })` see issue [#136](https://github.com/AngularClass/angular2-webpack-starter/issues/136)
+ * `loaders: ['raw-loader','sass-loader']` and `@Component({ styleUrls: ['./filename.scss'] })` see issue [#136](https://github.com/AngularClass/angular2-webpack-starter/issues/136)
 * How do I test a Service?
  * See issue [#130](https://github.com/AngularClass/angular2-webpack-starter/issues/130#issuecomment-158872648)
 * How do I add `vscode-chrome-debug` support?

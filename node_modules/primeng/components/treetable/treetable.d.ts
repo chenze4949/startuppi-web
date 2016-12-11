@@ -1,16 +1,16 @@
 import { EventEmitter, QueryList } from '@angular/core';
 import { TreeNode } from '../common/api';
-import { Column } from '../common/shared';
+import { Header, Footer, Column } from '../common/shared';
 export declare class UITreeRow {
-    protected treeTable: TreeTable;
+    treeTable: TreeTable;
     node: TreeNode;
     level: number;
     hover: boolean;
     constructor(treeTable: TreeTable);
-    toggle(event: any): void;
+    toggle(event: Event): void;
     isLeaf(): boolean;
     isSelected(): boolean;
-    onRowClick(event: any): void;
+    onRowClick(event: MouseEvent): void;
     resolveFieldData(data: any, field: string): any;
 }
 export declare class TreeTable {
@@ -24,10 +24,10 @@ export declare class TreeTable {
     onNodeCollapse: EventEmitter<any>;
     style: any;
     styleClass: string;
-    header: any;
-    footer: any;
+    header: Header;
+    footer: Footer;
     columns: QueryList<Column>;
-    onRowClick(event: any, node: any): void;
+    onRowClick(event: MouseEvent, node: TreeNode): void;
     findIndexInSelection(node: TreeNode): number;
     isSelected(node: TreeNode): boolean;
     isSingleSelectionMode(): boolean;

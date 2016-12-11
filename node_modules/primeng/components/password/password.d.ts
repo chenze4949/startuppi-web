@@ -1,8 +1,8 @@
 import { ElementRef, AfterViewInit, OnDestroy } from '@angular/core';
 import { DomHandler } from '../dom/domhandler';
 export declare class Password implements AfterViewInit, OnDestroy {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
+    el: ElementRef;
+    domHandler: DomHandler;
     promptLabel: string;
     weakLabel: string;
     mediumLabel: string;
@@ -21,7 +21,8 @@ export declare class Password implements AfterViewInit, OnDestroy {
     onKeyup(e: any): void;
     testStrength(str: string): number;
     normalize(x: any, y: any): number;
-    isDisabled(): any;
+    readonly disabled: boolean;
+    readonly filled: boolean;
     ngOnDestroy(): void;
 }
 export declare class PasswordModule {

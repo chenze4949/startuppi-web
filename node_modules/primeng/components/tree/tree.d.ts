@@ -1,23 +1,28 @@
 import { AfterContentInit, EventEmitter, OnInit, ViewContainerRef, QueryList, TemplateRef } from '@angular/core';
 import { TreeNode } from '../common/api';
 export declare class TreeNodeTemplateLoader implements OnInit {
-    protected viewContainer: ViewContainerRef;
+    viewContainer: ViewContainerRef;
     node: any;
     template: TemplateRef<any>;
     constructor(viewContainer: ViewContainerRef);
     ngOnInit(): void;
 }
 export declare class UITreeNode {
-    protected tree: Tree;
+    tree: Tree;
     static ICON_CLASS: string;
     node: TreeNode;
+    parentNode: TreeNode;
+    root: boolean;
+    firstChild: boolean;
+    lastChild: boolean;
     hover: boolean;
     constructor(tree: Tree);
+    ngOnInit(): void;
     getIcon(): string;
     isLeaf(): boolean;
-    toggle(event: any): void;
-    onNodeClick(event: any): void;
-    onNodeRightClick(event: any): void;
+    toggle(event: Event): void;
+    onNodeClick(event: MouseEvent): void;
+    onNodeRightClick(event: MouseEvent): void;
     isSelected(): boolean;
 }
 export declare class Tree implements AfterContentInit {
@@ -33,15 +38,20 @@ export declare class Tree implements AfterContentInit {
     style: any;
     styleClass: string;
     contextMenu: any;
+    layout: string;
     templates: QueryList<any>;
-    protected templateMap: any;
+    templateMap: any;
+    readonly horizontal: boolean;
     ngAfterContentInit(): void;
-    onNodeClick(event: any, node: TreeNode): void;
-    onNodeRightClick(event: any, node: TreeNode): void;
+    onNodeClick(event: MouseEvent, node: TreeNode): void;
+    onNodeRightClick(event: MouseEvent, node: TreeNode): void;
     findIndexInSelection(node: TreeNode): number;
+    propagateSelectionUp(node: TreeNode, select: boolean): void;
+    propagateSelectionDown(node: TreeNode, select: boolean): void;
     isSelected(node: TreeNode): boolean;
     isSingleSelectionMode(): boolean;
     isMultipleSelectionMode(): boolean;
+    isCheckboxSelectionMode(): boolean;
     expandToNode(node: TreeNode): void;
     findPathToNode(node: TreeNode): TreeNode[];
     private static findPathToNodeRecursive(searchingFor, searchingIn);

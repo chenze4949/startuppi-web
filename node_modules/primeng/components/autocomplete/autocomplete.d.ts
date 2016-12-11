@@ -3,9 +3,9 @@ import { DomHandler } from '../dom/domhandler';
 import { ControlValueAccessor } from '@angular/forms';
 export declare const AUTOCOMPLETE_VALUE_ACCESSOR: any;
 export declare class AutoComplete implements AfterViewInit, DoCheck, AfterViewChecked, ControlValueAccessor {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
-    protected renderer: Renderer;
+    el: ElementRef;
+    domHandler: DomHandler;
+    renderer: Renderer;
     minLength: number;
     delay: number;
     style: any;
@@ -40,6 +40,9 @@ export declare class AutoComplete implements AfterViewInit, DoCheck, AfterViewCh
     suggestionsUpdated: boolean;
     highlightOption: any;
     highlightOptionChanged: boolean;
+    focus: boolean;
+    dropdownFocus: boolean;
+    filled: boolean;
     constructor(el: ElementRef, domHandler: DomHandler, differs: IterableDiffers, renderer: Renderer);
     ngDoCheck(): void;
     ngAfterViewInit(): void;
@@ -58,8 +61,13 @@ export declare class AutoComplete implements AfterViewInit, DoCheck, AfterViewCh
     removeItem(item: any): void;
     resolveFieldData(data: any): any;
     onKeydown(event: any): void;
+    onFocus(): void;
+    onBlur(): void;
+    onDropdownFocus(): void;
+    onDropdownBlur(): void;
     isSelected(val: any): boolean;
     findOptionIndex(option: any): number;
+    updateFilledState(): void;
     ngOnDestroy(): void;
 }
 export declare class AutoCompleteModule {

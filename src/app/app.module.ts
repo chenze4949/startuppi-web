@@ -2,11 +2,8 @@ import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
-import { MdTabsModule } from '@angular2-material/tabs';
-import { Overlay } from 'angular2-modal';
-import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap/index';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -14,12 +11,12 @@ import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap/index';
 import { ENV_PROVIDERS } from './environment';
 import { ROUTES } from './app.routes';
 // App is our top level component
-import { App } from './app.component';
+import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
-import { AppState, InteralStateType } from './app.service';
-import { Home } from './home';
-import { About } from './about';
-import { NoContent } from './no-content';
+import { AppState, InternalStateType } from './app.service';
+import { HomeComponent } from './home';
+import { AboutComponent } from './about';
+import { NoContentComponent } from './no-content';
 import { XLarge } from './home/x-large';
 
 
@@ -56,6 +53,8 @@ import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { GroupModal } from './components/modal/group-modal';
 import { GroupCreateModal } from './components/modal/group-create-modal';
 import { FileUploadModule } from 'ng2-file-upload/components/file-upload/file-upload.module';
+import { MdTabsModule } from '@angular2-material/tabs';
+import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap/index';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -64,7 +63,7 @@ const APP_PROVIDERS = [
 ];
 
 type StoreType = {
-  state: InteralStateType,
+  state: InternalStateType,
   restoreInputValues: () => void,
   disposeOldHosts: () => void
 };
@@ -73,14 +72,12 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ 
-    App
-  ],
+  bootstrap: [ AppComponent ],
   declarations: [
-    App,
-    About,
-    Home,
-    NoContent,
+    AppComponent,
+    AboutComponent,
+    HomeComponent,
+    NoContentComponent,
     XLarge,
     ActivityComponent,
     ProductComponent,
@@ -109,6 +106,7 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     DialogModule,
     SlimLoadingBarModule.forRoot(),
     ScheduleModule,
@@ -123,12 +121,8 @@ type StoreType = {
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS,
-    Modal,
-    Overlay,
-    BootstrapModalModule.getProviders()
-  ],
-  entryComponents: [ GroupModal, GroupCreateModal ]
+    APP_PROVIDERS
+  ]
 })
 export class AppModule {
   constructor(public appRef: ApplicationRef, public appState: AppState) {}

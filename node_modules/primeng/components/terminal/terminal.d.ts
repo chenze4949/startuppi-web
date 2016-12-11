@@ -1,8 +1,8 @@
 import { AfterViewInit, AfterViewChecked, EventEmitter, ElementRef } from '@angular/core';
 import { DomHandler } from '../dom/domhandler';
 export declare class Terminal implements AfterViewInit, AfterViewChecked {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
+    el: ElementRef;
+    domHandler: DomHandler;
     welcomeMessage: string;
     prompt: string;
     style: any;
@@ -11,14 +11,14 @@ export declare class Terminal implements AfterViewInit, AfterViewChecked {
     handler: EventEmitter<any>;
     commands: any[];
     command: string;
-    container: any;
+    container: Element;
     commandProcessed: boolean;
     constructor(el: ElementRef, domHandler: DomHandler);
     ngAfterViewInit(): void;
     ngAfterViewChecked(): void;
     response: string;
-    handleCommand(event: any, container: any): void;
-    focus(element: any): void;
+    handleCommand(event: KeyboardEvent): void;
+    focus(element: HTMLElement): void;
 }
 export declare class TerminalModule {
 }

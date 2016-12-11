@@ -1,30 +1,33 @@
 import { ElementRef, AfterContentInit, AfterViewInit, AfterViewChecked, OnInit, OnDestroy, DoCheck, ViewContainerRef, EventEmitter, Renderer, IterableDiffers, QueryList, TemplateRef, ChangeDetectorRef } from '@angular/core';
-import { Column } from '../common/shared';
+import { Column, HeaderColumnGroup, FooterColumnGroup } from '../common/shared';
 import { LazyLoadEvent, FilterMetadata, SortMeta } from '../common/api';
 import { DomHandler } from '../dom/domhandler';
 import { Subscription } from 'rxjs/Subscription';
+import { BlockableUI } from '../common/api';
 export declare class DTRadioButton {
     checked: boolean;
     onClick: EventEmitter<any>;
+    hover: boolean;
     handleClick(event: any): void;
 }
 export declare class DTCheckbox {
     checked: boolean;
     disabled: boolean;
     onChange: EventEmitter<any>;
+    hover: boolean;
     handleClick(event: any): void;
 }
 export declare class RowExpansionLoader {
-    protected viewContainer: ViewContainerRef;
+    viewContainer: ViewContainerRef;
     template: TemplateRef<any>;
     rowData: any;
     constructor(viewContainer: ViewContainerRef);
     ngOnInit(): void;
 }
-export declare class DataTable implements AfterViewChecked, AfterViewInit, AfterContentInit, OnInit, DoCheck, OnDestroy {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
-    protected renderer: Renderer;
+export declare class DataTable implements AfterViewChecked, AfterViewInit, AfterContentInit, OnInit, DoCheck, OnDestroy, BlockableUI {
+    el: ElementRef;
+    domHandler: DomHandler;
+    renderer: Renderer;
     private changeDetector;
     value: any[];
     paginator: boolean;
@@ -55,10 +58,10 @@ export declare class DataTable implements AfterViewChecked, AfterViewInit, After
     scrollable: boolean;
     scrollHeight: any;
     scrollWidth: any;
-    headerRows: any;
-    footerRows: any;
     style: any;
     styleClass: string;
+    tableStyle: any;
+    tableStyleClass: string;
     globalFilter: any;
     sortMode: string;
     sortField: string;
@@ -66,9 +69,11 @@ export declare class DataTable implements AfterViewChecked, AfterViewInit, After
     multiSortMeta: SortMeta[];
     contextMenu: any;
     csvSeparator: string;
+    exportFilename: string;
     emptyMessage: string;
     paginatorPosition: string;
     expandedRows: any[];
+    rowTrackBy: Function;
     onEditInit: EventEmitter<any>;
     onEditComplete: EventEmitter<any>;
     onEdit: EventEmitter<any>;
@@ -80,39 +85,47 @@ export declare class DataTable implements AfterViewChecked, AfterViewInit, After
     footer: any;
     expandableRows: boolean;
     tabindex: number;
+    rowStyleClass: Function;
     onRowExpand: EventEmitter<any>;
     onRowCollapse: EventEmitter<any>;
-    rowExpansionTemplate: TemplateRef<any>;
+    rowExpansionTemplate: QueryList<TemplateRef<any>>;
     cols: QueryList<Column>;
-    protected dataToRender: any[];
-    protected first: number;
-    protected page: number;
-    protected filterTimeout: any;
-    protected filters: {
+    headerColumnGroup: HeaderColumnGroup;
+    footerColumnGroup: FooterColumnGroup;
+    dataToRender: any[];
+    first: number;
+    page: number;
+    filterTimeout: any;
+    filters: {
         [s: string]: FilterMetadata;
     };
-    protected filteredValue: any[];
-    protected columns: Column[];
-    protected columnsUpdated: boolean;
-    protected stopSortPropagation: boolean;
-    protected sortColumn: Column;
-    protected percentageScrollHeight: boolean;
-    protected scrollBody: any;
-    protected scrollHeader: any;
-    protected scrollHeaderBox: any;
-    protected bodyScrollListener: any;
-    protected headerScrollListener: any;
-    protected resizeScrollListener: any;
-    protected columnResizing: boolean;
-    protected lastPageX: number;
-    protected documentColumnResizeListener: any;
-    protected documentColumnResizeEndListener: any;
-    protected resizerHelper: any;
-    protected resizeColumn: any;
-    protected reorderIndicatorUp: any;
-    protected reorderIndicatorDown: any;
-    protected draggedColumn: any;
-    protected tbody: any;
+    filteredValue: any[];
+    columns: Column[];
+    columnsChanged: boolean;
+    dataChanged: boolean;
+    stopSortPropagation: boolean;
+    sortColumn: Column;
+    percentageScrollHeight: boolean;
+    scrollBody: any;
+    scrollHeader: any;
+    scrollHeaderBox: any;
+    bodyScrollListener: any;
+    headerScrollListener: any;
+    resizeScrollListener: any;
+    columnResizing: boolean;
+    lastPageX: number;
+    documentColumnResizeListener: any;
+    documentColumnResizeEndListener: any;
+    resizerHelper: any;
+    resizeColumn: any;
+    reorderIndicatorUp: any;
+    reorderIndicatorDown: any;
+    draggedColumn: any;
+    dropPosition: number;
+    tbody: any;
+    rowTouch: boolean;
+    editingCell: any;
+    stopFilterPropagation: boolean;
     differ: any;
     globalFilterFunction: any;
     preventBlurOnEdit: boolean;
@@ -129,6 +142,7 @@ export declare class DataTable implements AfterViewChecked, AfterViewInit, After
     paginate(event: any): void;
     updateDataToRender(datasource: any): void;
     onHeaderKeydown(event: any, column: Column): void;
+    onHeaderMousedown(event: any, header: any): void;
     sort(event: any, column: Column): void;
     sortSingle(): void;
     sortMultiple(): void;
@@ -136,8 +150,9 @@ export declare class DataTable implements AfterViewChecked, AfterViewInit, After
     addSortMeta(meta: any): void;
     isSorted(column: Column): boolean;
     getSortOrder(column: Column): number;
-    handleRowClick(event: any, rowData: any): void;
-    selectRowWithRadio(rowData: any): void;
+    handleRowClick(event: any, rowData: any): boolean;
+    handleRowTap(event: any, rowData: any): void;
+    selectRowWithRadio(event: any, rowData: any): void;
     toggleRowWithCheckbox(event: any, rowData: any): void;
     toggleRowsWithCheckbox(event: any): void;
     onRowRightClick(event: any, rowData: any): void;
@@ -146,7 +161,7 @@ export declare class DataTable implements AfterViewChecked, AfterViewInit, After
     isMultipleSelectionMode(): boolean;
     findIndexInSelection(rowData: any): number;
     isSelected(rowData: any): boolean;
-    allSelected: boolean;
+    readonly allSelected: boolean;
     onFilterKeyup(value: any, field: any, matchMode: any): void;
     filter(): void;
     hasFilter(): boolean;
@@ -158,7 +173,7 @@ export declare class DataTable implements AfterViewChecked, AfterViewInit, After
     };
     switchCellToEditMode(element: any, column: Column, rowData: any): void;
     switchCellToViewMode(element: any, column: Column, rowData: any, complete: boolean): void;
-    onCellEditorKeydown(event: any, column: Column, rowData: any): void;
+    onCellEditorKeydown(event: any, column: Column, rowData: any, colIndex: number): void;
     findCell(element: any): any;
     initResizableColumns(): void;
     initColumnResize(event: any): void;
@@ -172,7 +187,9 @@ export declare class DataTable implements AfterViewChecked, AfterViewInit, After
     initColumnReordering(): void;
     findParentHeader(element: any): any;
     initScrolling(): void;
+    refreshScrolling(): void;
     calculateScrollbarWidth(): number;
+    hasVerticalOverflow(): boolean;
     hasFooter(): boolean;
     isEmpty(): boolean;
     createLazyLoadMetadata(): LazyLoadEvent;
@@ -182,6 +199,8 @@ export declare class DataTable implements AfterViewChecked, AfterViewInit, After
     reset(): void;
     visibleColumns(): Column[];
     exportCSV(): void;
+    getBlockableElement(): HTMLElement;
+    getRowStyleClass(rowData: any, rowIndex: number): string;
     ngOnDestroy(): void;
 }
 export declare class DataTableModule {

@@ -13,13 +13,13 @@ import { AppState } from './app.service';
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
-    './app.style.css'
+    './app.component.css'
   ],
   templateUrl: './app.component.html'
 })
-export class App {
+export class AppComponent {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
-  name = 'Startup Pi';
+  name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
 
   constructor(

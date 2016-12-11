@@ -1,10 +1,10 @@
 import { ElementRef, AfterViewInit, DoCheck, EventEmitter, IterableDiffers, TemplateRef } from '@angular/core';
-export declare class DataGrid implements AfterViewInit, DoCheck {
-    protected el: ElementRef;
+import { BlockableUI } from '../common/api';
+export declare class DataGrid implements AfterViewInit, DoCheck, BlockableUI {
+    el: ElementRef;
     value: any[];
     paginator: boolean;
     rows: number;
-    columns: number;
     totalRecords: number;
     pageLinks: number;
     rowsPerPageOptions: number[];
@@ -16,9 +16,9 @@ export declare class DataGrid implements AfterViewInit, DoCheck {
     header: any;
     footer: any;
     itemTemplate: TemplateRef<any>;
-    protected dataToRender: any[];
-    protected first: number;
-    protected page: number;
+    dataToRender: any[];
+    first: number;
+    page: number;
     differ: any;
     constructor(el: ElementRef, differs: IterableDiffers);
     ngAfterViewInit(): void;
@@ -28,6 +28,7 @@ export declare class DataGrid implements AfterViewInit, DoCheck {
     updateDataToRender(datasource: any): void;
     isEmpty(): boolean;
     createLazyLoadMetadata(): any;
+    getBlockableElement(): HTMLElement;
 }
 export declare class DataGridModule {
 }

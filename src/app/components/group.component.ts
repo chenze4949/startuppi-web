@@ -5,7 +5,6 @@ import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { GroupCreateModalContext, GroupCreateModal } from '../components/modal/group-create-modal';
 
 @Component({
-  moduleId: module.id,
   selector: 'sp-group',
   templateUrl: 'group.component.html',
   styleUrls: ['group.component.css']

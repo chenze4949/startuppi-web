@@ -4,12 +4,12 @@ export declare class Header {
 export declare class Footer {
 }
 export declare class PrimeTemplate {
-    protected template: TemplateRef<any>;
+    template: TemplateRef<any>;
     type: string;
     constructor(template: TemplateRef<any>);
 }
 export declare class TemplateWrapper implements OnInit {
-    protected viewContainer: ViewContainerRef;
+    viewContainer: ViewContainerRef;
     item: any;
     templateRef: TemplateRef<any>;
     constructor(viewContainer: ViewContainerRef);
@@ -30,16 +30,26 @@ export declare class Column implements AfterContentInit {
     hidden: boolean;
     expander: boolean;
     selectionMode: string;
+    filterPlaceholder: string;
     sortFunction: EventEmitter<any>;
     templates: QueryList<any>;
     template: TemplateRef<any>;
-    protected headerTemplate: TemplateRef<any>;
-    protected bodyTemplate: TemplateRef<any>;
-    protected footerTemplate: TemplateRef<any>;
+    headerTemplate: TemplateRef<any>;
+    bodyTemplate: TemplateRef<any>;
+    footerTemplate: TemplateRef<any>;
     ngAfterContentInit(): void;
 }
+export declare class Row {
+    columns: QueryList<Column>;
+}
+export declare class HeaderColumnGroup {
+    rows: QueryList<any>;
+}
+export declare class FooterColumnGroup {
+    rows: QueryList<any>;
+}
 export declare class ColumnBodyTemplateLoader {
-    protected viewContainer: ViewContainerRef;
+    viewContainer: ViewContainerRef;
     column: any;
     rowData: any;
     rowIndex: number;
@@ -47,19 +57,19 @@ export declare class ColumnBodyTemplateLoader {
     ngOnInit(): void;
 }
 export declare class ColumnHeaderTemplateLoader {
-    protected viewContainer: ViewContainerRef;
+    viewContainer: ViewContainerRef;
     column: any;
     constructor(viewContainer: ViewContainerRef);
     ngOnInit(): void;
 }
 export declare class ColumnFooterTemplateLoader {
-    protected viewContainer: ViewContainerRef;
+    viewContainer: ViewContainerRef;
     column: any;
     constructor(viewContainer: ViewContainerRef);
     ngOnInit(): void;
 }
 export declare class TemplateLoader {
-    protected viewContainer: ViewContainerRef;
+    viewContainer: ViewContainerRef;
     template: TemplateRef<any>;
     constructor(viewContainer: ViewContainerRef);
     ngOnInit(): void;

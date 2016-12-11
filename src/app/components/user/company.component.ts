@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  moduleId: module.id,
   selector: 'company',
   templateUrl: 'company.component.html',
   styleUrls: ['company.component.css']

@@ -3,7 +3,7 @@ import { Http } from '@angular/http';
 
 @Injectable()
 export class Title {
-  value = 'Startup Pi';
+  value = 'Angular 2';
   constructor(public http: Http) {
 
   }

@@ -8,14 +8,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require('@angular/core');
 var common_1 = require('@angular/common');
 var domhandler_1 = require('../dom/domhandler');
 var router_1 = require('@angular/router');
 var ContextMenuSub = (function () {
-    function ContextMenuSub(domHandler, router) {
+    function ContextMenuSub(domHandler, router, contextMenu) {
         this.domHandler = domHandler;
         this.router = router;
+        this.contextMenu = contextMenu;
     }
     ContextMenuSub.prototype.onItemMouseEnter = function (event, item, menuitem) {
         if (menuitem.disabled) {
@@ -27,8 +31,7 @@ var ContextMenuSub = (function () {
         if (nextElement) {
             var sublist = nextElement.children[0];
             sublist.style.zIndex = ++domhandler_1.DomHandler.zindex;
-            sublist.style.top = '0px';
-            sublist.style.left = this.domHandler.getOuterWidth(item.children[0]) + 'px';
+            this.position(sublist, item);
         }
     };
     ContextMenuSub.prototype.onItemMouseLeave = function (event, link) {
@@ -61,6 +64,10 @@ var ContextMenuSub = (function () {
         this.activeItem = null;
         this.activeLink = null;
     };
+    ContextMenuSub.prototype.position = function (sublist, item) {
+        sublist.style.top = '0px';
+        sublist.style.left = this.domHandler.getOuterWidth(item.children[0]) + 'px';
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Object)
@@ -74,8 +81,9 @@ var ContextMenuSub = (function () {
             selector: 'p-contextMenuSub',
             template: "\n        <ul [ngClass]=\"{'ui-helper-reset':root, 'ui-widget-content ui-corner-all ui-helper-clearfix ui-menu-child ui-shadow':!root}\" class=\"ui-menu-list\"\n            (click)=\"listClick($event)\">\n            <template ngFor let-child [ngForOf]=\"(root ? item : item.items)\">\n                <li #item [ngClass]=\"{'ui-menuitem ui-widget ui-corner-all':true,'ui-menu-parent':child.items,'ui-menuitem-active':item==activeItem}\"\n                    (mouseenter)=\"onItemMouseEnter($event,item,child)\" (mouseleave)=\"onItemMouseLeave($event,item)\">\n                    <a #link [href]=\"child.url||'#'\" class=\"ui-menuitem-link ui-corner-all\" \n                        [ngClass]=\"{'ui-state-hover':link==activeLink&&!child.disabled,'ui-state-disabled':child.disabled}\" (click)=\"itemClick($event, child)\">\n                        <span class=\"ui-submenu-icon fa fa-fw fa-caret-right\" *ngIf=\"child.items\"></span>\n                        <span class=\"ui-menuitem-icon fa fa-fw\" *ngIf=\"child.icon\" [ngClass]=\"child.icon\"></span>\n                        <span class=\"ui-menuitem-text\">{{child.label}}</span>\n                    </a>\n                    <p-contextMenuSub class=\"ui-submenu\" [item]=\"child\" *ngIf=\"child.items\"></p-contextMenuSub>\n                </li>\n            </template>\n        </ul>\n    ",
             providers: [domhandler_1.DomHandler]
-        }), 
-        __metadata('design:paramtypes', [domhandler_1.DomHandler, router_1.Router])
+        }),
+        __param(2, core_1.Inject(core_1.forwardRef(function () { return ContextMenu; }))), 
+        __metadata('design:paramtypes', [domhandler_1.DomHandler, router_1.Router, ContextMenu])
     ], ContextMenuSub);
     return ContextMenuSub;
 }());
@@ -99,21 +107,49 @@ var ContextMenu = (function () {
             });
         }
     };
+    ContextMenu.prototype.show = function (event) {
+        this.position(event);
+        this.visible = true;
+        this.domHandler.fadeIn(this.container, 250);
+        if (event) {
+            event.preventDefault();
+        }
+    };
+    ContextMenu.prototype.hide = function () {
+        this.visible = false;
+    };
     ContextMenu.prototype.toggle = function (event) {
-        if (this.container.offsetParent)
+        if (this.visible)
             this.hide();
         else
             this.show(event);
     };
-    ContextMenu.prototype.show = function (event) {
-        this.left = event.pageX;
-        this.top = event.pageY;
-        this.visible = true;
-        this.domHandler.fadeIn(this.container, 250);
-        event.preventDefault();
-    };
-    ContextMenu.prototype.hide = function () {
-        this.visible = false;
+    ContextMenu.prototype.position = function (event) {
+        if (event) {
+            var left = event.pageX;
+            var top_1 = event.pageY;
+            var width = this.container.offsetParent ? this.container.offsetWidth : this.domHandler.getHiddenElementOuterWidth(this.container);
+            var height = this.container.offsetParent ? this.container.offsetHeight : this.domHandler.getHiddenElementOuterHeight(this.container);
+            var viewport = this.domHandler.getViewport();
+            //flip
+            if (left + width - document.body.scrollLeft > viewport.width) {
+                left -= width;
+            }
+            //flip
+            if (top_1 + height - document.body.scrollTop > viewport.height) {
+                top_1 -= height;
+            }
+            //fit
+            if (left < document.body.scrollLeft) {
+                left = document.body.scrollLeft;
+            }
+            //fit
+            if (top_1 < document.body.scrollTop) {
+                top_1 = document.body.scrollTop;
+            }
+            this.container.style.left = left + 'px';
+            this.container.style.top = top_1 + 'px';
+        }
     };
     ContextMenu.prototype.unsubscribe = function (item) {
         if (item.eventEmitter) {
@@ -157,7 +193,7 @@ var ContextMenu = (function () {
     ContextMenu = __decorate([
         core_1.Component({
             selector: 'p-contextMenu',
-            template: "\n        <div [ngClass]=\"'ui-contextmenu ui-menu ui-widget ui-widget-content ui-corner-all ui-helper-clearfix ui-menu-dynamic ui-shadow'\" \n            [class]=\"styleClass\" [ngStyle]=\"style\" [style.display]=\"visible ? 'block' : 'none'\" [style.left.px]=\"left\" [style.top.px]=\"top\">\n            <p-contextMenuSub [item]=\"model\" root=\"root\"></p-contextMenuSub>\n        </div>\n    ",
+            template: "\n        <div [ngClass]=\"'ui-contextmenu ui-menu ui-widget ui-widget-content ui-corner-all ui-helper-clearfix ui-menu-dynamic ui-shadow'\" \n            [class]=\"styleClass\" [ngStyle]=\"style\" [style.display]=\"visible ? 'block' : 'none'\">\n            <p-contextMenuSub [item]=\"model\" root=\"root\"></p-contextMenuSub>\n        </div>\n    ",
             providers: [domhandler_1.DomHandler]
         }), 
         __metadata('design:paramtypes', [core_1.ElementRef, domhandler_1.DomHandler, core_1.Renderer])

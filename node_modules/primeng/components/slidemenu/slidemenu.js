@@ -20,10 +20,10 @@ var SlideMenuSub = (function () {
         this.slideMenu = slideMenu;
         this.router = router;
         this.backLabel = 'Back';
-        this.effectDuration = '1s';
         this.easing = 'ease-out';
     }
     SlideMenuSub.prototype.itemClick = function (event, item, listitem) {
+        var _this = this;
         if (item.disabled) {
             event.preventDefault();
             return;
@@ -31,7 +31,6 @@ var SlideMenuSub = (function () {
         if (!item.url || item.routerLink) {
             event.preventDefault();
         }
-        this.activeItem = listitem;
         if (item.command) {
             if (!item.eventEmitter && item.command) {
                 item.eventEmitter = new core_1.EventEmitter();
@@ -42,16 +41,19 @@ var SlideMenuSub = (function () {
                 item: item
             });
         }
-        if (item.items) {
+        if (item.items && !this.slideMenu.animating) {
             this.slideMenu.left -= this.slideMenu.menuWidth;
+            this.activeItem = listitem;
+            this.slideMenu.animating = true;
+            setTimeout(function () { return _this.slideMenu.animating = false; }, this.effectDuration);
         }
         if (item.routerLink) {
             this.router.navigate(item.routerLink);
         }
     };
     SlideMenuSub.prototype.ngOnDestroy = function () {
-        this.hoveredLink = null;
         this.activeItem = null;
+        this.hoveredLink = null;
     };
     __decorate([
         core_1.Input(), 
@@ -80,7 +82,7 @@ var SlideMenuSub = (function () {
     SlideMenuSub = __decorate([
         core_1.Component({
             selector: 'p-slideMenuSub',
-            template: "\n        <ul [ngClass]=\"{'ui-helper-reset ui-menu-rootlist':root, 'ui-widget-content ui-corner-all ui-helper-clearfix ui-menu-child':!root}\" class=\"ui-menu-list\"\n            [style.width.px]=\"menuWidth\" [style.left.px]=\"root ? slideMenu.left : slideMenu.menuWidth\" \n            [style.transitionProperty]=\"root ? 'left' : 'none'\" [style.transitionDuration]=\"effectDuration\" [style.transitionTimingFunction]=\"easing\">\n            <template ngFor let-child [ngForOf]=\"(root ? item : item.items)\">\n                <li #listitem [ngClass]=\"{'ui-menuitem ui-widget ui-corner-all':true,'ui-menu-parent':child.items,'ui-menuitem-active':listitem==activeItem}\">\n                    <a #link [href]=\"child.url||'#'\" class=\"ui-menuitem-link ui-corner-all\" \n                        [ngClass]=\"{'ui-state-hover':link==hoveredLink&&!child.disabled,'ui-menuitem-link-parent':child.items,'ui-state-disabled':child.disabled}\" \n                        (click)=\"itemClick($event, child, listitem)\" (mouseenter)=\"hoveredLink=link\" (mouseleave)=\"hoveredLink=null\">\n                        <span class=\"ui-submenu-icon fa fa-fw fa-caret-right\" *ngIf=\"child.items\"></span>\n                        <span class=\"ui-menuitem-icon fa fa-fw\" *ngIf=\"child.icon\" [ngClass]=\"child.icon\"></span>\n                        <span class=\"ui-menuitem-text\">{{child.label}}</span>\n                    </a>\n                    <p-slideMenuSub class=\"ui-submenu\" [item]=\"child\" [menuWidth]=\"menuWidth\" *ngIf=\"child.items\"></p-slideMenuSub>\n                </li>\n            </template>\n        </ul>\n    "
+            template: "\n        <ul [ngClass]=\"{'ui-helper-reset ui-menu-rootlist':root, 'ui-widget-content ui-corner-all ui-helper-clearfix ui-menu-child':!root}\" class=\"ui-menu-list\"\n            [style.width.px]=\"menuWidth\" [style.left.px]=\"root ? slideMenu.left : slideMenu.menuWidth\" \n            [style.transitionProperty]=\"root ? 'left' : 'none'\" [style.transitionDuration]=\"effectDuration + 'ms'\" [style.transitionTimingFunction]=\"easing\">\n            <template ngFor let-child [ngForOf]=\"(root ? item : item.items)\">\n                <li #listitem [ngClass]=\"{'ui-menuitem ui-widget ui-corner-all':true,'ui-menu-parent':child.items,'ui-menuitem-active':listitem==activeItem}\">\n                    <a #link [href]=\"child.url||'#'\" class=\"ui-menuitem-link ui-corner-all\" \n                        [ngClass]=\"{'ui-state-hover':link==hoveredLink&&!child.disabled,'ui-menuitem-link-parent':child.items,'ui-state-disabled':child.disabled}\" \n                        (click)=\"itemClick($event, child, listitem)\" (mouseenter)=\"hoveredLink=link\" (mouseleave)=\"hoveredLink=null\">\n                        <span class=\"ui-submenu-icon fa fa-fw fa-caret-right\" *ngIf=\"child.items\"></span>\n                        <span class=\"ui-menuitem-icon fa fa-fw\" *ngIf=\"child.icon\" [ngClass]=\"child.icon\"></span>\n                        <span class=\"ui-menuitem-text\">{{child.label}}</span>\n                    </a>\n                    <p-slideMenuSub class=\"ui-submenu\" [item]=\"child\" [menuWidth]=\"menuWidth\" *ngIf=\"child.items\"></p-slideMenuSub>\n                </li>\n            </template>\n        </ul>\n    "
         }),
         __param(0, core_1.Inject(core_1.forwardRef(function () { return SlideMenu; }))), 
         __metadata('design:paramtypes', [SlideMenu, router_1.Router])
@@ -95,10 +97,11 @@ var SlideMenu = (function () {
         this.renderer = renderer;
         this.menuWidth = 180;
         this.viewportHeight = 175;
-        this.effectDuration = '500ms';
+        this.effectDuration = 500;
         this.easing = 'ease-out';
         this.backLabel = 'Back';
         this.left = 0;
+        this.animating = false;
     }
     SlideMenu.prototype.ngAfterViewInit = function () {
         var _this = this;

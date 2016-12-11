@@ -2,7 +2,7 @@ import { OnDestroy } from '@angular/core';
 import { MenuItem } from '../common/api';
 import { Router } from '@angular/router';
 export declare class Breadcrumb implements OnDestroy {
-    protected router: Router;
+    router: Router;
     model: MenuItem[];
     style: any;
     styleClass: string;

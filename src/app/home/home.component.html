@@ -1,0 +1,131 @@
+<div class="navigation-container">
+    <div class="navigation">
+        <ul>
+        <li class="has-sub"> <a href="#">商標</a>
+            <ul>
+            <li class="has-sub"> <a href="#">Submenu 1.1</a>
+                <ul>
+                <li><a href="#">Submenu 1.1.1</a></li>
+                <li class="has-sub"><a href="#">Submenu 1.1.2</a>
+                    <ul>
+                    <li><a href="#">Submenu 1.1.2.1</a></li>
+                    <li><a href="#">Submenu 1.1.2.2</a></li>
+                    </ul>
+                </li>
+                </ul>
+            </li>
+            <li><a href="#">Submenu 1.2</a></li>
+            </ul>
+        </li>
+        <li class="has-sub"> <a href="#">公司財務＆註冊</a>
+            <ul>
+            <li><a href="#">Submenu 2.1</a></li>
+            <li><a href="#">Submenu 2.2</a></li>
+            </ul>
+        </li>
+        <li class="has-sub"> <a href="#">知識產權＆法務</a>
+            <ul>
+            <li><a href="#">Submenu 3.1</a></li>
+            <li><a href="#">Submenu 3.2</a></li>
+            </ul>
+        </li>
+        <li class="has-sub"> <a href="#">網站開發</a>
+            <ul>
+            <li><a href="#">Submenu 3.1</a></li>
+            <li><a href="#">Submenu 3.2</a></li>
+            </ul>
+        </li>
+        <li class="has-sub"> <a href="#">微信開發</a>
+            <ul>
+            <li><a href="#">Submenu 3.1</a></li>
+            <li><a href="#">Submenu 3.2</a></li>
+            </ul>
+        </li>
+        <li class="has-sub"> <a href="#">UI設計</a>
+            <ul>
+            <li><a href="#">Submenu 3.1</a></li>
+            <li><a href="#">Submenu 3.2</a></li>
+            </ul>
+        </li>
+        <li class="has-sub"> <a href="#">App開發</a>
+            <ul>
+            <li><a href="#">Submenu 3.1</a></li>
+            <li><a href="#">Submenu 3.2</a></li>
+            </ul>
+        </li>
+        <li class="has-sub"> <a href="#">網路營銷</a>
+            <ul>
+            <li><a href="#">Submenu 3.1</a></li>
+            <li><a href="#">Submenu 3.2</a></li>
+            </ul>
+        </li>
+        </ul>
+    </div>
+    <div class="banner">
+        <img src="/assets/images/home_sample.png"/>
+    </div>
+</div>
+<header class="floor-title">
+    <div class="leftside">提供優選的創業服務</div>
+    <div class="rightside">
+        <a href="/activity/list">查看全部</a>
+    </div>
+</header>
+<div class="recommended-product-list">
+    <div class="products-list-item" (click)='gotoDetail(product)' *ngFor="let product of [1,2,3,4,5,6,7,8]">
+        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+        <div class="product-image">
+            <!--<img *ngIf='product.product_images.length>0' [src]="products[0].product_images[0].image_medium_url"  style=""  alt=""/>-->
+            <img src="/assets/images/product_sample.png"  style=""  alt=""/>
+            <div class="product_container" style="background-color:white;">
+                <div class="product-name">企業網站建設</div>
+                <div class="product-category">網站建設</div>
+                <div class="product-like"><span style="color:red">554</span> 人氣</div>
+                <div class="cbp-vm-details">
+                    在互聯網中建設自己的網站，從而領軍行業，成為第一家征戰互聯網的企業...
+                </div>
+                <div class="clearfix"></div>
+            </div>		
+        </div>
+    </div>
+</div>
+<header class="floor-title">
+    <div class="leftside">為您精選的創業活動</div>
+    <div class="rightside">
+        <a href="/activity/list">查看全部</a>
+    </div>
+</header>
+<p-schedule
+    editable="false"  
+    defaultView="month" 
+    [events]="events"
+    [defaultDate]="defaultDate"        
+    slotLabelFormat="HH:mm"          
+    resourceAreaWidth="120" 
+    resourceLabelText="&nbsp;" 
+    titleFormat="YYYY-MM-DD dddd" 
+    nowIndicator="true"
+    lang="zh-cn"
+    (onEventClick)="handleEventClick($event)"    
+  ></p-schedule>
+<header class="floor-title">
+    <div class="leftside">同行創業家抱團取暖</div>
+    <div class="rightside">
+        <a href="/activity/list">查看全部</a>
+    </div>
+</header>
+<div class="group-list" style="width:100%">
+    <div class="groups-list-item" (click)='onClick()' *ngFor="let group of [1,2,3,4,5,6,7,8]">
+        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+        <div class="group-image">
+            <!--<img *ngIf='product.product_images.length>0' [src]="products[0].product_images[0].image_medium_url"  style=""  alt=""/>-->
+            <img src="/assets/images/product_sample.png"  style=""  alt=""/>
+            <div class="group_container" style="margin-top:10px;">
+                <div class="group-name">深圳旅游电商微信群</div>
+                <div class="group-category">创业分享</div>
+                <div class="clearfix"></div>
+            </div>		
+        </div>
+    </div>
+</div>
+<span defaultOverlayTarget></span>

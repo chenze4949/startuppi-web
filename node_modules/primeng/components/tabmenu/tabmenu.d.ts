@@ -2,7 +2,7 @@ import { OnDestroy } from '@angular/core';
 import { MenuItem } from '../common/api';
 import { Router } from '@angular/router';
 export declare class TabMenu implements OnDestroy {
-    protected router: Router;
+    router: Router;
     model: MenuItem[];
     activeItem: MenuItem;
     popup: boolean;
@@ -11,7 +11,7 @@ export declare class TabMenu implements OnDestroy {
     constructor(router: Router);
     hoveredItem: MenuItem;
     ngOnInit(): void;
-    itemClick(event: any, item: MenuItem): void;
+    itemClick(event: Event, item: MenuItem): void;
     ngOnDestroy(): void;
     unsubscribe(item: any): void;
 }

@@ -1,6 +1,6 @@
-import { ElementRef, AfterViewInit, OnDestroy, DoCheck, EventEmitter, IterableDiffers } from '@angular/core';
-export declare class UIChart implements AfterViewInit, OnDestroy, DoCheck {
-    protected el: ElementRef;
+import { ElementRef, AfterViewInit, OnDestroy, EventEmitter, IterableDiffers } from '@angular/core';
+export declare class UIChart implements AfterViewInit, OnDestroy {
+    el: ElementRef;
     type: string;
     data: any;
     options: any;
@@ -12,11 +12,11 @@ export declare class UIChart implements AfterViewInit, OnDestroy, DoCheck {
     differ: any;
     constructor(el: ElementRef, differs: IterableDiffers);
     ngAfterViewInit(): void;
-    ngDoCheck(): void;
     onCanvasClick(event: any): void;
     initChart(): void;
     getCanvas(): any;
     getBase64Image(): any;
+    refresh(): void;
     ngOnDestroy(): void;
 }
 export declare class ChartModule {

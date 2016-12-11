@@ -48,6 +48,8 @@ export interface TreeNode {
     leaf?: boolean;
     expanded?: boolean;
     type?: string;
+    parent?: TreeNode;
+    partialSelected?: boolean;
 }
 export interface Confirmation {
     message: string;
@@ -55,8 +57,13 @@ export interface Confirmation {
     header?: string;
     accept?: Function;
     reject?: Function;
+    acceptVisible?: boolean;
+    rejectVisible?: boolean;
     acceptEvent?: EventEmitter<any>;
     rejectEvent?: EventEmitter<any>;
+}
+export interface BlockableUI {
+    getBlockableElement(): HTMLElement;
 }
 export declare class ConfirmationService {
     private requireConfirmationSource;

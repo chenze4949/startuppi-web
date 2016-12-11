@@ -21,6 +21,9 @@ var Accordion = (function () {
     Accordion.prototype.addTab = function (tab) {
         this.tabs.push(tab);
     };
+    Accordion.prototype.getBlockableElement = function () {
+        return this.el.nativeElement.children[0];
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Boolean)
@@ -60,7 +63,7 @@ var AccordionTab = (function () {
     AccordionTab.prototype.toggle = function (event) {
         var _this = this;
         if (this.disabled) {
-            return;
+            return false;
         }
         this.animating = true;
         var index = this.findTabIndex();
@@ -95,6 +98,13 @@ var AccordionTab = (function () {
         }
         return index;
     };
+    Object.defineProperty(AccordionTab.prototype, "hasHeaderFacet", {
+        get: function () {
+            return this.headerFacet && this.headerFacet.length > 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
@@ -112,13 +122,13 @@ var AccordionTab = (function () {
         __metadata('design:type', core_1.EventEmitter)
     ], AccordionTab.prototype, "selectedChange", void 0);
     __decorate([
-        core_1.ContentChild(shared_1.Header), 
-        __metadata('design:type', Object)
+        core_1.ContentChildren(shared_1.Header), 
+        __metadata('design:type', core_1.QueryList)
     ], AccordionTab.prototype, "headerFacet", void 0);
     AccordionTab = __decorate([
         core_1.Component({
             selector: 'p-accordionTab',
-            template: "\n        <div class=\"ui-accordion-header ui-state-default ui-corner-all\" [ngClass]=\"{'ui-state-active': selected,'ui-state-hover':hover&&!disabled,'ui-state-disabled':disabled}\">\n            <span class=\"fa fa-fw\" [ngClass]=\"{'fa-caret-down': selected, 'fa-caret-right': !selected}\"></span>\n            <a href=\"#\" *ngIf=\"!headerFacet\" role=\"tab\" [attr.aria-expanded]=\"selected\" [attr.aria-selected]=\"selected\"\n                (click)=\"toggle($event)\" (mouseenter)=\"hover = true\" (mouseleave)=\"hover=false\">{{header}}</a>\n            <a href=\"#\" *ngIf=\"headerFacet\" role=\"tab\" [attr.aria-expanded]=\"selected\" [attr.aria-selected]=\"selected\"\n                (click)=\"toggle($event)\" (mouseenter)=\"hover = true\" (mouseleave)=\"hover=false\">\n                <ng-content select=\"header\"></ng-content>\n            </a>\n        </div>\n        <div class=\"ui-accordion-content-wrapper\" [@tabContent]=\"selected ? 'visible' : 'hidden'\" \n            [ngClass]=\"{'ui-accordion-content-wrapper-overflown': !selected||animating}\" role=\"tabpanel\" [attr.aria-hidden]=\"!selected\">\n            <div class=\"ui-accordion-content ui-widget-content\">\n                <ng-content></ng-content>\n            </div>\n        </div>\n    ",
+            template: "\n        <div class=\"ui-accordion-header ui-state-default ui-corner-all\" [ngClass]=\"{'ui-state-active': selected,'ui-state-hover':hover&&!disabled,'ui-state-disabled':disabled}\"\n            (mouseenter)=\"hover = true\" (mouseleave)=\"hover=false\" (click)=\"toggle($event)\">\n            <span class=\"fa fa-fw\" [ngClass]=\"{'fa-caret-down': selected, 'fa-caret-right': !selected}\"></span>\n            <a href=\"#\" *ngIf=\"!hasHeaderFacet\" role=\"tab\" [attr.aria-expanded]=\"selected\" [attr.aria-selected]=\"selected\">{{header}}</a>\n            <a href=\"#\" *ngIf=\"hasHeaderFacet\" role=\"tab\" [attr.aria-expanded]=\"selected\" [attr.aria-selected]=\"selected\">\n                <ng-content select=\"header\"></ng-content>\n            </a>\n        </div>\n        <div class=\"ui-accordion-content-wrapper\" [@tabContent]=\"selected ? 'visible' : 'hidden'\" \n            [ngClass]=\"{'ui-accordion-content-wrapper-overflown': !selected||animating}\" role=\"tabpanel\" [attr.aria-hidden]=\"!selected\">\n            <div class=\"ui-accordion-content ui-widget-content\">\n                <ng-content></ng-content>\n            </div>\n        </div>\n    ",
             animations: [
                 core_1.trigger('tabContent', [
                     core_1.state('hidden', core_1.style({

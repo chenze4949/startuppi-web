@@ -4,23 +4,23 @@ import { MenuItem } from '../common/api';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 export declare class TieredMenuSub {
-    protected domHandler: DomHandler;
-    protected router: Router;
-    protected location: Location;
+    domHandler: DomHandler;
+    router: Router;
+    location: Location;
     item: MenuItem;
     root: boolean;
     constructor(domHandler: DomHandler, router: Router, location: Location);
-    activeItem: any;
-    activeLink: any;
-    onItemMouseEnter(event: any, item: any, menuitem: MenuItem): void;
-    onItemMouseLeave(event: any, link: any): void;
-    itemClick(event: any, item: MenuItem): boolean;
-    listClick(event: any): void;
+    activeItem: Element;
+    activeLink: Element;
+    onItemMouseEnter(event: Event, item: HTMLElement, menuitem: MenuItem): void;
+    onItemMouseLeave(event: Event): void;
+    itemClick(event: Event, item: MenuItem): boolean;
+    listClick(event: Event): void;
 }
 export declare class TieredMenu implements AfterViewInit, OnDestroy {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
-    protected renderer: Renderer;
+    el: ElementRef;
+    domHandler: DomHandler;
+    renderer: Renderer;
     model: MenuItem[];
     popup: boolean;
     style: any;
@@ -30,8 +30,8 @@ export declare class TieredMenu implements AfterViewInit, OnDestroy {
     preventDocumentDefault: any;
     constructor(el: ElementRef, domHandler: DomHandler, renderer: Renderer);
     ngAfterViewInit(): void;
-    toggle(event: any): void;
-    show(event: any): void;
+    toggle(event: Event): void;
+    show(event: Event): void;
     hide(): void;
     unsubscribe(item: any): void;
     ngOnDestroy(): void;

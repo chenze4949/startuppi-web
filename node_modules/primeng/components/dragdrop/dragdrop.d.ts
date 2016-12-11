@@ -1,15 +1,15 @@
 import { ElementRef, EventEmitter } from '@angular/core';
 import { DomHandler } from '../dom/domhandler';
 export declare class Draggable {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
+    el: ElementRef;
+    domHandler: DomHandler;
     scope: string;
     dragEffect: string;
     dragHandle: string;
     onDragStart: EventEmitter<any>;
     onDragEnd: EventEmitter<any>;
     onDrag: EventEmitter<any>;
-    protected handle: any;
+    handle: any;
     constructor(el: ElementRef, domHandler: DomHandler);
     dragStart(event: any): void;
     drag(event: any): void;
@@ -19,9 +19,9 @@ export declare class Draggable {
     allowDrag(): boolean;
 }
 export declare class Droppable {
-    protected el: ElementRef;
-    protected domHandler: DomHandler;
-    scope: string;
+    el: ElementRef;
+    domHandler: DomHandler;
+    scope: string | string[];
     dropEffect: string;
     onDragEnter: EventEmitter<any>;
     onDragLeave: EventEmitter<any>;
