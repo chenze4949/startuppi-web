@@ -221,7 +221,7 @@ export class GroupCreateModalContext extends BSModalContext {
             </div>
             <div class="custom-modal-footer">
                 <button type="submit" class="btn btn-primary btn-h-large" (click)="createGroup()">發佈</button>
-                <button type="submit" class="btn btn-primary btn-h-large" (click)="createGroup()">取消</button>
+                <button type="submit" class="btn btn-primary btn-h-large" (click)="onKeyUp(5)">取消</button>
             </div>
         </div>`
 })

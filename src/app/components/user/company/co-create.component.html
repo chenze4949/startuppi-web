@@ -1,0 +1,246 @@
+<div id="content">
+    <div *ngIf="step1" id="co-create-step-1" class="content-inner" style="text-align: left;">
+        <div class="W_tips tips_warn clearfix">
+            <p class="txt">为保障您公司信息完整呈現，請準確填寫</p>
+            <!-- <a class="form_help" href="http://help.weibo.com/faq/q/225" target="_blank">帮助</a></p> -->
+        </div>
+        <div class="co-create-form-container" style="padding: 0 20px">
+        <h2>第1步：Startup Pi創派商戶帳戶申請注意事項</h2>
+        <ol style="list-style-type: decimal;padding: 0 20px">
+        <li><span>現時只接受持有有效商業登記證的公司申請，申請人必須在獲得其公司授權的情況下申請帳戶</span></li>
+        <li><span>商戶及其員工必須以誠實、公平及合理的原則使用系統，並且同意及遵守</span><span>Startup Pi創派</span><span>使用條款及守則。日後如遇爭議，</span><span>Startup Pi創派</span><span>擁有最終決定權</span></li>
+        <li><span>為防止濫用及壟斷，每間公司只能擁有一個帳戶。在一般情況下，一個地址只能由一間公司登記時使用</span></li>
+        </ol>
+        <p>&nbsp;</p>
+        <h4><strong>駐商戶使用條款及守則：</strong></h4>
+        <ul style="list-style-type: disc;padding: 0 20px">
+        <li><span>同意接受Startup Pi創派的使用條款</span></li>
+        <li><span>必須經有關申請程序、批核及增值，方可使用有關服務</span></li>
+        <li><span>必須經常登入「商戶帳戶」提供正確、清楚及最新的報價資料予顧客</span></li>
+        <li><span>所有報價之陳述必須正確無誤，並合乎《商品說明條例》</span></li>
+        <li><span>必須確保所售賣之產品或服務為合法，產品必須為真貨正品，絕不可用偽品冒充</span></li>
+        <li><span>所有報價必須提供最少 $10 的額外折扣優惠</span></li>
+        <li><span>所有報價折實後（不包括附加費及其他雜費)必須是商戶所能提供的最低價格，而商戶亦須承諾絕不可在其他網站/平台提供更低的價格</span></li>
+        <li><span>實際交易金額必須與顧客訂購/預約時相同</span></li>
+        <li><span>每次獲得轉介的準顧客聯絡資料後，須於下一個工作天內聯絡準顧客</span></li>
+        <li><span>每次獲得轉介的準顧客聯絡資料後，須於商品定價中扣除服務費予Startup Pi創派。服務費為轉介費用，只有在無法聯絡到準顧客的情況下才可獲豁免。如商戶欲申請豁免，必須在轉介日期後的 3 個工作天內以電郵方式申請，逾期則不獲受理</span></li>
+        <li><span>不可以任何形式鼓勵顧客直接向商戶訂購而不經本網訂購/預約，或因為經本網訂購而向顧客追加任何附加費</span></li>
+        <li><span>不可因最終未能完成交易而主動要求顧客繳付額外的手續費或聯絡Startup Pi創派取消轉介</span></li>
+        <li><span>轉介必須由準顧客按「確認訂單」而產生，絕不可自製轉介記錄或作出任何不誠實行為</span></li>
+        <li><span>如選擇退出本服務或因違反條款而被取消商戶資格，商戶必須在退出服務或取消資格後 </span><strong>1</strong><span> 個月內主動聯絡Startup Pi創派取回帳戶餘額，逾期申請恕不受理</span></li>
+        <li><span>就下述情況，Startup Pi創派將不會就投訴進行調停或仲裁：1) 報價於訂購當日已超過90日沒有更新，及 2)商戶與投訴人私下協商的交易條款、價格，與訂購當日之網上報價資料不同</span></li>
+        <li><span>所有透過Startup Pi創派提供的功能而獲得的客戶個人資料及聯絡方式，不得用作宣傳或商業用途，並有責任對所有個人資料絕對保密。如有任何違反或觸犯法律情況，商戶需要自行承擔責任。</span></li>
+        <li><span>商戶必須明白在提現時Startup Pi創派會扣除 </span><strong>3%</strong><span> 的銀行轉帳支付手續費用。</span></li>
+        <li><span>必須了解整個服務之詳情以及了解「</span><span>進駐指南</span><span>」及同意遵守有關條款</span></li>
+        <li><span>任何商戶如有違反以上使用條款及守則，Startup Pi創派有權取消該商戶的資格，並將列入黑名單，嚴禁該商戶於Startup Pi創派報價</span></li>
+        <li><span>如有爭議，Startup Pi創派保留最終決定權</span></li>
+        </ul>
+        </div>
+        <div class="form_btn S_line2">
+            <a id="subBtn" href="javascript:;" class="W_btn_a btn_34px" (click)="step1 = !step1">下一步</a>
+        </div>
+    </div>
+    <div *ngIf="!step1" id="co-create-step-2" class="content-inner" style="text-align: left;">
+        <!--<div id="crumbs">
+            <strong>您的位置：</strong>
+            <ol class="crumbs">
+                <li><a [routerLink]="['/center']" routerLinkActive="active">个人中心</a></li>
+                <li class="current">></li>
+                <li><a [routerLink]="['/center/company']" routerLinkActive="active">我的公司</a></li>
+                <li class="current">></li>
+                <li class="current">公司资料</li>
+            </ol>
+            <span class="cart-tip">帮您完成商品管理，上传更便捷，更简单！
+            </span>
+        </div>-->
+        <div class="W_tips tips_warn clearfix">
+            <p class="txt">为保障您公司信息完整呈現，請準確填寫</p>
+            <!-- <a class="form_help" href="http://help.weibo.com/faq/q/225" target="_blank">帮助</a></p> -->
+        </div>
+        <div class="co-create-form-container" style="padding: 0 20px">
+        <h2>第2步：填寫帳戶資料</h2>
+        <div class="form-header">
+            1. 基本信息
+        </div>
+        <ul class="form_list">
+            <li class="item clearfix">
+                <span class="tit">公司名稱：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="input-help-text clearfix">
+                <span>*顯示在本網站的商戶名稱，應與商業登記證內的名稱及營業地點的招牌吻合，提交後不可自由更改。建議輸入簡短名稱，毋須加上Limited等字眼</span>
+            </li>
+            <li class="item clearfix">
+                <span class="tit">商戶類型：</span>
+                <select class="W_select">
+                    <option value="" selected="">實體店舖</option>
+                    <option value="" selected="">網上商店</option>
+                </select>
+            </li>
+            <li class="input-help-text clearfix">
+                <span>*未有實體店舖供客戶到場選購交收或營業地點是商務中心/分租單位的商戶請選此項</span>
+            </li>
+            <li class="item clearfix">
+                <span class="tit">聯絡人</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">Email：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">联系方式：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">公司简介：</span>
+                <textarea class="W_textarea"></textarea>
+            </li>
+        </ul>
+        <div class="form-header">
+            2. 商業登記證資料
+        </div>
+        <ul class="form_list">
+            <li class="item clearfix">
+                <span class="tit">業務/法團所用名稱：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">業務/分行名稱：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">商業登記證號碼：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="input-help-text clearfix">
+                <span>*首8位數字</span>
+            </li>
+            <li class="item clearfix">
+                <span class="tit">屆滿日期：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="input-help-text clearfix">
+                <span>*YYYY-MM-DD</span>
+            </li>
+            <li class="item clearfix">
+                <span class="tit">中文地址：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="input-help-text clearfix">
+                <span>*若貴公司為實體店舖，地址不可以是住宅地址</span>
+            </li>
+            <li class="item clearfix">
+                <span class="tit">英文地址：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">營業時間：</span>
+                <textarea class="W_textarea"></textarea>
+            </li>
+            <li class="item clearfix">
+                <span class="tit">地址備註：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">商業登記證副本：</span>
+                <input type="file" style="float: left;" ng2FileSelect [uploader]="uploader" />
+            </li>
+            <li class="input-help-text clearfix">
+                <span>只限 jpg 、 png 或 pdf 格式</span><br>
+                <span>*如有其他營業地點資料，可在帳戶成功獲批核後登入商戶專區另作申請</span>
+            </li>
+        </ul>
+        <div class="form-header">
+            4. 填寫本網站公開資料
+        </div>    
+        <ul class="form_list">
+            <li class="item clearfix">
+                <span class="tit">查詢電話：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">公司規模：</span>
+                <select class="W_select">
+                    <option value="" selected="">0-10人</option>
+                    <option value="" selected="">10-30人</option>
+                    <option value="" selected="">30-100人</option>
+                    <option value="" selected="">100-300人</option>
+                    <option value="" selected="">300人以上</option>
+                </select>
+            </li>
+            <li class="item clearfix">
+                <span class="tit">查詢電郵：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">WeChat ID：</span>
+                <input class="W_input" value="" placeholder="">
+            </li>
+            <li class="item clearfix">
+                <span class="tit">公司简介：</span>
+                <textarea class="W_textarea"></textarea>
+            </li>
+            <li class="item clearfix">
+                <span class="tit">簡介圖片：</span>
+                <input type="file" style="float: left;" ng2FileSelect [uploader]="uploader" />
+            </li>
+        </ul>    
+        <div class="form-header">
+            5. 加入交易保障計劃
+        </div>    
+        <ul class="form_list">
+            <li class="clearfix">
+                <input type="checkbox" (change)="csharp = csharpcb.checked" />
+                <div class="form_check_box_text">保證按時完成 <a>閲讀並同意協議才可勾選</a></div>
+            </li>
+            <li class="input-help-text clearfix" style="margin-left: 20px;width: 500px;margin-top: 10px">
+                <span>勾選即閣下同意保證提供給Startup Pi 轉介至貴公司的用戶之服務能按時完成</span>
+            </li>
+            <li class="clearfix">
+                <input type="checkbox" (change)="csharp = csharpcb.checked" />
+                <div class="form_check_box_text">保證原創 <a>閲讀並同意協議才可勾選</a></div>
+            </li>
+            <li class="input-help-text clearfix" style="margin-left: 20px;width: 500px;margin-top: 10px">
+                <span>勾選即閣下同意保證提供給Startup Pi 轉介至貴公司的用戶之服務為原創</span>
+            </li>
+            <li class="clearfix">
+                <input type="checkbox" (change)="csharp = csharpcb.checked" />
+                <div class="form_check_box_text">保證提供源碼 <a>閲讀並同意協議才可勾選</a></div>
+            </li>
+            <li class="input-help-text clearfix" style="margin-left: 20px;width: 500px;margin-top: 10px">
+                <span>勾選即閣下同意保證提供給Startup Pi 轉介至貴公司的用戶設計或開發源碼</span>
+            </li>
+            <li class="clearfix">
+                <input type="checkbox" (change)="csharp = csharpcb.checked" />
+                <div class="form_check_box_text">保證3個月免費維護 <a>閲讀並同意協議才可勾選</a></div>
+            </li>
+            <li class="input-help-text clearfix" style="margin-left: 20px;width: 500px;margin-top: 10px">
+                <span>勾選即閣下同意保證提供給Startup Pi 轉介至貴公司的用戶3個月免費開發維護服務</span>
+            </li>
+            <li class="clearfix">
+                <input type="checkbox" (change)="csharp = csharpcb.checked" />
+                <div class="form_check_box_text">保證推廣效果 <a>閲讀並同意協議才可勾選</a></div>
+            </li>
+            <li class="input-help-text clearfix" style="margin-left: 20px;width: 500px;margin-top: 10px">
+                <span>勾選即閣下同意保證提供給Startup Pi 轉介至貴公司的用戶承諾的推廣效果</span>
+            </li>
+            <li class="clearfix">
+                <input type="checkbox" (change)="csharp = csharpcb.checked" />
+                <div class="form_check_box_text">保證違約賠付 <a>閲讀並同意協議才可勾選</a></div>
+            </li>
+            <li class="input-help-text clearfix" style="margin-left: 20px;width: 500px;margin-top: 10px">
+                <span>當閣下公司違反以上勾選之任何條例，閣下保證在Startup Pi轉介至貴公司的用戶在合理索賠情況下按該用戶訂單價錢全款賠付給該用戶</span>
+            </li>
+        </ul>
+        </div>    
+        <ul class="quesa_mod S_line2">
+            <li class="question_mod S_txt2" id="question_mod_a"><a class="S_txt2"><span class="icon_ques"></span>填錯商品屬性，可能會引起商品下架，影響您的正常銷售及評分。請認真準確填寫</a></li>
+            <li class="answer_mod S_txt2" id="answer_mod_a"><span class="icon_answ"></span>如果您對商品上傳有任何疑問請咨詢
+                <a href="https://security.weibo.com/iforgot/loginname?entry=weibo">幫助中心 </a>的方式来了解。</li>
+        </ul>
+        <div class="form_btn S_line2">
+            <a id="subBtn" href="javascript:;" class="W_btn_a btn_34px">下一步</a>
+        </div>
+    </div>
+</div>

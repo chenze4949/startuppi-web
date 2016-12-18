@@ -15,7 +15,6 @@ import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
 import { HomeComponent } from './home';
-import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLarge } from './home/x-large';
 
@@ -38,8 +37,16 @@ import { CoProductCreateComponent } from './components/user/company/co-product-c
 import { CoProductEditComponent } from './components/user/company/co-product-edit.component';
 import { CoPlansComponent } from './components/user/company/co-plans.component';
 import { CoProfileComponent } from './components/user/company/co-profile.component';
+import { CoCreateComponent } from './components/user/company/co-create.component';
 import { CoPlanCreateComponent } from './components/user/company/co-plan-create.component';
 import { CoPlanEditComponent } from './components/user/company/co-plan-edit.component';
+import { PrivacyComponent } from './components/files/privacy.component';
+import { TermsComponent } from './components/files/terms.component';
+import { ContactComponent } from './components/files/contact.component';
+import { AboutComponent } from './components/files/about.component';
+
+
+import { AuthGuard } from './guards/auth.guard';
 
 import { DialogModule } from 'primeng/primeng';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
@@ -48,6 +55,7 @@ import { DataTableModule } from 'primeng/primeng';
 import { DataListModule } from 'primeng/primeng';
 import { RadioButtonModule } from 'primeng/primeng';
 import { TabViewModule } from 'primeng/primeng';
+import { CheckboxModule } from 'primeng/primeng';
 import { ModalModule } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { GroupModal } from './components/modal/group-modal';
@@ -92,6 +100,7 @@ type StoreType = {
     CoProductCreateComponent,
     CoProductEditComponent,
     CoProfileComponent,
+    CoCreateComponent,
     CoPlansComponent,
     CoPlanCreateComponent,
     CoPlanEditComponent,
@@ -100,7 +109,11 @@ type StoreType = {
     SecurityComponent,
     MessageComponent,
     GroupModal,
-    GroupCreateModal
+    GroupCreateModal,
+    PrivacyComponent,
+    ContactComponent,
+    TermsComponent,
+    AboutComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
@@ -117,11 +130,14 @@ type StoreType = {
     ModalModule.forRoot(),
     BootstrapModalModule,
     FileUploadModule,
-    DataTableModule
+    DataTableModule,
+    CheckboxModule
   ],
+  entryComponents:[GroupCreateModal],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    AuthGuard
   ]
 })
 export class AppModule {

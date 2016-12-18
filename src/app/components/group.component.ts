@@ -19,6 +19,7 @@ export class GroupComponent implements OnInit {
   }
 
   createGroup(){
+    
     return this.modal.open(GroupCreateModal,  overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
   }
 

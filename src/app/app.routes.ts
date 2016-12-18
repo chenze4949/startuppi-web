@@ -1,6 +1,5 @@
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home';
-import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 
 import { DataResolver } from './app.resolver';
@@ -22,9 +21,16 @@ import { CoProductsComponent } from './components/user/company/co-products.compo
 import { CoProductCreateComponent } from './components/user/company/co-product-create.component';
 import { CoProductEditComponent } from './components/user/company/co-product-edit.component';
 import { CoProfileComponent } from './components/user/company/co-profile.component';
+import { CoCreateComponent } from './components/user/company/co-create.component';
 import { CoPlansComponent } from './components/user/company/co-plans.component';
 import { CoPlanCreateComponent } from './components/user/company/co-plan-create.component';
 import { CoPlanEditComponent } from './components/user/company/co-plan-edit.component';
+import { AuthGuard } from './guards/auth.guard';
+import { PrivacyComponent } from './components/files/privacy.component';
+import { TermsComponent } from './components/files/terms.component';
+import { ContactComponent } from './components/files/contact.component';
+import { AboutComponent } from './components/files/about.component';
+
 
 
 export const ROUTES: Routes = [
@@ -55,27 +61,51 @@ export const ROUTES: Routes = [
   {
       path: 'center',
       component: CenterComponent,
+      canActivate: [AuthGuard],
       children: [
-          { path: '', redirectTo: 'profile', pathMatch: 'full' },
-          { path: 'profile',  component: ProfileComponent },
-          { path: 'security',  component: SecurityComponent },
-          { path: 'account',  component: AccountComponent },
-          { path: 'order',  component: OrderComponent },
-          { 
-            path: 'company',  
-            component: CompanyComponent,
-            children:[
+          {
+            path: '',
+            canActivateChild: [AuthGuard],
+            children: [
               { path: '', redirectTo: 'profile', pathMatch: 'full' },
-              { path: 'profile',  component: CoProfileComponent },
-              { path: 'products',  component: CoProductsComponent },
-              { path: 'create_product',  component: CoProductCreateComponent },
-              { path: 'edit_product',  component: CoProductEditComponent },
-              { path: 'plans',  component: CoPlansComponent },
-              { path: 'create_plan',  component: CoPlanCreateComponent },
-              { path: 'edit_plan',  component: CoPlanEditComponent },
-            ] 
-          },
-          { path: 'message',  component: MessageComponent },
+              { path: 'profile',  component: ProfileComponent },
+              { path: 'security',  component: SecurityComponent },
+              { path: 'account',  component: AccountComponent },
+              { path: 'order',  component: OrderComponent },
+              { path: 'co_create',  component: CoCreateComponent },
+              { 
+                path: 'company',  
+                component: CompanyComponent,
+                children:[
+                  { path: '', redirectTo: 'profile', pathMatch: 'full' },
+                  { path: 'profile',  component: CoProfileComponent },
+                  { path: 'products',  component: CoProductsComponent },
+                  { path: 'create_product',  component: CoProductCreateComponent },
+                  { path: 'edit_product',  component: CoProductEditComponent },
+                  { path: 'plans',  component: CoPlansComponent },
+                  { path: 'create_plan',  component: CoPlanCreateComponent },
+                  { path: 'edit_plan',  component: CoPlanEditComponent },
+                ] 
+              },
+              { path: 'message',  component: MessageComponent },
+            ]
+          }
       ]
+  },
+  {
+    path: 'contact',
+    component: ContactComponent
+  },
+  {
+    path: 'terms',
+    component: TermsComponent
+  },
+  {
+    path: 'privacy',
+    component: PrivacyComponent
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   },
 ];
