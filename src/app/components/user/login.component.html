@@ -9,22 +9,22 @@
                 </div>
                 <div class="form-item">
                     <div class="form-cont">
-                        <input type="text" name="mobile" class="txt txt-h-xlarge" placeholder="手机号">
+                        <input type="text" [(ngModel)]="email" name="mobile" class="txt txt-h-xlarge" placeholder="電郵">
                     </div>
                 </div>
                 <div class="form-item">
                     <div class="form-cont">
-                        <input type="password" name="password" class="txt txt-h-xlarge" placeholder="密码">
+                        <input type="password" [(ngModel)]="pwd"  name="password" class="txt txt-h-xlarge" placeholder="密码">
                     </div>
                 </div>
-                <div class="form-item form-item-agreement">
+                <!--<div class="form-item form-item-agreement">
                     <div class="form-cont">
                         <label><input name="rememberMe" type="checkbox">记住密码</label>
                     </div>
-                </div>
+                </div>-->
                 <div class="form-item form-item-submit">
                     <div class="form-cont">
-                        <button type="submit" class="btn btn-primary btn-h-large">登&nbsp;&nbsp;&nbsp;录</button>
+                        <button type="submit" class="btn btn-primary btn-h-large" (click)="login()">登&nbsp;&nbsp;&nbsp;录</button>
                         <div class="link-wrap">
                             <a href="/user/register">注册新用户</a>
                             <a href="/user/forget">忘记密码</a>

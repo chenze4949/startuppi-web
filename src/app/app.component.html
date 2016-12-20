@@ -15,8 +15,9 @@
             <ul>
             <li><a href="">商家進駐</a></li>
             <li><a href="">聯繫客服</a></li>
-            <li><a [routerLink]="['/login']" routerLinkActive="active">登錄</a></li>
-            <li><a [routerLink]="['/register']" routerLinkActive="active">註冊</a></li>			
+            <li *ngIf="_auth.isAuthenticated()"><a [routerLink]="['/center']" routerLinkActive="active">{{ _auth.currentUid() }}</a></li>
+            <li *ngIf="!_auth.isAuthenticated()"><a [routerLink]="['/login']" routerLinkActive="active">登錄</a></li>
+            <li *ngIf="!_auth.isAuthenticated()"><a [routerLink]="['/register']" routerLinkActive="active">註冊</a></li>			
             </ul>
         </div>
         <div class="clearfix"> </div>
@@ -45,10 +46,10 @@
                 </div>
                 <!-- footer-links -->
                 <div class="links">
-                    <a href="/hide">隐私政策</a>
-                    <a href="/law">法律声明</a>
-                    <a href="/contactus">联系我们</a>
-                    <a href="/aboutus">关于我们</a>
+                    <a [routerLink]="['/privacy']" routerLinkActive="active">隐私政策</a>
+                    <a [routerLink]="['/terms']" routerLinkActive="active">法律声明</a>
+                    <a [routerLink]="['/contact']" routerLinkActive="active">联系我们</a>
+                    <a [routerLink]="['/about']" routerLinkActive="active">关于我们</a>
                 </div>
                 <!--/ footer-links -->
                 <p class="copyright">

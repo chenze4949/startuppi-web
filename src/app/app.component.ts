@@ -1,9 +1,10 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Inject, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
+import { Auth } from './service/auth.service';
 
 /*
  * App Component
@@ -21,16 +22,26 @@ export class AppComponent {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
+  _auth;
+  isLoggedIn:boolean;
 
   constructor(
-    public appState: AppState) {
-
+    public appState: AppState,
+    @Inject(Auth) _auth) {
+      this._auth = _auth;
   }
 
   ngOnInit() {
+    var s = document.createElement("script");
+    s.type = "text/javascript";
+    s.src = "http://cdn.rawgit.com/jpillora/xdomain/0.7.5/dist/xdomain.min.js";
+    s.setAttribute("slave", "http://startuppi.herokuapp.com/proxy.html");
+    // Use any selector
+    $("head").append(s);
     console.log('Initial App State', this.appState.state);
   }
 
+  
 }
 
 /*

@@ -48,6 +48,8 @@ import { AboutComponent } from './components/files/about.component';
 
 import { AuthGuard } from './guards/auth.guard';
 
+import { Auth } from './service/auth.service';
+
 import { DialogModule } from 'primeng/primeng';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ScheduleModule } from 'primeng/primeng';
@@ -137,7 +139,8 @@ type StoreType = {
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
-    AuthGuard
+    AuthGuard,
+    Auth
   ]
 })
 export class AppModule {

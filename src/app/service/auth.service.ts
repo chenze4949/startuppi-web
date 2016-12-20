@@ -22,8 +22,8 @@ export class Auth {
     constructor(private http:Http) {
         this.logIn$.asObservable();
         this.externalBS = this.logIn$;
-        if (localStorage.getItem('client')) {
-            if (localStorage.getItem('client').length > 0) {
+        if (localStorage.getItem('sp_client')) {
+            if (localStorage.getItem('sp_client').length > 0) {
                 this.isLoggedIn = true;
             }else{
                 this.isLoggedIn = false;
@@ -36,20 +36,44 @@ export class Auth {
 
 
     login(uid:string,client:string,access_token:string) {
-        localStorage.setItem('uid',uid);
-        localStorage.setItem('client',client);
-        localStorage.setItem('access-token',access_token);
+        localStorage.setItem('sp_uid',uid);
+        localStorage.setItem('sp_client',client);
+        localStorage.setItem('sp_access-token',access_token);
         this.isLoggedIn = true;
         this.logIn$.next(this.isLoggedIn);
     }
 
 
     logout() {
-        localStorage.setItem('uid','');
-        localStorage.setItem('client','');
-        localStorage.setItem('access-token','');
+        localStorage.setItem('sp_uid','');
+        localStorage.setItem('sp_client','');
+        localStorage.setItem('sp_access-token','');
         this.isLoggedIn = false;   
         this.logIn$.next(this.isLoggedIn);         
+    }
+
+    isAuthenticated():boolean{
+        if (localStorage.getItem('sp_client')) {
+            if (localStorage.getItem('sp_client').length > 0) {
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    currentUid():String{
+        if (localStorage.getItem('sp_client')) {
+            if (localStorage.getItem('sp_client').length > 0) {
+                return localStorage.getItem('sp_uid');
+            }else{
+                return "";
+            }
+        }else{
+            return "";
+        }
     }
 
     check() {
@@ -68,11 +92,11 @@ export class Auth {
 
     extractSignInData(res){
         console.log(res)
-        console.log(res.headers._headersMap.get("uid")[0])
-        console.log(res.headers._headersMap.get("client")[0])
-        console.log(res.headers._headersMap.get("access-token")[0])
-        this.login(res.headers._headersMap.get("uid")[0],res.headers._headersMap.get("client")[0],res.headers._headersMap.get("access-token")[0]);
-        let data = res.json().data
+        console.log(res.headers._headers.get("uid")[0])
+        console.log(res.headers._headers.get("client")[0])
+        console.log(res.headers._headers.get("access-token")[0])
+        this.login(res.headers._headers.get("uid")[0],res.headers._headers.get("client")[0],res.headers._headers.get("access-token")[0]);
+        let data = res.json().response
         let user:User = new User();
         user.id = data.id;
         user.name = data.name;
