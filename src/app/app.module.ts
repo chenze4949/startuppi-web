@@ -65,6 +65,8 @@ import { GroupCreateModal } from './components/modal/group-create-modal';
 import { FileUploadModule } from 'ng2-file-upload/components/file-upload/file-upload.module';
 import { MdTabsModule } from '@angular2-material/tabs';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap/index';
+import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { DropdownConfig } from 'ng2-bootstrap/ng2-bootstrap';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -133,14 +135,16 @@ type StoreType = {
     BootstrapModalModule,
     FileUploadModule,
     DataTableModule,
-    CheckboxModule
+    CheckboxModule,
+    DropdownModule
   ],
   entryComponents:[GroupCreateModal],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,
     AuthGuard,
-    Auth
+    Auth,
+    DropdownConfig
   ]
 })
 export class AppModule {

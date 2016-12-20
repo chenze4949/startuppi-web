@@ -15,7 +15,21 @@
             <ul>
             <li><a href="">商家進駐</a></li>
             <li><a href="">聯繫客服</a></li>
-            <li *ngIf="_auth.isAuthenticated()"><a [routerLink]="['/center']" routerLinkActive="active">{{ _auth.currentUid() }}</a></li>
+            <li *ngIf="_auth.isAuthenticated()">
+                <div (click)="$event.preventDefault()">
+                    <span dropdown (onToggle)="toggled($event)">
+                        <a href id="simple-dropdown" dropdownToggle>
+                        {{ _auth.currentUid() }}
+                        </a>
+                        <ul class="dropdown-menu" dropdownMenu aria-labelledby="simple-dropdown">
+                            <li role="menuitem"><a class="dropdown-item" [routerLink]="['/center']" routerLinkActive="active">我的賬戶</a></li>
+                            <li class="divider dropdown-divider"></li>
+                            <li role="menuitem"><a class="dropdown-item" (click)="logout()">登出</a></li>
+                        </ul>
+                    </span>
+                </div>
+            </li>
+            <!--<li *ngIf="_auth.isAuthenticated()"><a [routerLink]="['/center']" routerLinkActive="active">{{ _auth.currentUid() }}</a></li>-->
             <li *ngIf="!_auth.isAuthenticated()"><a [routerLink]="['/login']" routerLinkActive="active">登錄</a></li>
             <li *ngIf="!_auth.isAuthenticated()"><a [routerLink]="['/register']" routerLinkActive="active">註冊</a></li>			
             </ul>

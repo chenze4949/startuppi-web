@@ -4,7 +4,10 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
+import { Router, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
 import { Auth } from './service/auth.service';
+
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
 /*
  * App Component
@@ -19,6 +22,7 @@ import { Auth } from './service/auth.service';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
+  private sub: any;
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
@@ -26,9 +30,22 @@ export class AppComponent {
   isLoggedIn:boolean;
 
   constructor(
+    private slimLoader: SlimLoadingBarService,
+    private router: Router,
     public appState: AppState,
     @Inject(Auth) _auth) {
       this._auth = _auth;
+      this.sub = this.router.events.subscribe(event => {
+          if (event instanceof NavigationStart) {
+              this.slimLoader.start();
+          } else if ( event instanceof NavigationEnd ||
+                      event instanceof NavigationCancel ||
+                      event instanceof NavigationError) {
+              this.slimLoader.complete();
+          }
+      }, (error: any) => {
+          this.slimLoader.complete();
+      });
   }
 
   ngOnInit() {
@@ -41,7 +58,18 @@ export class AppComponent {
     console.log('Initial App State', this.appState.state);
   }
 
-  
+  ngOnDestroy(): any {
+      this.sub.unsubscribe();
+  }
+
+  public toggled(open:boolean):void {
+    console.log('Dropdown is now: ', open);
+  }
+
+  logout(){
+    this._auth.logout();
+    this.router.navigate(['/'],{queryParams:{}});
+  }
 }
 
 /*
