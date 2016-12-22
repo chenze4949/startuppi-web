@@ -1,6 +1,6 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
@@ -44,13 +44,14 @@ import { PrivacyComponent } from './components/files/privacy.component';
 import { TermsComponent } from './components/files/terms.component';
 import { ContactComponent } from './components/files/contact.component';
 import { AboutComponent } from './components/files/about.component';
+import { BusyModule } from 'angular2-busy';
 
 
 import { AuthGuard } from './guards/auth.guard';
 
 import { Auth } from './service/auth.service';
 
-import { DialogModule } from 'primeng/primeng';
+// import { DialogModule } from 'primeng/primeng';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
 import { ScheduleModule } from 'primeng/primeng';
 import { DataTableModule } from 'primeng/primeng';
@@ -67,6 +68,9 @@ import { MdTabsModule } from '@angular2-material/tabs';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap/index';
 import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
 import { DropdownConfig } from 'ng2-bootstrap/ng2-bootstrap';
+import { DialogModule } from '@progress/kendo-angular-dialog';
+import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { CustomFormsModule } from 'ng2-validation'
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -122,6 +126,7 @@ type StoreType = {
   imports: [ // import Angular's modules
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     DialogModule,
@@ -136,7 +141,10 @@ type StoreType = {
     FileUploadModule,
     DataTableModule,
     CheckboxModule,
-    DropdownModule
+    DropdownModule,
+    ButtonsModule,
+    CustomFormsModule,
+    BusyModule
   ],
   entryComponents:[GroupCreateModal],
   providers: [ // expose our Services and Providers into Angular's dependency injection

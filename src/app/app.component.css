@@ -311,6 +311,19 @@ th.ui-state-default{
     color: #0579C4 !important;
 }
 
+.k-window>.k-header{
+    background-color: #ea5514 !important;
+}
+
+.k-action-buttons .k-primary:hover{
+    color: white;
+    background-color: #ea5514 !important;
+}
+
+.k-action-buttons .k-primary:hover:before{
+    color: white;
+    background-color: #ea5514 !important;
+}
 
 #crumbs {
     overflow: hidden;

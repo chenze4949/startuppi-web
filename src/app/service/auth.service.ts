@@ -106,8 +106,8 @@ export class Auth {
         return user;
     }
 
-    signUp(email:string,password:string): Promise<User> {
-    let creds = JSON.stringify({ email: email, password: password, password_confirmation:password, confirm_success_url:'localhost'});
+    signUp(email:string,password:string,name:string): Promise<User> {
+    let creds = JSON.stringify({ email: email, name:name, password: password, password_confirmation:password, confirm_success_url:'localhost', user_type:'customer'});
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post(this.signUpUrl,creds,{headers: headers})

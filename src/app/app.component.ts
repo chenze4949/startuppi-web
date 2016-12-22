@@ -9,6 +9,9 @@ import { Auth } from './service/auth.service';
 
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 
+import $ = require("jquery");
+
+
 /*
  * App Component
  * Top Level Component
@@ -55,6 +58,8 @@ export class AppComponent {
     s.setAttribute("slave", "http://startuppi.herokuapp.com/proxy.html");
     // Use any selector
     $("head").append(s);
+
+    
     console.log('Initial App State', this.appState.state);
   }
 
