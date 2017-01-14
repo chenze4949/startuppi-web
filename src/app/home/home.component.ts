@@ -6,6 +6,9 @@ import { XLarge } from './x-large';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { GroupModalContext, GroupModal } from '../components/modal/group-modal';
+import { ServiceService } from '../service/service.service';
+import { Service } from '../model/service';
+import { Category, SubCategory } from '../model/category';
 
 @Component({
   // The selector is what angular internally uses
@@ -23,6 +26,9 @@ import { GroupModalContext, GroupModal } from '../components/modal/group-modal';
 })
 export class HomeComponent {
 
+  hottestServices:Service[];
+  serviceCategories:Category[];
+
   events: any [];
   resources: any[];
   dialogVisible: boolean = false;
@@ -30,7 +36,8 @@ export class HomeComponent {
   // Set our default values
   localState = { value: '' };
   // TypeScript public modifiers
-  constructor(public appState: AppState, public title: Title, public modal: Modal) {
+  constructor(public appState: AppState, public title: Title, public modal: Modal,
+    private serviceService:ServiceService) {
 
   }
 
@@ -61,6 +68,13 @@ export class HomeComponent {
             "end": "2016-09-13"
         }
     ];
+    this.serviceService.getServiceCategories().then(categories => {
+      this.serviceCategories = categories;
+    })
+
+    this.serviceService.getHottestServices().then(services => {
+      this.hottestServices = services;
+    })
   }
 
   submitState(value: string) {

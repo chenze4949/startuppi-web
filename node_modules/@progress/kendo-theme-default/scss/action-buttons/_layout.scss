@@ -1,0 +1,24 @@
+@include exports('action-buttons/layout') {
+
+    .k-action-buttons {
+        border-top-width: 1px;
+        border-top-style: solid;
+        border-color: inherit;
+        display: flex;
+        flex-direction: row;
+        clear: both;
+
+        .k-button {
+            padding: $padding-x-lg;
+            border-width: 0;
+            border-color: inherit;
+            border-radius: 0;
+            background: none;
+            flex: 1;
+        }
+        .k-button + .k-button {
+            border-left-width: 1px;
+        }
+    }
+
+}

@@ -56,14 +56,14 @@
 <div class="group-aside">
     <button type="submit" class="btn btn-primary btn-h-large" (click)="createGroup()">我要登記我的創業社群</button>
 </div>
-<div class="group-list" style="width:70%">
-    <div class="groups-list-item" (click)='gotoDetail(group)' *ngFor="let group of [1,2,3,4,5,6,7,8]">
+<div *ngIf="groups" class="group-list" style="width:70%">
+    <div class="groups-list-item" (click)='gotoDetail(group)' *ngFor="let group of groups">
         <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
         <div class="group-image">
             <!--<img *ngIf='product.product_images.length>0' [src]="products[0].product_images[0].image_medium_url"  style=""  alt=""/>-->
-            <img src="/assets/images/product_sample.png"  style=""  alt=""/>
+            <img [src]="group.icon"  style=""  alt=""/>
             <div class="group_container" style="margin-top:10px;">
-                <div class="group-name">深圳旅游电商微信群</div>
+                <div class="group-name">{{group.title}}</div>
                 <div class="group-category">创业分享</div>
                 <div class="clearfix"></div>
             </div>		

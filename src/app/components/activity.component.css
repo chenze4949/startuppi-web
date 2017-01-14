@@ -70,7 +70,7 @@
 
 .item-activity-details{
 	float: left;
-	width: 200px;
+	width: 300px;
 }
 
 .item-activity-details-name{
@@ -80,12 +80,30 @@
 	letter-spacing: 0.1px;
 	text-align: left;
 	color: #000000;
+    line-height: 1.5em;
+    height: 3em;       /* height is 2x line-height, so two lines will display */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.item-activity-details-price{
+.item-activity-details-intro-title{
     font-family: OpenSans;
 	font-size: 12px;
 	letter-spacing: 0.1px;
+}
+
+.item-activity-details-intro{
+    font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+    line-height: 1.5em;
+    height: 4.5em;       /* height is 2x line-height, so two lines will display */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .item-activity-details-type{
@@ -95,10 +113,16 @@
 	letter-spacing: 0.1px;
 }
 
-.item-activity-details-quantity{
+.item-activity-details-address{
     font-family: OpenSans;
 	font-size: 12px;
 	letter-spacing: 0.1px;
+    line-height: 1.5em;
+    height: 3em;       /* height is 2x line-height, so two lines will display */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .screen-item {

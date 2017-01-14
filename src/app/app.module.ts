@@ -50,6 +50,9 @@ import { BusyModule } from 'angular2-busy';
 import { AuthGuard } from './guards/auth.guard';
 
 import { Auth } from './service/auth.service';
+import { ServiceService } from './service/service.service';
+import { EventService } from './service/event.service';
+import { GroupService } from './service/group.service';
 
 // import { DialogModule } from 'primeng/primeng';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
@@ -152,7 +155,10 @@ type StoreType = {
     APP_PROVIDERS,
     AuthGuard,
     Auth,
-    DropdownConfig
+    DropdownConfig,
+    ServiceService,
+    EventService,
+    GroupService
   ]
 })
 export class AppModule {

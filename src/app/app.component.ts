@@ -32,6 +32,7 @@ export class AppComponent {
   _auth;
   isLoggedIn:boolean;
 
+
   constructor(
     private slimLoader: SlimLoadingBarService,
     private router: Router,
@@ -61,6 +62,7 @@ export class AppComponent {
 
     
     console.log('Initial App State', this.appState.state);
+
   }
 
   ngOnDestroy(): any {

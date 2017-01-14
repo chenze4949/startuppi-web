@@ -53,21 +53,21 @@
         </ul>
     </div>
 </div>
-<div class="activity-list" style="margin-top:40px">
-    <div class="activity-item" (click)='gotoDetail(product)' *ngFor="let product of [1,2,3,4,5,6,7,8]">
+<div *ngIf="events" class="activity-list" style="margin-top:40px">
+    <div class="activity-item" (click)='gotoDetail(product)' *ngFor="let event of events">
         <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
         <div class="item-activity-image">
-            <img src="/assets/images/activity_sample.png" style="max-width: 100%; max-height: 100%;" alt=""/>
+            <img [src]="event.icon" style="max-width: 100%; max-height: 100%;" alt=""/>
         </div>
         <div class="item-activity-details">
             <div class="activity">
                 <div class="item-activity-details-name">
-                    优客CFO刘岩谈“如何与客户交流”
+                    {{event.title}}
                 </div>
-                <div class="item-activity-details-price">活动简介：</div>
-                <div class="item-activity-details-price">活动简介：活动简介：活动简介：活动简介：活动简介：活动简介：活动简介：</div>
+                <div class="item-activity-details-intro-title">活动简介：</div>
+                <div class="item-activity-details-intro">{{event.introduction}}</div>
                 <div class="item-activity-details-type">06/25 12:00</div>
-                <div class="item-activity-details-quantity">长阳谷，优客工场</div>
+                <div class="item-activity-details-address">{{event.address}}</div>
                 <div class="clearfix"></div>
             </div>
         </div>

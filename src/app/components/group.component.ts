@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { GroupCreateModalContext, GroupCreateModal } from '../components/modal/group-create-modal';
+import { GroupService } from '../service/group.service';
+import { Group } from '../model/group';
+import { GroupCategory } from '../model/category';
 
 @Component({
   selector: 'sp-group',
@@ -10,12 +13,16 @@ import { GroupCreateModalContext, GroupCreateModal } from '../components/modal/g
   styleUrls: ['group.component.css']
 })
 export class GroupComponent implements OnInit {
-
+  groups:Group[];
   constructor(
-    private router: Router, public modal: Modal
+    private router: Router, public modal: Modal,
+    private groupService:GroupService
     ) {}
 
   ngOnInit() {
+    this.groupService.getGroups().then(groups => {
+      this.groups = groups;
+    })
   }
 
   createGroup(){
