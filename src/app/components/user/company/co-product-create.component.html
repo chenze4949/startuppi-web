@@ -23,12 +23,18 @@
         <ul class="form_list">
             <li class="item clearfix">
                 <span class="tit">商品名稱：</span>
-                <input class="W_input" value="" placeholder="">
+                <input class="W_input" [(ngModel)]="name" value="" placeholder="">
             </li>
             <li class="item clearfix">
                 <span class="tit">商品類別：</span>
-                <select class="W_select">
-                    <option value="" selected="">全部类目</option>
+                <select [ngModel]="selectedCategory" class="W_select" (ngModelChange)="onChangeCategory($event)">
+                    <option [ngValue]="i" *ngFor="let i of categories">{{i.name}}</option>
+                </select>
+            </li>
+            <li *ngIf="selectedCategory" class="item clearfix">
+                <span class="tit">二級類別：</span>
+                <select [ngModel]="selectedSubCategory" class="W_select" (ngModelChange)="onChangeSubCategory($event)">
+                    <option [ngValue]="i"  *ngFor="let i of selectedCategory.service_subcategories">{{i.name}}</option>
                 </select>
             </li>
             <li class="item clearfix">
@@ -41,7 +47,7 @@
             </li>
             <li class="item clearfix">
                 <span class="tit">商品介紹：</span>
-                <textarea class="W_textarea"></textarea>
+                <textarea class="W_textarea" [(ngModel)]="description"></textarea>
             </li>
         </ul>
         <div class="form-header">
@@ -50,11 +56,19 @@
         <ul class="form_list">
             <li class="item clearfix">
                 <span class="tit">商品圖片：</span>
-                <input type="file" style="float: left;" ng2FileSelect [uploader]="uploader" />
+                <input type="file" class="upload" style="float: left;" (change)="fileChange(input)" #input/>
+            
             </li>
             <li class="item clearfix">
+            <img style="float: left" *ngIf="file_src" src='{{ file_src }}'/>
+            </li>
+
+            <li class="item clearfix">
                 <span class="tit">簡介圖片：</span>
-                <input type="file" style="float: left;" ng2FileSelect [uploader]="uploader" />
+                <input type="file" class="upload" style="float: left;" (change)="fileChange2(input2)" #input2/>
+            </li>
+            <li class="item clearfix">
+            <img style="float: left" *ngIf="file_src2" src='{{ file_src2 }}'/>
             </li>
         </ul>    
         <ul class="quesa_mod S_line2">
@@ -63,7 +77,7 @@
                 <a href="https://security.weibo.com/iforgot/loginname?entry=weibo">幫助中心 </a>的方式来了解。</li>
         </ul>
         <div class="form_btn S_line2">
-            <a id="subBtn" href="javascript:;" class="W_btn_a btn_34px">下一步</a>
+            <a id="subBtn" href="javascript:;" class="W_btn_a btn_34px" (click)="onSubmit()">下一步</a>
         </div>
     </div>
 </div>

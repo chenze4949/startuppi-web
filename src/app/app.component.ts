@@ -53,6 +53,10 @@ export class AppComponent {
   }
 
   ngOnInit() {
+    console.log(localStorage.getItem('sp_uid'))
+    console.log(localStorage.getItem('sp_client'))
+    console.log(localStorage.getItem('sp_access-token'))
+    
     var s = document.createElement("script");
     s.type = "text/javascript";
     s.src = "http://cdn.rawgit.com/jpillora/xdomain/0.7.5/dist/xdomain.min.js";

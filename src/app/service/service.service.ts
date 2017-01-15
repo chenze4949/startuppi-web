@@ -13,6 +13,7 @@ import { Category, SubCategory } from '../model/category';
 export class ServiceService {
     private hottestServicesUrl = Globals.host + '/services/get_hottest_services';  // URL to web api
     private serviceCategoriesUrl = Globals.host + '/service_categories';  // URL to web api
+    private servicesUrl = Globals.host + '/services';  // URL to web api
 
     constructor(private http:Http) {
         
@@ -35,6 +36,21 @@ export class ServiceService {
                 .then(response => this.mapJSONToCategories(response.json().response))
                 .catch(this.handleError);
     }
+
+    createService(name:string,is_online:boolean,description:string,service_subcategory_id:number,company_id:number): Promise<Service>{
+    let creds = JSON.stringify({name:name,is_online:is_online,description:description,
+        service_subcategory_id:service_subcategory_id,company_id:company_id});
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('uid', localStorage.getItem('sp_uid'));
+    headers.append('client', localStorage.getItem('sp_client'));
+    headers.append('access-token', localStorage.getItem('sp_access-token'));
+    console.log(creds);
+    return this.http.post(this.servicesUrl, creds, {headers:headers})
+               .toPromise()
+               .then(response => this.mapJSONToService(response.json().response))
+               .catch(this.handleError);
+  }
 
     mapJSONToServices(data):Service[]{
         let services = new Array<Service>();

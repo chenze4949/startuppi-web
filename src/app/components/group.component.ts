@@ -13,6 +13,7 @@ import { GroupCategory } from '../model/category';
   styleUrls: ['group.component.css']
 })
 export class GroupComponent implements OnInit {
+  categories:GroupCategory[];
   groups:Group[];
   constructor(
     private router: Router, public modal: Modal,
@@ -20,14 +21,17 @@ export class GroupComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.groupService.getGroups().then(groups => {
-      this.groups = groups;
+    this.groupService.getGroupCategories().then(categories =>{
+      this.categories = categories;
+      this.groupService.getGroups().then(groups => {
+        this.groups = groups;
+      })
     })
   }
 
   createGroup(){
     
-    return this.modal.open(GroupCreateModal,  overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
+    return this.modal.open(GroupCreateModal,  overlayConfigFactory({ num1: 2, num2: 3, categories:this.categories }, BSModalContext));
   }
 
 }

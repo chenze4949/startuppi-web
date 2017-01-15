@@ -1,15 +1,9 @@
 <div class="activity-category-container">
     <div class="activity-category-group">
-        <div class="header">活動分類:</div>
+        <div *ngIf="categories" class="header">社群分類:</div>
         <ul>
             <li><a href=""><span class="all">全部</span></a></li>
-            <li><a href="">投融資</a></li>
-            <li><a href="">創業交流</a></li>
-            <li><a href="">路演活動</a></li>
-            <li><a href="">創業培訓</a></li>
-            <li><a href="">企業發佈會</a></li>
-            <li><a href="">創客空間</a></li>
-            <li><a href="">找合夥人</a></li>
+            <li *ngFor="let category of categories"><a href="">{{category.name}}</a></li>
         </ul>
     </div>
     <div class="activity-category-group">

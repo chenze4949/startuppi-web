@@ -53,6 +53,7 @@ import { Auth } from './service/auth.service';
 import { ServiceService } from './service/service.service';
 import { EventService } from './service/event.service';
 import { GroupService } from './service/group.service';
+import { UploadService } from './service/upload.service';
 
 // import { DialogModule } from 'primeng/primeng';
 import { SlimLoadingBarModule } from 'ng2-slim-loading-bar';
@@ -66,11 +67,11 @@ import { ModalModule } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { GroupModal } from './components/modal/group-modal';
 import { GroupCreateModal } from './components/modal/group-create-modal';
-import { FileUploadModule } from 'ng2-file-upload/components/file-upload/file-upload.module';
+import { FileUploadModule } from 'ng2-file-upload';
 import { MdTabsModule } from '@angular2-material/tabs';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap/index';
-import { DropdownModule } from 'ng2-bootstrap/ng2-bootstrap';
-import { DropdownConfig } from 'ng2-bootstrap/ng2-bootstrap';
+import { DropdownModule } from 'ng2-bootstrap';
+import { DropdownConfig } from 'ng2-bootstrap';
 import { DialogModule } from '@progress/kendo-angular-dialog';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { CustomFormsModule } from 'ng2-validation'
@@ -158,7 +159,8 @@ type StoreType = {
     DropdownConfig,
     ServiceService,
     EventService,
-    GroupService
+    GroupService,
+    UploadService
   ]
 })
 export class AppModule {

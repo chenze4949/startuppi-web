@@ -36,6 +36,21 @@ export class GroupService {
                 .catch(this.handleError);
     }
 
+    createGroup(title:string,subtitle:string,description:string,regulation:string,contact:string,group_category_id:number): Promise<Group>{
+    let creds = JSON.stringify({title:title,subtitle:subtitle,description:description,
+        regulation:regulation,contact:contact,group_category_id:group_category_id});
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('uid', localStorage.getItem('sp_uid'));
+    headers.append('client', localStorage.getItem('sp_client'));
+    headers.append('access-token', localStorage.getItem('sp_access-token'));
+    console.log(creds);
+    return this.http.post(this.groupsUrl, creds, {headers:headers})
+               .toPromise()
+               .then(response => this.mapJSONToGroup(response.json().response))
+               .catch(this.handleError);
+  }
+
     mapJSONToGroups(data):Group[]{
         let groups = new Array<Group>();
         for (var index = 0; index < data.length; index++) {

@@ -4,7 +4,7 @@ import {Subject} from 'rxjs/Subject';
 import {BehaviorSubject} from 'rxjs/Rx';
 import { Headers, Http } from '@angular/http';
 import Globals = require('../globals');
-import { User } from '../model/user';
+import { User, Company } from '../model/user';
 
 
 @Injectable()
@@ -16,8 +16,9 @@ export class Auth {
 
     redirectUrl: string;
 
-    private signInUrl = Globals.host + '/auth/sign_in';  // URL to web api
-    private signUpUrl = Globals.host + '/auth';  // URL to web api
+    private signInUrl = Globals.host_v + '/auth/sign_in';  // URL to web api
+    private signUpUrl = Globals.host_v + '/auth';  // URL to web api
+    private currentUserUrl = Globals.host + "/users/get_current_user";
 
     constructor(private http:Http) {
         this.logIn$.asObservable();
@@ -90,6 +91,21 @@ export class Auth {
                 .catch(this.handleError);
     }
 
+    currentUser(): Promise<User> {
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('uid', localStorage.getItem('sp_uid'));
+        headers.append('client', localStorage.getItem('sp_client'));
+        headers.append('access-token', localStorage.getItem('sp_access-token'));
+        console.log("sp_uid" + localStorage.getItem('sp_uid'));
+        console.log("sp_client" + localStorage.getItem('sp_client'));
+        console.log("sp_access-token" + localStorage.getItem('sp_access-token'));
+        return this.http.get(this.currentUserUrl,{headers: headers})
+                .toPromise()
+                .then(response => this.extractCurrentUserData(response))
+                .catch(this.handleError);
+    }
+
     extractSignInData(res){
         console.log(res)
         console.log(res.headers._headers.get("uid")[0])
@@ -127,6 +143,32 @@ export class Auth {
         user.profile_image_url = data.profile_image_url;
         user.user_type = data.user_type;
         return user;
+    }
+
+    extractCurrentUserData(res){
+        console.log(res)
+        let data = res.json().response
+        return this.mapJSONtoUser(data);
+    }
+
+    mapJSONtoUser(data):User{
+        let user:User = new User();
+        user.id = data.id;
+        user.name = data.name;
+        user.email = data.email;
+        user.currency = data.currency;
+        user.profile_image_url = data.profile_image_url;
+        user.user_type = data.user_type;
+        user.dollar = data.dollar;
+        user.company = this.mapJSONtoCompany(data.company);
+        return user;
+    }
+
+    mapJSONtoCompany(data):Company{
+        let company:Company = new Company();
+        company.id = data.id;
+        company.name = data.name;
+        return company;
     }
 
     private handleError(error: any) {

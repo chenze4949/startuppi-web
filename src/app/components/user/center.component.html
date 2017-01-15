@@ -1,4 +1,4 @@
-<div id="sidebar">
+<div *ngIf="user" id="sidebar">
     <!-- profile -->
    <!--  <div class="profile">
         <div class="profile-inner">
@@ -45,13 +45,13 @@
                     <li class="common-app"><a [routerLink]="['message']">系统消息</a></li>
                 </ol>
             </li>
-            <li class="category">
+            <li *ngIf="!user.company.id" class="category">
                 <div class="category-name">我的公司</div>
                 <ol class="category-app clearfix">
                     <li class="common-app"><a [routerLink]="['co_create']">商家進駐</a></li>
                 </ol>
             </li>
-            <li class="category">
+            <li *ngIf="user.company.id" class="category">
                 <div class="category-name">我的公司</div>
                 <ol class="category-app clearfix">
                     <li class="common-app"><a [routerLink]="['company/profile']">公司资料</a></li>

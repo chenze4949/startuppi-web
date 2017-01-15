@@ -2,10 +2,15 @@ import { Component } from '@angular/core';
 
 import { DialogRef, ModalComponent, CloseGuard } from 'angular2-modal';
 import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import { GroupService } from '../../service/group.service';
+import { UploadService } from '../../service/upload.service';
+import { Group } from '../../model/group';
+import { GroupCategory } from '../../model/category';
 
 export class GroupCreateModalContext extends BSModalContext {
   public num1: number;
   public num2: number;
+  public categories: GroupCategory[];
 }
 
 /**
@@ -148,6 +153,14 @@ export class GroupCreateModalContext extends BSModalContext {
             display: none;
         }
 
+        .W_select{
+            width: 160px;
+            height: 22px;
+            border: 1px solid #ddd;
+            font-family: PingFang SC Regular;
+            font-size: 10px;
+        }
+
         .image-upload-note{
             margin-top:5px;
             margin-bottom:20px;
@@ -165,32 +178,40 @@ export class GroupCreateModalContext extends BSModalContext {
             <div class="row custom-modal-header">
                 <div class="col-sm-12">
                     <h1>登記社群</h1>
-                    <img class="close-button" src="/images/close-material-icons-regular.png" (click)="onKeyUp(5)">
+                    <img class="close-button" src="/assets/images/close-material-icons-regular.png" (click)="onKeyUp(5)">
                 </div>
             </div>
             <div class="activity-item">
                 <div class="item-activity-details">
                     <div class="activity">
                         <div class="item-activity-details-form">
-                            <input class="item-activity-details-textfield" placeholder="請輸入登記的社群名字"/>
+                            <input [(ngModel)]="title" class="item-activity-details-textfield" placeholder="請輸入登記的社群名字"/>
+                        </div>
+                        <div class="item-activity-details-name">
+                            社群類型：
+                        </div>
+                        <div class="item-activity-details-form">
+                            <select [ngModel]="selectedCategory" class="W_select" (ngModelChange)="onChangeCategory($event)">
+                                <option [ngValue]="i"  *ngFor="let i of context.categories">{{i.name}}</option>
+                            </select>
                         </div>
                         <div class="item-activity-details-name">
                             社群介紹：
                         </div>
                         <div class="item-activity-details-form">
-                            <input class="item-activity-details-textfield" placeholder="社群特色"/>
+                            <input [(ngModel)]="description" class="item-activity-details-textfield" placeholder="社群特色"/>
                         </div>
                         <div class="item-activity-details-name">
                             社群加入規章：
                         </div>
                         <div class="item-activity-details-form">
-                            <input class="item-activity-details-textfield" placeholder="社群規章"/>
+                            <input [(ngModel)]="regulation" class="item-activity-details-textfield" placeholder="社群規章"/>
                         </div>
                         <div class="item-activity-details-name">
                             社群聯繫方式：
                         </div>
                         <div class="item-activity-details-form">
-                            <input class="item-activity-details-textfield" placeholder="聯繫方式"/>
+                            <input [(ngModel)]="contact" class="item-activity-details-textfield" placeholder="聯繫方式"/>
                         </div>
                         <div class="item-activity-details-note">
                             社群經官方審核后即可發佈在創業社群板塊，請耐心等候。
@@ -199,21 +220,22 @@ export class GroupCreateModalContext extends BSModalContext {
                     </div>
                 </div>
                 <div class="image-upload">
-                    <label for="file-input">
-                        <img src="/assets/images/profile-default.png"/>
+                    <label for="file-input1">
+                        <img *ngIf="!file" src="/assets/images/profile-default.png"/>
+                        <img *ngIf="file" [src]="file_src"/>
                     </label>
 
-                    <input id="file-input" type="file" class="upload" ng2FileSelect [uploader]="uploader" (change)="fileChange(input)" #input />
+                    <input id="file-input1" type="file" class="upload" (change)="fileChange(input)" #input/>
                 </div>
                 <div class="image-upload-note">
                     群主題圖片或Logo上傳
                 </div>
                 <div class="image-upload">
-                    <label for="file-input">
-                        <img src="/assets/images/profile-default.png"/>
+                    <label for="file-input2">
+                        <img *ngIf="!file2" src="/assets/images/profile-default.png"/>
+                        <img *ngIf="file2" [src]="file_src2"/>
                     </label>
-
-                    <input id="file-input" type="file" class="upload" ng2FileSelect [uploader]="uploader" (change)="fileChange(input)" #input />
+                    <input id="file-input2" type="file" class="upload" (change)="fileChange2(input2)" #input2/>
                 </div>
                 <div class="image-upload-note">
                     上傳聯繫方式二維碼(可選)
@@ -230,10 +252,104 @@ export class GroupCreateModal implements CloseGuard, ModalComponent<GroupCreateM
 
   public wrongAnswer: boolean;
 
-  constructor(public dialog: DialogRef<GroupCreateModalContext>) {
+  title:string;
+  selectedCategory:GroupCategory;
+  description:string;
+  regulation:string;
+  contact:string;
+
+  constructor(public dialog: DialogRef<GroupCreateModalContext>,
+  private groupService:GroupService,
+  private uploadService:UploadService) {
     this.context = dialog.context;
     this.wrongAnswer = true;
     dialog.setCloseGuard(this);
+    this.uploadService.progress$.subscribe(
+     data => {
+      console.log('progress = '+data);
+    });
+    
+  }
+
+  
+
+  onChangeCategory(value){
+      this.selectedCategory = value;
+  }
+
+  file_src: string;
+  file:File;
+  // This is called when the user selects new files from the upload button
+  fileChange(input){
+
+      // Loop through each picture file
+      for (var i = 0; i < input.files.length; i++) {
+
+          this.file = input.files[i];
+
+          // Create an img element and add the image file data to it
+          var img = document.createElement("img");
+          img.src = window.URL.createObjectURL(input.files[i]);
+
+          // Create a FileReader
+          var reader: any, target: EventTarget;
+          reader = new FileReader();
+
+          // Add an event listener to deal with the file when the reader is complete
+          reader.addEventListener("load", (event) => {
+              // Get the event.target.result from the reader (base64 of the image)
+              img.src = event.target.result;
+
+              // Push the img src (base64 string) into our array that we display in our html template
+              this.file_src = img.src;
+          }, false);
+
+          reader.readAsDataURL(input.files[i]);
+      }
+  }
+
+  file_src2: string;
+  file2:File;
+  // This is called when the user selects new files from the upload button
+  fileChange2(input){
+
+      // Loop through each picture file
+      for (var i = 0; i < input.files.length; i++) {
+
+          this.file2 = input.files[i];
+
+          // Create an img element and add the image file data to it
+          var img = document.createElement("img");
+          img.src = window.URL.createObjectURL(input.files[i]);
+
+          // Create a FileReader
+          var reader: any, target: EventTarget;
+          reader = new FileReader();
+
+          // Add an event listener to deal with the file when the reader is complete
+          reader.addEventListener("load", (event) => {
+              // Get the event.target.result from the reader (base64 of the image)
+              img.src = event.target.result;
+
+              // Push the img src (base64 string) into our array that we display in our html template
+              this.file_src2 = img.src;
+          }, false);
+
+          reader.readAsDataURL(input.files[i]);
+      }
+  }
+  apiEndPoint = 'https://startuppi.herokuapp.com/api/v1/groups/';
+  createGroup(){
+    this.groupService.createGroup(this.title,'',this.description,this.regulation,this.contact,this.selectedCategory.id).then(group => { 
+        this.uploadService.makeFileRequest(this.apiEndPoint+group.id,"icon",this.file).subscribe(() => {
+            console.log('sent');
+            this.uploadService.makeFileRequest(this.apiEndPoint+group.id,"qr_code",this.file2).subscribe(() => {
+                console.log('sent');
+                this.wrongAnswer = 5 != 5;
+                this.dialog.close();
+            });
+        });
+    })
   }
 
   onKeyUp(value) {
