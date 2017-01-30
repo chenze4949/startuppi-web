@@ -14,6 +14,15 @@
     height: 384px;
     width: 100%;
 }
+
+
+.swiper-img{
+  object-fit: cover;
+  object-position: center;
+  height: 600px;
+  width: 1170px;
+}
+
 .navigation {
     float: left;
     padding: 0;
@@ -304,6 +313,180 @@
   padding: 0 10px 0 10px;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.article-item{
+	margin-top: 10px;
+    display: inline-block;
+    width:49%;
+    background-color: white;
+    border-width: 1px;
+    border-color: #e8e8e8;
+    border-style: solid;
+    margin-right: 1%;
+}
+
+.article-item:hover {
+   border-color: #ea5514;
+   cursor: pointer;
+}
+
+.item-article-image{
+	float: left;
+	height: 120px;
+	width: 200px;
+}
+
+.item-article-image img{
+  object-fit: cover;
+  object-position: center;
+	height: 100px;
+	width: 180px;
+  margin: 10px;
+}
+
+.item-article-details{
+	float: left;
+  margin: 10px;
+	width: 350px;
+}
+
+.item-article-details-name{
+  font-family: OpenSans-Bold;
+  font-size: 1.2em;
+  font-weight: bold;
+  letter-spacing: 0.1px;
+  text-align: left;
+  color: #000000;
+  line-height: 1.5em;
+  max-height: 3em;       /* height is 2x line-height, so two lines will display */
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.article-item:hover .item-article-details-name{
+   color: #ea5514;
+}
+
+.item-article-details-intro-title{
+    font-family: OpenSans;
+    font-size: 12px;
+    letter-spacing: 0.1px;
+    color: #aab6aa;
+}
+
+.item-article-details-intro{
+    font-family: OpenSans;
+    font-size: 12px;
+    letter-spacing: 0.1px;
+    line-height: 1.5em;
+    height: 4.5em;       /* height is 2x line-height, so two lines will display */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-article-details-type{
+    margin-top: 20px;
+    font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+}
+
+.item-article-details-address{
+    font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+    line-height: 1.5em;
+    height: 3em;       /* height is 2x line-height, so two lines will display */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.activity-item{
+	margin-top: 10px;
+  display: inline-block;
+  width:49%;
+  background-color: white;
+  border-width: 1px;
+  border-color: #e8e8e8;
+  border-style: solid;
+  margin-right: 1%;
+  cursor: pointer;
+}
+
+.activity-item:hover {
+   border-color: #ea5514;
+}
+
+.item-activity-image{
+	float: left;
+  margin: 10px;
+	height: 200px;
+	width: 200px;
+}
+
+.item-activity-details{
+	float: left;
+  margin: 10px;
+	width: 300px;
+}
+
+.item-activity-details-name{
+    font-family: OpenSans-Bold;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: 0.1px;
+	text-align: left;
+	color: #000000;
+    line-height: 1.5em;
+    height: 3em;       /* height is 2x line-height, so two lines will display */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-activity-details-intro-title{
+    font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+}
+
+.item-activity-details-intro{
+    font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+    line-height: 1.5em;
+    height: 4.5em;       /* height is 2x line-height, so two lines will display */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-activity-details-type{
+    margin-top: 20px;
+    font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+}
+
+.item-activity-details-address{
+    font-family: OpenSans;
+	font-size: 12px;
+	letter-spacing: 0.1px;
+    line-height: 1.5em;
+    height: 3em;       /* height is 2x line-height, so two lines will display */
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .group-image img{

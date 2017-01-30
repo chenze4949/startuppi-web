@@ -5,6 +5,8 @@ import { NoContentComponent } from './no-content';
 import { DataResolver } from './app.resolver';
 
 import { ActivityComponent } from './components/activity.component';
+import { NewsComponent } from './components/news.component';
+import { NewsDetailComponent } from './components/news-detail.component';
 import { ProductComponent } from './components/product.component';
 import { ProductDetailComponent } from './components/product-detail.component';
 import { GroupComponent } from './components/group.component';
@@ -41,6 +43,14 @@ export const ROUTES: Routes = [
   {
     path: 'activity',
     component: ActivityComponent
+  },
+  {
+    path: 'news',
+    component: NewsComponent
+  },
+  {
+    path: 'news/:id',
+    component: NewsDetailComponent
   },
   {
     path: 'products',

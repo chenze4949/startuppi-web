@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AppState } from '../app.service';
 import { Title } from './title';
@@ -7,8 +8,13 @@ import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
 import { GroupModalContext, GroupModal } from '../components/modal/group-modal';
 import { ServiceService } from '../service/service.service';
+import { EventService } from '../service/event.service';
+import { ArticleService } from '../service/article.service';
+import { GroupService } from '../service/group.service';
 import { Service } from '../model/service';
+import { Article } from '../model/article';
 import { Category, SubCategory } from '../model/category';
+import { KSSwiperContainer, KSSwiperSlide} from 'angular2-swiper';
 
 @Component({
   // The selector is what angular internally uses
@@ -25,11 +31,16 @@ import { Category, SubCategory } from '../model/category';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
+  public slides:Array<any> = [];
+  @ViewChild(KSSwiperContainer) swiperContainer: KSSwiperContainer;
+  webSwipeOptions: any;
 
   hottestServices:Service[];
   serviceCategories:Category[];
 
   events: any [];
+  articles: any [];
+  groups: any [];
   resources: any[];
   dialogVisible: boolean = false;
   event: MyEvent;
@@ -37,43 +48,79 @@ export class HomeComponent {
   localState = { value: '' };
   // TypeScript public modifiers
   constructor(public appState: AppState, public title: Title, public modal: Modal,
-    private serviceService:ServiceService) {
+    private router: Router,
+    private serviceService:ServiceService,
+    private eventService:EventService,
+    private articleService:ArticleService,
+    private groupService:GroupService) {
 
+    for (let i = 0; i < 4; i++) {
+      this.addSlide();
+    }
+
+    this.webSwipeOptions = {
+      slidesPerView: 1,
+      loop: false,
+      pagination: '.swiper-pagination',
+      paginationClickable: true,
+      spaceBetween: 5,
+      nextButton: '.swiper-button-next',
+      prevButton: '.swiper-button-prev',
+    };
+  }
+
+  public addSlide():void {
+    let newWidth = 1170;
+    this.slides.push({
+      image: `//placekitten.com/${newWidth}/960`,
+      text: `${['More', 'Extra', 'Lots of', 'Surplus'][this.slides.length % 4]}
+      ${['Cats', 'Kittys', 'Felines', 'Cutes'][this.slides.length % 4]}`
+    });
   }
 
   ngOnInit() {
     console.log('hello `Home` component');
     // this.title.getData().subscribe(data => this.data = data);
-    this.events = [
-        {
-            "title": "All Day Event",
-            "start": "2016-09-01"
-        },
-        {
-            "title": "Long Event",
-            "start": "2016-09-07",
-            "end": "2016-09-10"
-        },
-        {
-            "title": "Repeating Event",
-            "start": "2016-09-09T16:00:00"
-        },
-        {
-            "title": "Repeating Event",
-            "start": "2016-09-16T16:00:00"
-        },
-        {
-            "title": "Conference",
-            "start": "2016-09-11",
-            "end": "2016-09-13"
-        }
-    ];
-    this.serviceService.getServiceCategories().then(categories => {
-      this.serviceCategories = categories;
+    // this.events = [
+    //     {
+    //         "title": "All Day Event",
+    //         "start": "2016-09-01"
+    //     },
+    //     {
+    //         "title": "Long Event",
+    //         "start": "2016-09-07",
+    //         "end": "2016-09-10"
+    //     },
+    //     {
+    //         "title": "Repeating Event",
+    //         "start": "2016-09-09T16:00:00"
+    //     },
+    //     {
+    //         "title": "Repeating Event",
+    //         "start": "2016-09-16T16:00:00"
+    //     },
+    //     {
+    //         "title": "Conference",
+    //         "start": "2016-09-11",
+    //         "end": "2016-09-13"
+    //     }
+    // ];
+    this.eventService.getEvents().then(events => {
+      this.events = events;
     })
+    this.articleService.getArticles().then(articles => {
+      this.articles = articles;
+    })
+    // this.serviceService.getServiceCategories().then(categories => {
+    //   this.serviceCategories = categories;
+    // })
 
-    this.serviceService.getHottestServices().then(services => {
-      this.hottestServices = services;
+    // this.serviceService.getHottestServices().then(services => {
+    //   this.hottestServices = services;
+    // })
+
+    this.groupService.getGroups().then(groups => {
+      this.groups = groups;
     })
   }
 
@@ -102,6 +149,10 @@ export class HomeComponent {
         this.event.start = start.format();
         this.event.allDay = e.calEvent.allDay;
         this.dialogVisible = true;
+    }
+
+    gotoArticleDetail(article:Article){
+      this.router.navigate(["/news/"+article.id]);
     }
 
     onClick() {

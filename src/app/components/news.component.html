@@ -1,0 +1,33 @@
+<div class="activity-category-container">
+    <div class="activity-category-group">
+        <div class="header">資訊分類:</div>
+        <ul>
+            <li><a href=""><span class="all">全部</span></a></li>
+            <li><a href="">投融資</a></li>
+            <li><a href="">創業交流</a></li>
+            <li><a href="">路演活動</a></li>
+            <li><a href="">創業培訓</a></li>
+            <li><a href="">企業發佈會</a></li>
+            <li><a href="">創客空間</a></li>
+            <li><a href="">找合夥人</a></li>
+        </ul>
+    </div>
+    
+</div>
+<div *ngIf="articles" class="article-list" style="margin-top:40px">
+    <div class="article-item" (click)='gotoArticleDetail(article)' *ngFor="let article of articles">
+        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+        <div class="item-article-image">
+            <img [src]="article.icon" alt=""/>
+        </div>
+        <div class="item-article-details">
+            <div class="article">
+                <div class="item-article-details-name">
+                    {{article.title}}
+                </div>
+                <div class="item-article-details-intro-title">By {{article.publisher}}</div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

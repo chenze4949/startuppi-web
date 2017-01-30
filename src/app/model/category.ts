@@ -22,4 +22,9 @@ export class GroupCategory {
     name:string;
 }
 
+export class ArticleCategory {
+    id:number;
+    name:string;
+}
+
 

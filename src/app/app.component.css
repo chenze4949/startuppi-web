@@ -98,6 +98,7 @@ html, body{
     background: white;
 }
 
+
 .header-top-left{
     float: left;
     line-height: 40px;
@@ -323,6 +324,23 @@ th.ui-state-default{
 .k-action-buttons .k-primary:hover:before{
     color: white;
     background-color: #ea5514 !important;
+}
+
+.swiper-pagination-bullet{
+	opacity: 1 !important;
+	background: lightgrey !important;
+}
+
+.swiper-pagination-bullet-active{
+	background: #ea5514 !important;
+}
+
+.swiper-button-next{
+	background-image: url(/images/arrow-right-simple-line-icons.png) !important;
+}
+
+.swiper-button-prev{
+	background-image: url(/images/arrow-left-simple-line-icons.png) !important;
 }
 
 #crumbs {

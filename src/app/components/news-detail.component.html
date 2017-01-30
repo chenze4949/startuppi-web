@@ -1,0 +1,23 @@
+<div *ngIf="article" class="article-item">
+    <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+    <div class="item-article-details-name">
+        {{article.title}}
+    </div>
+    <div class="item-article-details-intro-title">By {{article.publisher}}</div>
+    <div class="item-article-image">
+        <img [src]="article.icon" alt=""/>
+    </div>
+    <div class="item-article-details">
+        {{article.content}}
+    </div>
+    <div *ngIf="article.comments" class="comments-container">
+        <div class="comments-header">
+            <div class="comments-count">{{article.comments.length}} Comments</div>
+        </div>
+        <div class="comment" *ngFor="let comment of article.comments">
+            <div class="comment-avator"><img [src]="comment.user.profile_image_url"></div>
+            <div class="comment-name">{{comment.user.name}}</div>
+            <div class="comment-detail">{{comment.content}}</div>
+        </div>
+    </div>
+</div>

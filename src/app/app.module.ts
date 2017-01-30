@@ -20,6 +20,8 @@ import { XLarge } from './home/x-large';
 
 
 import { ActivityComponent } from './components/activity.component';
+import { NewsComponent } from './components/news.component';
+import { NewsDetailComponent } from './components/news-detail.component';
 import { ProductComponent } from './components/product.component';
 import { ProductDetailComponent } from './components/product-detail.component';
 import { GroupComponent } from './components/group.component';
@@ -52,6 +54,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { Auth } from './service/auth.service';
 import { ServiceService } from './service/service.service';
 import { EventService } from './service/event.service';
+import { ArticleService } from './service/article.service';
 import { GroupService } from './service/group.service';
 import { UploadService } from './service/upload.service';
 
@@ -75,6 +78,7 @@ import { DropdownConfig } from 'ng2-bootstrap';
 import { DialogModule } from '@progress/kendo-angular-dialog';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { CustomFormsModule } from 'ng2-validation'
+import { KSSwiperModule } from 'angular2-swiper';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -100,6 +104,8 @@ type StoreType = {
     NoContentComponent,
     XLarge,
     ActivityComponent,
+    NewsComponent,
+    NewsDetailComponent,
     ProductComponent,
     ProductDetailComponent,
     GroupComponent,
@@ -148,7 +154,8 @@ type StoreType = {
     DropdownModule,
     ButtonsModule,
     CustomFormsModule,
-    BusyModule
+    BusyModule,
+    KSSwiperModule
   ],
   entryComponents:[GroupCreateModal],
   providers: [ // expose our Services and Providers into Angular's dependency injection
@@ -160,7 +167,8 @@ type StoreType = {
     ServiceService,
     EventService,
     GroupService,
-    UploadService
+    UploadService,
+    ArticleService
   ]
 })
 export class AppModule {

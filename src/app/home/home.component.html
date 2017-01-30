@@ -1,4 +1,4 @@
-<div class="navigation-container">
+<!--<div class="navigation-container">
     <div *ngIf="serviceCategories" class="navigation">
         <ul>
             <li class="has-sub" *ngFor="let category of serviceCategories"> <a href="#">{{category.name}}</a>
@@ -11,8 +11,40 @@
     <div class="banner">
         <img src="/assets/images/home_sample.png"/>
     </div>
-</div>
+</div>-->
+<ks-swiper-container id="web-container" *ngIf="slides" [options]="webSwipeOptions">
+    <ks-swiper-slide *ngFor="let slidez of slides">
+        <!--<img *ngIf="slidez.image" [src]="slidez.image">-->
+        <img class="swiper-img" src="/images/facebook.jpg">
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </ks-swiper-slide>
+
+</ks-swiper-container>
 <header class="floor-title">
+    <div class="leftside">您的創業必備資訊</div>
+    <div class="rightside">
+        <a href="/activity/list">查看全部</a>
+    </div>
+</header>
+<div *ngIf="articles" class="article-list" style="margin-top:40px">
+    <div class="article-item" (click)='gotoArticleDetail(article)' *ngFor="let article of articles">
+        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+        <div class="item-article-image">
+            <img [src]="article.icon" alt=""/>
+        </div>
+        <div class="item-article-details">
+            <div class="article">
+                <div class="item-article-details-name">
+                    {{article.title}}
+                </div>
+                <div class="item-article-details-intro-title">By {{article.publisher}}</div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <header class="floor-title">
     <div class="leftside">提供優選的創業服務</div>
     <div class="rightside">
         <a href="/activity/list">查看全部</a>
@@ -20,9 +52,7 @@
 </header>
 <div *ngIf="hottestServices" class="recommended-product-list">
     <div class="products-list-item" (click)='gotoDetail(product)' *ngFor="let service of hottestServices">
-        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
         <div class="product-image">
-            <!--<img *ngIf='product.product_images.length>0' [src]="products[0].product_images[0].image_medium_url"  style=""  alt=""/>-->
             <img [src]="service.icon"  style=""  alt=""/>
             <div class="product_container" style="background-color:white;">
                 <div class="product-name">{{ service.name}}</div>
@@ -35,14 +65,34 @@
             </div>		
         </div>
     </div>
-</div>
+</div> -->
 <header class="floor-title">
     <div class="leftside">為您精選的創業活動</div>
     <div class="rightside">
         <a href="/activity/list">查看全部</a>
     </div>
 </header>
-<p-schedule
+<div *ngIf="events" class="activity-list" style="margin-top:40px">
+    <div class="activity-item" (click)='gotoDetail(product)' *ngFor="let event of events">
+        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+        <div class="item-activity-image">
+            <img [src]="event.icon" style="max-width: 100%; max-height: 100%;" alt=""/>
+        </div>
+        <div class="item-activity-details">
+            <div class="activity">
+                <div class="item-activity-details-name">
+                    {{event.title}}
+                </div>
+                <div class="item-activity-details-intro-title">活动简介：</div>
+                <div class="item-activity-details-intro">{{event.introduction}}</div>
+                <div class="item-activity-details-type">06/25 12:00</div>
+                <div class="item-activity-details-address">{{event.address}}</div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<p-schedule
     editable="false"  
     defaultView="month" 
     [events]="events"
@@ -54,7 +104,7 @@
     nowIndicator="true"
     lang="zh-cn"
     (onEventClick)="handleEventClick($event)"    
-  ></p-schedule>
+  ></p-schedule>-->
 <header class="floor-title">
     <div class="leftside">同行創業家抱團取暖</div>
     <div class="rightside">
@@ -62,13 +112,13 @@
     </div>
 </header>
 <div class="group-list" style="width:100%">
-    <div class="groups-list-item" (click)='onClick()' *ngFor="let group of [1,2,3,4,5,6,7,8]">
+    <div class="groups-list-item" (click)='onClick()' *ngFor="let group of groups">
         <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
         <div class="group-image">
             <!--<img *ngIf='product.product_images.length>0' [src]="products[0].product_images[0].image_medium_url"  style=""  alt=""/>-->
-            <img src="/assets/images/product_sample.png"  style=""  alt=""/>
+            <img [src]="group.icon"  style=""  alt=""/>
             <div class="group_container" style="margin-top:10px;">
-                <div class="group-name">深圳旅游电商微信群</div>
+                <div class="group-name">{{group.title}}</div>
                 <div class="group-category">创业分享</div>
                 <div class="clearfix"></div>
             </div>		

@@ -78,6 +78,7 @@
     "@progress/kendo-angular-dialog": "^0.13.1",
     "@progress/kendo-theme-default": "^2.4.19",
     "angular2-busy": "^1.0.2",
+    "angular2-swiper": "^0.8.1",
     "angular2-data-table": "^0.6.1",
     "angular2-modal": "^2.0.0-beta.13",
     "assets-webpack-plugin": "^3.4.0",
