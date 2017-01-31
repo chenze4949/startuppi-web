@@ -52,15 +52,15 @@
 
 .comment-avator{
     float: left;
-    height: 60px;
-    width: 60px;
+    height: 50px;
+    width: 50px;
 }
 
 .comment-avator img{
     object-fit: cover;
     object-position: center;
-	height: 60px;
-	width: 60px;
+	height: 50px;
+	width: 50px;
 }
 
 .comments-count{
@@ -71,6 +71,52 @@
     font-size: 16px;
     color: #3e433e;
     margin: 10px 10px;
+}
+
+.comment-tf{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #3e433e;
+    float: left;
+    border: 1px solid #d3d6db;
+    width: 836px;
+    height: 72px;
+    margin-left: 10px;
+    resize: none;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; }
+
+textarea:focus::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; }
+
+.comment-tf-footer{
+    float: left;
+    border-left: 1px solid #d3d6db;
+    border-right: 1px solid #d3d6db;
+    border-bottom: 1px solid #d3d6db;
+    background-color: #f6f7f9;
+    width: 836px;
+    height: 40px;
+    margin-left: 60px;
+    resize: none;
+
+}
+
+.comment-post{
+    float: right;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    background: #ea5514;
+    color: white;
+    width: 50px;
+    height: 24px;
+    line-height: 24px;
+    margin: 8px 10px;
+    text-align: center;
+    border-radius: 3px;
+    cursor: pointer;
 }
 
 .comment-name{

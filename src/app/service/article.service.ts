@@ -14,6 +14,7 @@ import { ArticleCategory } from '../model/category';
 export class ArticleService {
     private articlesUrl = Globals.host + '/articles/';  // URL to web api
     private articleCategoriesUrl = Globals.host + '/article_categories';  // URL to web api
+    private postCommentUrl = Globals.host + '/articles/comment';  // URL to web api
 
     constructor(private http:Http) {
         
@@ -36,6 +37,20 @@ export class ArticleService {
                 .then(response => this.mapJSONToArticleDetail(response.json().response))
                 .catch(this.handleError);
     }
+
+    postComment(id:number, content:string): Promise<boolean> {
+    let creds = JSON.stringify({ id: id, content: content });
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('uid', localStorage.getItem('sp_uid'));
+    headers.append('client', localStorage.getItem('sp_client'));
+    headers.append('access-token', localStorage.getItem('sp_access-token'));
+    return this.http.post(this.postCommentUrl, creds,{headers: headers})
+                .toPromise()
+                .then(response => true)
+                .catch(this.handleError);
+    }
+
 
     getArticleCategories(): Promise<ArticleCategory[]> {
     let headers = new Headers();
