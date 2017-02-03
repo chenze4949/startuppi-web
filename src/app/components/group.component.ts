@@ -15,6 +15,7 @@ import { GroupCategory } from '../model/category';
 export class GroupComponent implements OnInit {
   categories:GroupCategory[];
   groups:Group[];
+  selectedGroup:Group;
   constructor(
     private router: Router, public modal: Modal,
     private groupService:GroupService
@@ -34,4 +35,14 @@ export class GroupComponent implements OnInit {
     return this.modal.open(GroupCreateModal,  overlayConfigFactory({ num1: 2, num2: 3, categories:this.categories }, BSModalContext));
   }
 
+  openGroupDetailModal(group){
+    this.selectedGroup = group;
+    var modal = document.getElementById('groupDetailModal');
+    modal.style.display = "block";
+  }
+
+  closeGroupDetailModal(){
+    var modal = document.getElementById('groupDetailModal');
+    modal.style.display = "none";
+  }
 }

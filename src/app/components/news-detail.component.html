@@ -1,5 +1,4 @@
-<div *ngIf="article" class="article-item">
-    <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
+<!--<div *ngIf="article" class="article-item">
     <div class="item-article-details-name">
         {{article.title}}
     </div>
@@ -21,7 +20,6 @@
             <div class="comment-tf-footer">
                 <div [style.background]="this.content.length>0 ? '#ea5514' : 'gray'" (click)="postComment()" class="comment-post">Post</div>
             </div>
-            <!--<textarea class="comment-tf">-->
         </div>
         <div class="comment" *ngFor="let comment of article.comments">
             <div class="comment-avator"><img [src]="comment.user.profile_image_url"></div>
@@ -29,4 +27,215 @@
             <div class="comment-detail">{{comment.content}}</div>
         </div>
     </div>
+</div>-->
+<div class="container" *ngIf="article">
+
+    <div class="row">
+        <div class="col-md-9">
+            <div class="blog-posts single-post">
+
+                <article class="post post-large blog-single-post">
+                    <div class="post-image">
+                        <div class="owl-carousel owl-theme" data-plugin-options='{"items":1}'>
+                            <div>
+                                <div class="img-thumbnail">
+                                    <img class="img-responsive" [src]="article.icon" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                    <div class="post-date">
+                        <span class="day">10</span>
+                        <span class="month">Jan</span>
+                    </div>
+
+                    <div class="post-content">
+
+                        <h2>{{article.title}}</h2>
+
+                        <div class="post-meta">
+                            <span><i class="fa fa-user"></i> 來自 <a href="#">{{article.publisher}}</a> </span>
+                            <span><i class="fa fa-tag"></i> <a href="#">{{article.article_category.name}}</a> </span>
+                            <span><i class="fa fa-comments"></i> <a href="#">{{article.comments.length}} 評論</a></span>
+                        </div>
+
+                        <p>{{article.content}}</p>
+
+
+                        <div class="post-block post-share">
+                            <h3 class="heading-primary"><i class="fa fa-share"></i>Share this post</h3>
+
+                            <!-- AddThis Button BEGIN -->
+                            <div class="addthis_toolbox addthis_default_style ">
+                                <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+                                <a class="addthis_button_tweet"></a>
+                                <a class="addthis_button_pinterest_pinit"></a>
+                                <a class="addthis_counter addthis_pill_style"></a>
+                            </div>
+                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50faf75173aadc53"></script>
+                            <!-- AddThis Button END -->
+
+                        </div>
+
+                        <!--<div class="post-block post-author clearfix">
+                            <h3 class="heading-primary"><i class="fa fa-user"></i>Author</h3>
+                            <div class="img-thumbnail">
+                                <a href="blog-post.html">
+                                    <img src="img/avatars/avatar.jpg" alt="">
+                                </a>
+                            </div>
+                            <p><strong class="name"><a href="#">John Doe</a></strong></p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim ornare nisi, vitae mattis nulla ante id dui. </p>
+                        </div>-->
+
+                        <div *ngIf="article.comments" class="post-block post-comments clearfix">
+                            <h3 class="heading-primary"><i class="fa fa-comments"></i>評論 ({{article.comments.length}})</h3>
+
+                            <ul class="comments">
+                                <li *ngFor="let comment of article.comments">
+                                    <div class="comment">
+                                        <div class="img-thumbnail">
+                                            <img class="avatar" alt="" [src]="comment.user.profile_image_url">
+                                        </div>
+                                        <div class="comment-block">
+                                            <div class="comment-arrow"></div>
+                                            <span class="comment-by">
+                                                <strong>{{comment.user.name}}</strong>
+                                            </span>
+                                            <p>{{comment.content}}</p>
+                                            <span class="date pull-right">November 12, 2016 at 1:38 pm</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                        <div class="post-block post-leave-comment">
+                            <h3 class="heading-primary">評論</h3>
+
+                            <form action="" method="post">
+                                <!--<div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label>Your name *</label>
+                                            <input type="text" value="" maxlength="100" class="form-control" name="name" id="name">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Your email address *</label>
+                                            <input type="email" value="" maxlength="100" class="form-control" name="email" id="email">
+                                        </div>
+                                    </div>
+                                </div>-->
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <textarea maxlength="5000" rows="10" class="form-control" name="comment" id="comment"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input type="submit" value="Post Comment" class="btn btn-primary btn-lg" data-loading-text="Loading...">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </article>
+
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <aside class="sidebar">
+            
+                <!--<form>
+                    <div class="input-group input-group-lg">
+                        <input class="form-control" placeholder="Search..." name="s" id="s" type="text">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>-->
+            
+                <!--<hr>-->
+            
+                <h4 class="heading-primary">Categories</h4>
+                <ul class="nav nav-list mb-xlg">
+                    <li><a href="#">Design (2)</a></li>
+                    <li><a href="#">Videos (3)</a></li>
+                    <li><a href="#">Lifestyle (2)</a></li>
+                    <li><a href="#">Technology (1)</a></li>
+                </ul>
+            
+                <div class="tabs mb-xlg">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#popularPosts" data-toggle="tab"><i class="fa fa-star"></i> 相關文章</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="popularPosts">
+                            <ul class="simple-post-list">
+                                <li>
+                                    <div class="post-image">
+                                        <div class="img-thumbnail">
+                                            <a href="blog-post.html">
+                                                <img src="img/blog/blog-thumb-1.jpg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-info">
+                                        <a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
+                                        <div class="post-meta">
+                                                Jan 10, 2016
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="post-image">
+                                        <div class="img-thumbnail">
+                                            <a href="blog-post.html">
+                                                <img src="img/blog/blog-thumb-2.jpg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-info">
+                                        <a href="blog-post.html">Vitae Nibh Un Odiosters</a>
+                                        <div class="post-meta">
+                                                Jan 10, 2016
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="post-image">
+                                        <div class="img-thumbnail">
+                                            <a href="blog-post.html">
+                                                <img src="img/blog/blog-thumb-3.jpg" alt="">
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="post-info">
+                                        <a href="blog-post.html">Odiosters Nullam Vitae</a>
+                                        <div class="post-meta">
+                                                Jan 10, 2016
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            
+                <hr>
+            
+                <h4 class="heading-primary">About Us</h4>
+                <p>Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
+            
+            </aside>
+        </div>
+    </div>
+
 </div>

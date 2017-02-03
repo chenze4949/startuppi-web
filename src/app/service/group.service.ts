@@ -67,8 +67,10 @@ export class GroupService {
         group.subtitle = data.subtitle;
         group.description = data.description;
         group.regulation = data.regulation;
+        group.contact = data.contact;
         group.icon = data.icon;
         group.qr_code = data.qr_code;
+        group.group_category = this.mapJSONToCategory(data.group_category);
         return group;
     }
 

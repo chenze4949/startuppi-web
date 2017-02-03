@@ -51,17 +51,81 @@
     <button type="submit" class="btn btn-primary btn-h-large" (click)="createGroup()">我要登記我的創業社群</button>
 </div>
 <div *ngIf="groups" class="group-list" style="width:70%">
-    <div class="groups-list-item" (click)='gotoDetail(group)' *ngFor="let group of groups">
+    <div class="groups-list-item" (click)='openGroupDetailModal(group)' *ngFor="let group of groups">
         <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
         <div class="group-image">
             <!--<img *ngIf='product.product_images.length>0' [src]="products[0].product_images[0].image_medium_url"  style=""  alt=""/>-->
-            <img [src]="group.icon"  style=""  alt=""/>
-            <div class="group_container" style="margin-top:10px;">
-                <div class="group-name">{{group.title}}</div>
-                <div class="group-category">创业分享</div>
-                <div class="clearfix"></div>
-            </div>		
+            <img [src]="group.icon"  style=""  alt=""/>	
+            <div class="overlay">
+                <div class="text">{{group.title}}</div>
+            </div>
         </div>
+        <div class="group_container" style="margin-top:10px;">
+            <div class="group-name">{{group.title}}</div>
+            <div class="group-category">{{group.group_category.name}}</div>
+            <div class="clearfix"></div>
+        </div>	
     </div>
 </div>
 <span defaultOverlayTarget></span>
+<!-- Trigger/Open The Modal -->
+
+<!-- The Modal -->
+<div id="groupDetailModal" class="group-modal">
+
+  <!-- Modal content -->
+  <div *ngIf="selectedGroup" class="group-modal-content">
+    <span class="close" (click)="closeGroupDetailModal()">&times;</span>
+    <div class="activity-item">
+        <div class="item-activity-details">
+            <div class="activity">
+                <div class="item-activity-details-title">
+                    {{selectedGroup.title}}
+                </div>
+                <div class="item-activity-details-name">
+                    社群類型：
+                </div>
+                <div class="item-activity-details-form">
+                    {{selectedGroup.group_category.name}}
+                </div>
+                <div class="item-activity-details-name">
+                    社群介紹：
+                </div>
+                <div class="item-activity-details-form">
+                    {{selectedGroup.description}}
+                </div>
+                <div class="item-activity-details-name">
+                    社群加入規章：
+                </div>
+                <div class="item-activity-details-form">
+                    {{selectedGroup.regulation}}
+                </div>
+                <div class="item-activity-details-name">
+                    社群聯繫方式：
+                </div>
+                <div class="item-activity-details-form">
+                    {{selectedGroup.contact}}
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="image-upload">
+            <img [src]="selectedGroup.icon"/>
+        </div>
+        <div class="image-upload-note">
+            <div class="item-activity-details-name">
+                群主題圖片或Logo
+            </div>
+        </div>
+        <div class="image-upload">
+            <img [src]="selectedGroup.qr_code"/>
+        </div>
+        <div class="image-upload-note">
+            <div class="item-activity-details-name">
+                二維碼
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>

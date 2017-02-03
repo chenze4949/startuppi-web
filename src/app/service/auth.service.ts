@@ -160,7 +160,9 @@ export class Auth {
         user.profile_image_url = data.profile_image_url;
         user.user_type = data.user_type;
         user.dollar = data.dollar;
-        user.company = this.mapJSONtoCompany(data.company);
+        if (data.company){
+            user.company = this.mapJSONtoCompany(data.company);
+        }
         return user;
     }
 
