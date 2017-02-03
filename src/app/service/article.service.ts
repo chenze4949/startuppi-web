@@ -78,7 +78,9 @@ export class ArticleService {
         article.url = data.url;
         article.icon = data.icon;
         article.video = data.video;
+        article.article_category = this.mapJSONToCategory(data.article_category)
         article.publish_date = new Date(data.publish_date);
+        article.publish_date_str = this.convertZHDate(article.publish_date) + " " + article.publish_date.toTimeString().split(' ')[0];
         return article;
     }
 
@@ -90,7 +92,9 @@ export class ArticleService {
         article.url = data.url;
         article.icon = data.icon;
         article.video = data.video;
+        article.article_category = this.mapJSONToCategory(data.article_category)
         article.publish_date = new Date(data.publish_date);
+        article.publish_date_str = this.convertZHDate(article.publish_date) + " " + article.publish_date.toTimeString().split(' ')[0];
         article.content = data.content;
         article.comments = this.mapJSONToComments(data.comments);
         article.relative_articles = this.mapJSONToArticles(data.relative_articles);
@@ -139,6 +143,17 @@ export class ArticleService {
         user.email = data.email;
         user.profile_image_url = data.profile_image_url;
         return user;
+    }
+
+    convertZHDate(date) {
+        var yyyy = date.getFullYear().toString();
+        var mm = (date.getMonth()+1).toString();
+        var dd  = date.getDate().toString();
+
+        var mmChars = mm.split('');
+        var ddChars = dd.split('');
+
+        return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
     }
 
     private handleError(error: any) {

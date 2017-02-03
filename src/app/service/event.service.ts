@@ -53,8 +53,8 @@ export class EventService {
         event.enroll = data.enroll;
         event.introduction = data.introduction;
         event.detail = data.detail;
-        event.start_time = new Date(data.start_time);
-        event.end_time = new Date(data.end_time);
+        event.start = new Date(data.start_time);
+        event.end = new Date(data.end_time);
         event.currency = data.currency;
         event.icon = data.icon;
         return event;

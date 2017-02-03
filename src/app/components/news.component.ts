@@ -10,6 +10,7 @@ import { ArticleCategory } from '../model/category';
   styleUrls: ['news.component.css']
 })
 export class NewsComponent implements OnInit {
+  categories:ArticleCategory[];
   articles:Article[];
   constructor(
     private router: Router,
@@ -17,9 +18,13 @@ export class NewsComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.articleService.getArticles().then(articles => {
-      this.articles = articles;
+    this.articleService.getArticleCategories().then(categories =>{
+      this.categories = categories;
+      this.articleService.getArticles().then(articles => {
+        this.articles = articles;
+      })
     })
+    
   }
 
   gotoArticleDetail(article:Article){

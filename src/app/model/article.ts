@@ -1,4 +1,5 @@
 import { User } from './user'
+import { ArticleCategory } from './category'
 /**
  * Article
  */
@@ -10,7 +11,9 @@ export class Article {
     icon:string;
     video:string;
     publish_date:Date;
+    publish_date_str:String;
     content:string;
+    article_category:ArticleCategory;
     comments:Comment[];
     relative_articles:Article[];
 }

@@ -8,8 +8,8 @@ export class Event {
     enroll:string;
     introduction:string;
     detail:string;
-    start_time:Date;
-    end_time:Date;
+    start:Date;
+    end:Date;
     icon:string;
     currency:string;
 }

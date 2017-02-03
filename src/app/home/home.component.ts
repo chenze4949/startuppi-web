@@ -13,6 +13,7 @@ import { ArticleService } from '../service/article.service';
 import { GroupService } from '../service/group.service';
 import { Service } from '../model/service';
 import { Article } from '../model/article';
+import { Event } from '../model/event';
 import { Category, SubCategory } from '../model/category';
 import { KSSwiperContainer, KSSwiperSlide} from 'angular2-swiper';
 
@@ -39,6 +40,7 @@ export class HomeComponent {
   serviceCategories:Category[];
 
   events: any [];
+  eventsSchedule: any [];
   articles: any [];
   groups: any [];
   resources: any[];
@@ -81,36 +83,37 @@ export class HomeComponent {
   ngOnInit() {
     console.log('hello `Home` component');
     // this.title.getData().subscribe(data => this.data = data);
-    // this.events = [
-    //     {
-    //         "title": "All Day Event",
-    //         "start": "2016-09-01"
-    //     },
-    //     {
-    //         "title": "Long Event",
-    //         "start": "2016-09-07",
-    //         "end": "2016-09-10"
-    //     },
-    //     {
-    //         "title": "Repeating Event",
-    //         "start": "2016-09-09T16:00:00"
-    //     },
-    //     {
-    //         "title": "Repeating Event",
-    //         "start": "2016-09-16T16:00:00"
-    //     },
-    //     {
-    //         "title": "Conference",
-    //         "start": "2016-09-11",
-    //         "end": "2016-09-13"
-    //     }
-    // ];
+    this.eventsSchedule = [
+        {
+            "title": "All Day Event",
+            "start": "2016-09-01"
+        },
+        {
+            "title": "Long Event",
+            "start": "2016-09-07",
+            "end": "2016-09-10"
+        },
+        {
+            "title": "Repeating Event",
+            "start": "2016-09-09T16:00:00"
+        },
+        {
+            "title": "Repeating Event",
+            "start": "2016-09-16T16:00:00"
+        },
+        {
+            "title": "Conference",
+            "start": "2016-09-11",
+            "end": "2016-09-13"
+        }
+    ];
     this.eventService.getEvents().then(events => {
       this.events = events;
     })
     this.articleService.getArticles().then(articles => {
       this.articles = articles;
     })
+
     // this.serviceService.getServiceCategories().then(categories => {
     //   this.serviceCategories = categories;
     // })
@@ -131,33 +134,33 @@ export class HomeComponent {
   }
 
   handleEventClick(e) {
-        this.event = new MyEvent();
-        this.event.title = e.calEvent.title;
-        
-        let start = e.calEvent.start;
-        let end = e.calEvent.end;
-        if(e.view.name === 'month') {
-            start.stripTime();
-        }
-        
-        if(end) {
-            end.stripTime();
-            this.event.end = end.format();
-        }
+      this.event = new MyEvent();
+      this.event.title = e.calEvent.title;
+      
+      let start = e.calEvent.start;
+      let end = e.calEvent.end;
+      if(e.view.name === 'month') {
+          start.stripTime();
+      }
+      
+      if(end) {
+          end.stripTime();
+          this.event.end = end.format();
+      }
 
-        this.event.id = e.calEvent.id;
-        this.event.start = start.format();
-        this.event.allDay = e.calEvent.allDay;
-        this.dialogVisible = true;
-    }
+      this.event.id = e.calEvent.id;
+      this.event.start = start.format();
+      this.event.allDay = e.calEvent.allDay;
+      this.dialogVisible = true;
+  }
 
-    gotoArticleDetail(article:Article){
-      this.router.navigate(["/news/"+article.id]);
-    }
+  gotoArticleDetail(article:Article){
+    this.router.navigate(["/news/"+article.id]);
+  }
 
-    onClick() {
-        return this.modal.open(GroupModal,  overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
-    }
+  onClick() {
+      return this.modal.open(GroupModal,  overlayConfigFactory({ num1: 2, num2: 3 }, BSModalContext));
+  }
 }
 
 
