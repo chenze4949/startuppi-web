@@ -16,6 +16,8 @@ export class Article {
     article_category:ArticleCategory;
     comments:Comment[];
     relative_articles:Article[];
+    month:string;
+    day:string;
 }
 
 export class Comment {
@@ -23,4 +25,6 @@ export class Comment {
     content:string;
     article_id:number;
     user:User;
+    created_at:Date;
+    created_at_str:String;
 }

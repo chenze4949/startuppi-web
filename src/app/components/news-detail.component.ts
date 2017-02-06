@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute,Params } from '@angular/router';
+import { ActivatedRoute,Params,Router } from '@angular/router';
 import { ArticleService } from '../service/article.service';
 import { Article } from '../model/article';
 import { ArticleCategory } from '../model/category';
@@ -17,7 +17,8 @@ export class NewsDetailComponent implements OnInit {
   user:User;
   content = "";
   constructor(
-    private router: ActivatedRoute,
+    private router: Router,
+    private activcatedRouter: ActivatedRoute,
     private articleService:ArticleService,
     @Inject(Auth) _auth
     ) {
@@ -28,7 +29,7 @@ export class NewsDetailComponent implements OnInit {
     }
 
   ngOnInit() {
-    this.router.params
+    this.activcatedRouter.params
     .switchMap((params: Params) => this.articleService.getArticleDetail(+params['id']))
     .subscribe(article => this.article = article);
   }
@@ -45,5 +46,10 @@ export class NewsDetailComponent implements OnInit {
       })
     }
     
+  }
+
+
+  gotoArticleDetail(article:Article){
+    this.router.navigate(["/news/"+article.id]);
   }
 }

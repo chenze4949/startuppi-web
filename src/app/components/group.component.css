@@ -1,7 +1,7 @@
 .activity-category-container{
     float: left;
 	width: 70%;
-	height: 180px;
+	height: 60px;
 	border-width: 1px;
     border-color: #e8e8e8;
     border-style: solid;
@@ -123,16 +123,38 @@
 }
 
 .group-aside{
-    float: right;
-    width: 300px;
+    width: 100%;
+    height: 80px
 }
 .group-aside .btn-primary {
+    float: right;
     background: #ea5514;
     border-color: #ea5514;
     color: #fff;
-    width: 100%;
+    width: 200px;
     font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
+    margin-top: 26px;
+}
+
+
+.products-list-footer{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+}
+
+.products-pages-container{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #3e433e;
+}
+
+.products-pages-container a{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    color: #3e433e;
+    cursor: pointer;
 }
 
 .group-modal {
@@ -155,7 +177,8 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 60%;
+    min-height: 400px;
 }
 
 /* The Close Button */

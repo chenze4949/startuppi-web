@@ -20,12 +20,16 @@ export class ArticleService {
         
     }
 
-    getArticles(): Promise<Article[]> {
+    getArticles(category_id:number, current_page:number): Promise<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(this.articlesUrl,{headers: headers})
+    var url = category_id? (this.articlesUrl + "?article_category_id=" + category_id)  : this.articlesUrl
+    if (current_page){
+        url = url + (category_id? "&page=" : "?page=") + current_page;
+    }
+    return this.http.get(url,{headers: headers})
                 .toPromise()
-                .then(response => this.mapJSONToArticles(response.json().response))
+                .then(response => response)
                 .catch(this.handleError);
     }
 
@@ -95,6 +99,8 @@ export class ArticleService {
         article.article_category = this.mapJSONToCategory(data.article_category)
         article.publish_date = new Date(data.publish_date);
         article.publish_date_str = this.convertZHDate(article.publish_date) + " " + article.publish_date.toTimeString().split(' ')[0];
+        article.month = this.getMonth(article.publish_date)
+        article.day = article.publish_date.getDay().toString()
         article.content = data.content;
         article.comments = this.mapJSONToComments(data.comments);
         article.relative_articles = this.mapJSONToArticles(data.relative_articles);
@@ -133,6 +139,9 @@ export class ArticleService {
         comment.content = data.content;
         comment.article_id = data.article_id;
         comment.user = this.mapJSONtoUser(data.user);
+        comment.created_at = new Date(data.created_at);
+        comment.created_at_str = this.convertZHDate(comment.created_at) + " " + comment.created_at.toTimeString().split(' ')[0];
+        
         return comment;
     }
 
@@ -154,6 +163,42 @@ export class ArticleService {
         var ddChars = dd.split('');
 
         return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+    }
+
+    // getMonth(d:Date){
+    //     var month = new Array();
+    //     month[0] = "一月";
+    //     month[1] = "二月";
+    //     month[2] = "三月";
+    //     month[3] = "四月";
+    //     month[4] = "五月";
+    //     month[5] = "六月";
+    //     month[6] = "七月";
+    //     month[7] = "八月";
+    //     month[8] = "九月";
+    //     month[9] = "十月";
+    //     month[10] = "十一月";
+    //     month[11] = "十二月";
+    //     var n = month[d.getMonth()];
+    //     return  n;
+    // }
+
+    getMonth(d:Date){
+        var month = new Array();
+        month[0] = "Jan";
+        month[1] = "Feb";
+        month[2] = "Mar";
+        month[3] = "Apr";
+        month[4] = "May";
+        month[5] = "Jun";
+        month[6] = "Jul";
+        month[7] = "Aug";
+        month[8] = "Sep";
+        month[9] = "Oct";
+        month[10] = "Nov";
+        month[11] = "Dec";
+        var n = month[d.getMonth()];
+        return  n;
     }
 
     private handleError(error: any) {

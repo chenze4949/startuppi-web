@@ -47,7 +47,6 @@
 .comment{
     width: 100%;
     min-height: 80px;
-    padding: 10px;
 }
 
 .comment-avator{
@@ -65,12 +64,12 @@
 
 .comments-count{
     float: left;
-    width: 500px;
+    width: 100%;
     font-family: 'Open Sans', sans-serif;
 	font-weight: bold;
-    font-size: 16px;
+    font-size: 20px;
     color: #3e433e;
-    margin: 10px 10px;
+    margin: 10px 0;
 }
 
 .comment-tf{
@@ -79,7 +78,7 @@
     color: #3e433e;
     float: left;
     border: 1px solid #d3d6db;
-    width: 836px;
+    width: 750px;
     height: 72px;
     margin-left: 10px;
     resize: none;
@@ -97,7 +96,7 @@ textarea:focus:-moz-placeholder { color:transparent; }
     border-right: 1px solid #d3d6db;
     border-bottom: 1px solid #d3d6db;
     background-color: #f6f7f9;
-    width: 836px;
+    width: 750px;
     height: 40px;
     margin-left: 60px;
     resize: none;
@@ -136,4 +135,38 @@ textarea:focus:-moz-placeholder { color:transparent; }
     font-size: 12px;
     color: #3e433e;
     margin: 0 10px;
+}
+
+.post-share .fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 70px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  cursor: pointer;
+}
+
+.post-share .fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-wechat {
+  background: #7bb32e;
+  color: white;
 }

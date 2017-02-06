@@ -18,12 +18,17 @@ export class EventService {
         
     }
 
-    getEvents(): Promise<Event[]> {
+    getEvents(category_id:number, current_page:number): Promise<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(this.eventsUrl,{headers: headers})
+    let url = category_id? (this.eventsUrl + "/get_events_by_category?event_category_id=" + category_id)  : this.eventsUrl
+    if (current_page){
+        url = url + (category_id? "&page=" : "?page=") + current_page;
+    }
+    
+    return this.http.get(url,{headers: headers})
                 .toPromise()
-                .then(response => this.mapJSONToEvents(response.json().response))
+                .then(response => response)
                 .catch(this.handleError);
     }
 

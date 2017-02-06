@@ -18,12 +18,16 @@ export class GroupService {
         
     }
 
-    getGroups(): Promise<Group[]> {
+    getGroups(category_id:number,current_page:number): Promise<any> {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get(this.groupsUrl,{headers: headers})
+    var url = category_id? (this.groupsUrl + "/get_group_by_group_category?group_category_id=" + category_id)  : this.groupsUrl
+    if (current_page){
+        url = url + (category_id? "&page=" : "?page=") + current_page;
+    }
+    return this.http.get(url,{headers: headers})
                 .toPromise()
-                .then(response => this.mapJSONToGroups(response.json().response))
+                .then(response => response)
                 .catch(this.handleError);
     }
 

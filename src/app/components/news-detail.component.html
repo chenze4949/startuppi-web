@@ -47,8 +47,8 @@
                     </div>
 
                     <div class="post-date">
-                        <span class="day">10</span>
-                        <span class="month">Jan</span>
+                        <span class="day">{{article.day}}</span>
+                        <span class="month">{{article.month}}</span>
                     </div>
 
                     <div class="post-content">
@@ -65,17 +65,11 @@
 
 
                         <div class="post-block post-share">
-                            <h3 class="heading-primary"><i class="fa fa-share"></i>Share this post</h3>
-
-                            <!-- AddThis Button BEGIN -->
-                            <div class="addthis_toolbox addthis_default_style ">
-                                <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-                                <a class="addthis_button_tweet"></a>
-                                <a class="addthis_button_pinterest_pinit"></a>
-                                <a class="addthis_counter addthis_pill_style"></a>
-                            </div>
-                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-50faf75173aadc53"></script>
-                            <!-- AddThis Button END -->
+                            
+                            <a href="#" class="fa fa-facebook"></a>
+                            <a href="#" class="fa fa-twitter"></a>
+                            <a href="#" class="fa fa-google"></a>
+                            <a href="#" class="fa fa-wechat"></a>
 
                         </div>
 
@@ -91,7 +85,8 @@
                         </div>-->
 
                         <div *ngIf="article.comments" class="post-block post-comments clearfix">
-                            <h3 class="heading-primary"><i class="fa fa-comments"></i>評論 ({{article.comments.length}})</h3>
+                            <div class="comments-count"><i class="fa fa-comments"></i>評論 ({{article.comments.length}})</div>
+                            <!--<h3 class="heading-primary"><i class="fa fa-comments"></i>評論 ({{article.comments.length}})</h3>-->
 
                             <ul class="comments">
                                 <li *ngFor="let comment of article.comments">
@@ -105,7 +100,7 @@
                                                 <strong>{{comment.user.name}}</strong>
                                             </span>
                                             <p>{{comment.content}}</p>
-                                            <span class="date pull-right">November 12, 2016 at 1:38 pm</span>
+                                            <span class="date pull-right">{{comment.created_at_str}}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -114,34 +109,15 @@
                         </div>
 
                         <div class="post-block post-leave-comment">
-                            <h3 class="heading-primary">評論</h3>
-
-                            <form action="" method="post">
-                                <!--<div class="row">
-                                    <div class="form-group">
-                                        <div class="col-md-6">
-                                            <label>Your name *</label>
-                                            <input type="text" value="" maxlength="100" class="form-control" name="name" id="name">
-                                        </div>
-                                        <div class="col-md-6">
-                                            <label>Your email address *</label>
-                                            <input type="email" value="" maxlength="100" class="form-control" name="email" id="email">
-                                        </div>
-                                    </div>
-                                </div>-->
-                                <div class="row">
-                                    <div class="form-group">
-                                        <div class="col-md-12">
-                                            <textarea maxlength="5000" rows="10" class="form-control" name="comment" id="comment"></textarea>
-                                        </div>
-                                    </div>
+                            
+                            <div *ngIf="user" class="comment clearfix" style="margin-bottom: 20px;">
+                                <div *ngIf="user.profile_image_url&&user.profile_image_url.length>0" class="comment-avator"><img [src]="user.profile_image_url"></div>
+                                <div *ngIf="!(user.profile_image_url&&user.profile_image_url.length>0)" class="comment-avator"><img src="/assets/images/profile-default.png"></div>
+                                <textarea [(ngModel)]="content" class="comment-tf" maxlength="5000" rows="10" placeholder="Add a comment.."></textarea>
+                                <div class="comment-tf-footer">
+                                    <div [style.background]="this.content.length>0 ? '#ea5514' : 'gray'" (click)="postComment()" class="comment-post">上传</div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <input type="submit" value="Post Comment" class="btn btn-primary btn-lg" data-loading-text="Loading...">
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
 
                     </div>
@@ -164,13 +140,15 @@
             
                 <!--<hr>-->
             
-                <h4 class="heading-primary">Categories</h4>
+                <!--<h4 class="heading-primary">Categories</h4>
                 <ul class="nav nav-list mb-xlg">
                     <li><a href="#">Design (2)</a></li>
                     <li><a href="#">Videos (3)</a></li>
                     <li><a href="#">Lifestyle (2)</a></li>
                     <li><a href="#">Technology (1)</a></li>
-                </ul>
+                </ul>-->
+            
+                <hr>
             
                 <div class="tabs mb-xlg">
                     <ul class="nav nav-tabs">
@@ -179,48 +157,11 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="popularPosts">
                             <ul class="simple-post-list">
-                                <li>
-                                    <div class="post-image">
-                                        <div class="img-thumbnail">
-                                            <a href="blog-post.html">
-                                                <img src="img/blog/blog-thumb-1.jpg" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
+                                <li *ngFor="let article of article.relative_articles">
                                     <div class="post-info">
-                                        <a href="blog-post.html">Nullam Vitae Nibh Un Odiosters</a>
+                                        <a style="cursor: pointer" (click)="gotoArticleDetail(article)">{{article.title}}</a>
                                         <div class="post-meta">
-                                                Jan 10, 2016
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="post-image">
-                                        <div class="img-thumbnail">
-                                            <a href="blog-post.html">
-                                                <img src="img/blog/blog-thumb-2.jpg" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="post-info">
-                                        <a href="blog-post.html">Vitae Nibh Un Odiosters</a>
-                                        <div class="post-meta">
-                                                Jan 10, 2016
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="post-image">
-                                        <div class="img-thumbnail">
-                                            <a href="blog-post.html">
-                                                <img src="img/blog/blog-thumb-3.jpg" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="post-info">
-                                        <a href="blog-post.html">Odiosters Nullam Vitae</a>
-                                        <div class="post-meta">
-                                                Jan 10, 2016
+                                                {{article.publish_date_str}}
                                         </div>
                                     </div>
                                 </li>
@@ -229,10 +170,8 @@
                     </div>
                 </div>
             
-                <hr>
-            
-                <h4 class="heading-primary">About Us</h4>
-                <p>Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
+                <!--<h4 class="heading-primary">About Us</h4>
+                <p>Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>-->
             
             </aside>
         </div>

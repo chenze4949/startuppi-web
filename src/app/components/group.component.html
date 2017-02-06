@@ -1,4 +1,4 @@
-<div class="activity-category-container">
+<!--<div class="activity-category-container">
     <div class="activity-category-group">
         <div *ngIf="categories" class="header">社群分類:</div>
         <ul>
@@ -6,55 +6,13 @@
             <li *ngFor="let category of categories"><a href="">{{category.name}}</a></li>
         </ul>
     </div>
-    <div class="activity-category-group">
-        <div class="header">活動地點:</div>
-        <ul>
-            <li><a href=""><span class="all">全部</span></a></li>
-            <li><a href="">深圳</a></li>
-            <li><a href="">香港</a></li>
-            <li><a href="">澳門</a></li>
-            <li><a href="">廣州</a></li>
-            <li><a href="">中山</a></li>
-            <li><a href="">惠州</a></li>
-            <li><a href="">珠海</a></li>
-            <li><a href="">東莞</a></li>
-            <li><a href="">其他</a></li>			
-        </ul>
-    </div>
-    <div class="activity-category-group">
-        <div class="header">活動費用:</div>
-        <ul>
-            <li><a href=""><span class="all">全部</span></a></li>
-            <li><a href="">免費</a></li>
-            <li><a href="">0﹣50元</a></li>
-            <li><a href="">50﹣100元</a></li>
-            <li><a href="">100﹣200元</a></li>
-            <li><a href="">200﹣500元</a></li>
-            <li><a href="">500以上</a></li>		
-        </ul>
-    </div>
-    <div class="activity-category-group">
-        <div class="header">活動時間:</div>
-        <ul>
-            <li><a href=""><span class="all">全部</span></a></li>
-            <li><a href="">今天</a></li>
-            <li><a href="">0﹣3天</a></li>
-            <li><a href="">本週內</a></li>
-            <li><a href="">一月內</a></li>	
-            <li><a href="">三月內</a></li>	
-            <li><a href="">半年內</a></li>	
-            <li><a href="">其他</a></li>			
-        </ul>
-    </div>
 </div>
 <div class="group-aside">
     <button type="submit" class="btn btn-primary btn-h-large" (click)="createGroup()">我要登記我的創業社群</button>
 </div>
-<div *ngIf="groups" class="group-list" style="width:70%">
+<div *ngIf="groups" class="group-list" style="width:100%;margin-top: 40px">
     <div class="groups-list-item" (click)='openGroupDetailModal(group)' *ngFor="let group of groups">
-        <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
         <div class="group-image">
-            <!--<img *ngIf='product.product_images.length>0' [src]="products[0].product_images[0].image_medium_url"  style=""  alt=""/>-->
             <img [src]="group.icon"  style=""  alt=""/>	
             <div class="overlay">
                 <div class="text">{{group.title}}</div>
@@ -66,64 +24,210 @@
             <div class="clearfix"></div>
         </div>	
     </div>
+    <ul *ngIf="groups" class="portfolio-list sort-destination" data-sort-id="portfolio" style="float: left">
+        <li *ngFor="let group of groups" class="col-md-3 col-sm-6 col-xs-12 isotope-item brands">
+            <div class="portfolio-item">
+                <a (click)="openGroupDetailModal(group)">
+                    <span class="thumb-info thumb-info-lighten">
+                        <span class="thumb-info-wrapper">
+                            <img [src]="group.icon" class="img-responsive" alt="">
+                            <span class="thumb-info-title">
+                                <span class="thumb-info-inner">{{group.title}}</span>
+                                <span class="thumb-info-type">{{group.group_category.name}}</span>
+                            </span>
+                            <span class="thumb-info-action">
+                                <span class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+                            </span>
+                        </span>
+                    </span>
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>-->
+<!--<div class="container">
+
+    <h2>Portfolio</h2>
+
+    <ul class="nav nav-pills sort-source" data-sort-id="portfolio" data-option-key="filter" data-plugin-options='{"layoutMode": "fitRows", "filter": "*"}'>
+        <li data-option-value="*" class="active"><a href="#">Show All</a></li>
+        <li data-option-value=".websites"><a href="#">Websites</a></li>
+        <li data-option-value=".logos"><a href="#">Logos</a></li>
+        <li data-option-value=".brands"><a href="#">Brands</a></li>
+        <li data-option-value=".medias"><a href="#">Medias</a></li>
+    </ul>
+
+    <hr>
+
+    <div class="row">
+
+        <div class="sort-destination-loader sort-destination-loader-showing">
+            <ul *ngIf="groups" class="portfolio-list sort-destination" data-sort-id="portfolio">
+                <li *ngFor="let group of groups" class="col-md-3 col-sm-6 col-xs-12 isotope-item brands">
+                    <div class="portfolio-item">
+                        <a href="portfolio-single-small-slider.html">
+                            <span class="thumb-info thumb-info-lighten">
+                                <span class="thumb-info-wrapper">
+                                    <img [src]="group.icon" class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner">{{group.title}}</span>
+                                        <span class="thumb-info-type">{{group.group_category.name}}</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>-->
+<div class="container">
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <aside class="sidebar">
+            
+                <!--<form>
+                    <div class="input-group input-group-lg">
+                        <input class="form-control" placeholder="Search..." name="s" id="s" type="text">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary btn-lg"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </form>-->
+
+            
+            
+                <h4 class="heading-primary">社群分類</h4>
+                <ul class="nav nav-list mb-xlg">
+                    <li (click)="onAll()"><a [style.color]="category_id? '#3e433e': '#ea5514'" style="cursor: pointer">全部</a></li>
+                    <li *ngFor="let category of categories" (click)="onCategory(category)"><a  [style.color]="category_id!=category.id? '#3e433e': '#ea5514'" style="cursor: pointer">{{category.name}}</a></li>
+                </ul>
+            
+            
+                
+            </aside>
+        </div>
+        <div class="col-md-9">
+                
+            <div class="group-aside">
+
+			    <h2 style="margin-left: 10px;float: left;">创业社群</h2>
+                <button type="submit" class="btn btn-primary btn-h-large" (click)="createGroup()">我要登記我的創業社群</button>
+            </div>
+		    <hr>
+            <ul *ngIf="groups" class="portfolio-list sort-destination" data-sort-id="portfolio" style="margin-top: 40px">
+                <li *ngFor="let group of groups" class="col-md-4 isotope-item brands">
+                    <div class="portfolio-item">
+                        <a (click)="openGroupDetailModal(group)">
+                            <span class="thumb-info thumb-info-lighten">
+                                <span class="thumb-info-wrapper">
+                                    <img [src]="group.icon" class="img-responsive" alt="">
+                                    <span class="thumb-info-title">
+                                        <span class="thumb-info-inner">{{group.title}}</span>
+                                        <span class="thumb-info-type">{{group.group_category.name}}</span>
+                                    </span>
+                                    <span class="thumb-info-action">
+                                        <span class="thumb-info-action-icon"><i class="fa fa-link"></i></span>
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+
+            <div *ngIf="groups" class="products-list-footer">
+                <hr>
+                <div class="products-pages-container">
+                    <a (click)="onPreviousPage()"> 上一頁 </a>| 
+                    <span style="padding: 0 10px 0 10px;">第 {{current_page}}  頁，共 {{pages}} 頁</span>|
+                    <a (click)="onNextPage()"> 下一頁 </a>
+                </div>  
+            </div>
+        </div>
+    </div>
+
 </div>
 <span defaultOverlayTarget></span>
 <!-- Trigger/Open The Modal -->
 
 <!-- The Modal -->
 <div id="groupDetailModal" class="group-modal">
-
+    
   <!-- Modal content -->
   <div *ngIf="selectedGroup" class="group-modal-content">
     <span class="close" (click)="closeGroupDetailModal()">&times;</span>
-    <div class="activity-item">
-        <div class="item-activity-details">
-            <div class="activity">
-                <div class="item-activity-details-title">
-                    {{selectedGroup.title}}
+    <div class="activity-item" style="margin-top: 20px;">
+        <div class="container" style="width: 100%;">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <aside class="sidebar">
+                
+                    <div class="item-activity-details">
+                        <div class="activity">
+                            <div class="item-activity-details-title">
+                                {{selectedGroup.title}}
+                            </div>
+                            <div class="item-activity-details-name">
+                                社群類型：
+                            </div>
+                            <div class="item-activity-details-form">
+                                {{selectedGroup.group_category.name}}
+                            </div>
+                            <div class="item-activity-details-name">
+                                社群介紹：
+                            </div>
+                            <div class="item-activity-details-form">
+                                {{selectedGroup.description}}
+                            </div>
+                            <div class="item-activity-details-name">
+                                社群加入規章：
+                            </div>
+                            <div class="item-activity-details-form">
+                                {{selectedGroup.regulation}}
+                            </div>
+                            <div class="item-activity-details-name">
+                                社群聯繫方式：
+                            </div>
+                            <div class="item-activity-details-form">
+                                {{selectedGroup.contact}}
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                
+                
+                    
+                </aside>
+            </div>
+            <div class="col-md-5">
+                <div class="image-upload">
+                    <img [src]="selectedGroup.icon"/>
                 </div>
-                <div class="item-activity-details-name">
-                    社群類型：
+                <div class="image-upload-note">
+                    <div class="item-activity-details-name">
+                        群主題圖片或Logo
+                    </div>
                 </div>
-                <div class="item-activity-details-form">
-                    {{selectedGroup.group_category.name}}
+                <div class="image-upload">
+                    <img [src]="selectedGroup.qr_code"/>
                 </div>
-                <div class="item-activity-details-name">
-                    社群介紹：
+                <div class="image-upload-note">
+                    <div class="item-activity-details-name">
+                        二維碼
+                    </div>
                 </div>
-                <div class="item-activity-details-form">
-                    {{selectedGroup.description}}
-                </div>
-                <div class="item-activity-details-name">
-                    社群加入規章：
-                </div>
-                <div class="item-activity-details-form">
-                    {{selectedGroup.regulation}}
-                </div>
-                <div class="item-activity-details-name">
-                    社群聯繫方式：
-                </div>
-                <div class="item-activity-details-form">
-                    {{selectedGroup.contact}}
-                </div>
-                <div class="clearfix"></div>
             </div>
         </div>
-        <div class="image-upload">
-            <img [src]="selectedGroup.icon"/>
-        </div>
-        <div class="image-upload-note">
-            <div class="item-activity-details-name">
-                群主題圖片或Logo
-            </div>
-        </div>
-        <div class="image-upload">
-            <img [src]="selectedGroup.qr_code"/>
-        </div>
-        <div class="image-upload-note">
-            <div class="item-activity-details-name">
-                二維碼
-            </div>
         </div>
     </div>
   </div>

@@ -2,17 +2,11 @@
     <div class="activity-category-group">
         <div class="header">活動分類:</div>
         <ul>
-            <li><a href=""><span class="all">全部</span></a></li>
-            <li><a href="">投融資</a></li>
-            <li><a href="">創業交流</a></li>
-            <li><a href="">路演活動</a></li>
-            <li><a href="">創業培訓</a></li>
-            <li><a href="">企業發佈會</a></li>
-            <li><a href="">創客空間</a></li>
-            <li><a href="">找合夥人</a></li>
+            <li (click)="onAll()"><a  [style.color]="category_id? '#3e433e': '#ea5514'" style="cursor: pointer">全部</a></li>
+            <li *ngFor="let category of categories" (click)="onCategory(category)"><a [style.color]="category_id!=category.id? '#3e433e': '#ea5514'">{{category.name}}</a></li>
         </ul>
     </div>
-    <div class="activity-category-group">
+    <!--<div class="activity-category-group">
         <div class="header">活動地點:</div>
         <ul>
             <li><a href=""><span class="all">全部</span></a></li>
@@ -51,9 +45,9 @@
             <li><a href="">半年內</a></li>	
             <li><a href="">其他</a></li>			
         </ul>
-    </div>
+    </div>-->
 </div>
-<div *ngIf="events" class="activity-list" style="margin-top:40px">
+<div *ngIf="events" class="activity-list" style="margin-top:40px;min-height: 500px">
     <div class="activity-item card" (click)='gotoDetail(product)' *ngFor="let event of events">
         <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
         <div class="item-activity-image">
@@ -71,5 +65,14 @@
                 <div class="clearfix"></div>
             </div>
         </div>
+    </div>
+
+    <div *ngIf="events" class="products-list-footer">
+        <hr>
+        <div class="products-pages-container">
+            <a (click)="onPreviousPage()"> 上一頁 </a>| 
+            <span style="padding: 0 10px 0 10px;">第 {{current_page}}  頁，共 {{pages}} 頁</span>|
+            <a (click)="onNextPage()"> 下一頁 </a>
+        </div>  
     </div>
 </div>

@@ -14,6 +14,7 @@ import { GroupService } from '../service/group.service';
 import { Service } from '../model/service';
 import { Article } from '../model/article';
 import { Event } from '../model/event';
+import { Group } from '../model/group';
 import { Category, SubCategory } from '../model/category';
 import { KSSwiperContainer, KSSwiperSlide} from 'angular2-swiper';
 
@@ -43,6 +44,7 @@ export class HomeComponent {
   eventsSchedule: any [];
   articles: any [];
   groups: any [];
+  selectedGroup:Group;
   resources: any[];
   dialogVisible: boolean = false;
   event: MyEvent;
@@ -107,11 +109,11 @@ export class HomeComponent {
             "end": "2016-09-13"
         }
     ];
-    this.eventService.getEvents().then(events => {
-      this.events = events;
+    this.eventService.getEvents(null,null).then(response => {
+      this.events = this.eventService.mapJSONToEvents(response.json().response);
     })
-    this.articleService.getArticles().then(articles => {
-      this.articles = articles;
+    this.articleService.getArticles(null,null).then(response => {
+      this.articles = this.articleService.mapJSONToArticles(response.json().response);
     })
 
     // this.serviceService.getServiceCategories().then(categories => {
@@ -122,8 +124,8 @@ export class HomeComponent {
     //   this.hottestServices = services;
     // })
 
-    this.groupService.getGroups().then(groups => {
-      this.groups = groups;
+    this.groupService.getGroups(null, null).then(response => {
+      this.groups = this.groupService.mapJSONToGroups(response.json().response);
     })
   }
 
@@ -152,6 +154,17 @@ export class HomeComponent {
       this.event.start = start.format();
       this.event.allDay = e.calEvent.allDay;
       this.dialogVisible = true;
+  }
+
+  openGroupDetailModal(group){
+    this.selectedGroup = group;
+    var modal = document.getElementById('groupDetailModal');
+    modal.style.display = "block";
+  }
+
+  closeGroupDetailModal(){
+    var modal = document.getElementById('groupDetailModal');
+    modal.style.display = "none";
   }
 
   gotoArticleDetail(article:Article){
