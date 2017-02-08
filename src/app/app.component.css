@@ -271,6 +271,18 @@ html, body{
     background: #ea5514 !important;
 }
 
+.ui-datepicker-calendar{
+    width: 100% !important;
+}
+
+.ui-datepicker-header{
+    background: #ea5514 !important;
+}
+
+.ui-datepicker-title{
+    color:black !important;
+}
+
 .fc-event{
 	border: 1px solid #ea5514 !important;
     background-color: #ea5514 !important;

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import { Overlay, overlayConfigFactory } from 'angular2-modal';
+import { EventCreateModalContext, EventCreateModal } from '../components/modal/event-create-modal';
 import { EventService } from '../service/event.service';
 import { Event } from '../model/event';
 import { EventCategory } from '../model/category';
@@ -20,7 +23,7 @@ export class ActivityComponent implements OnInit {
   pages:number = 1;
 
   constructor(
-    private router: Router,
+    private router: Router, public modal: Modal,
     private eventService:EventService
     ) {}
 
@@ -48,6 +51,10 @@ export class ActivityComponent implements OnInit {
       })
 
     });
+  }
+
+  createEvent(){
+    return this.modal.open(EventCreateModal,  overlayConfigFactory({ num1: 2, num2: 3, categories:this.categories }, BSModalContext));
   }
 
   onPreviousPage(){

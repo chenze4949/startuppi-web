@@ -11,11 +11,24 @@ import { EventCategory } from '../model/category';
 @Injectable()
 
 export class EventService {
+    private hottestEventsUrl = Globals.host + '/events/get_hottest_events';  // URL to web api
     private eventsUrl = Globals.host + '/events';  // URL to web api
     private eventCategoriesUrl = Globals.host + '/event_categories';  // URL to web api
 
     constructor(private http:Http) {
         
+    }
+
+
+
+    getHottestEvents(): Promise<any> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    
+    return this.http.get(this.hottestEventsUrl,{headers: headers})
+                .toPromise()
+                .then(response => response)
+                .catch(this.handleError);
     }
 
     getEvents(category_id:number, current_page:number): Promise<any> {
@@ -40,6 +53,21 @@ export class EventService {
                 .then(response => this.mapJSONToEventCategories(response.json().response))
                 .catch(this.handleError);
     }
+
+    createEvent(title:string,introduction:string,start_time:Date,end_time:Date,address:string,detail:string,event_category_id:number): Promise<Event>{
+    let creds = JSON.stringify({title:title,introduction:introduction,start_time:start_time,end_time:end_time,
+        address:address,detail:detail,event_category_id:event_category_id});
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('uid', localStorage.getItem('sp_uid'));
+    headers.append('client', localStorage.getItem('sp_client'));
+    headers.append('access-token', localStorage.getItem('sp_access-token'));
+    console.log(creds);
+    return this.http.post(this.eventsUrl, creds, {headers:headers})
+               .toPromise()
+               .then(response => this.mapJSONToEvent(response.json().response))
+               .catch(this.handleError);
+  }
 
     mapJSONToEvents(data):Event[]{
         let events = new Array<Event>();

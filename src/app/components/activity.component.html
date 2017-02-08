@@ -47,6 +47,9 @@
         </ul>
     </div>-->
 </div>
+<div class="activity-aside">
+    <button type="submit" class="btn btn-primary btn-h-large" (click)="createEvent()">我要登記我的活動</button>
+</div>
 <div *ngIf="events" class="activity-list" style="margin-top:40px;min-height: 500px">
     <div class="activity-item card" (click)='gotoDetail(product)' *ngFor="let event of events">
         <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
@@ -76,3 +79,4 @@
         </div>  
     </div>
 </div>
+<span defaultOverlayTarget></span>

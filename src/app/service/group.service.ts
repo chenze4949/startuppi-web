@@ -11,11 +11,23 @@ import { GroupCategory } from '../model/category';
 @Injectable()
 
 export class GroupService {
+    private hottestGroupsUrl = Globals.host + '/groups/get_hottest_groups';  // URL to web api
     private groupsUrl = Globals.host + '/groups';  // URL to web api
     private groupCategoriesUrl = Globals.host + '/group_categories';  // URL to web api
 
     constructor(private http:Http) {
         
+    }
+
+
+    getHottestGroups(): Promise<any> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    
+    return this.http.get(this.hottestGroupsUrl,{headers: headers})
+                .toPromise()
+                .then(response => response)
+                .catch(this.handleError);
     }
 
     getGroups(category_id:number,current_page:number): Promise<any> {

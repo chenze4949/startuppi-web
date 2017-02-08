@@ -66,10 +66,12 @@ import { DataListModule } from 'primeng/primeng';
 import { RadioButtonModule } from 'primeng/primeng';
 import { TabViewModule } from 'primeng/primeng';
 import { CheckboxModule } from 'primeng/primeng';
+import { CalendarModule } from 'primeng/primeng';
 import { ModalModule } from 'angular2-modal';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { GroupModal } from './components/modal/group-modal';
 import { GroupCreateModal } from './components/modal/group-create-modal';
+import { EventCreateModal } from './components/modal/event-create-modal';
 import { FileUploadModule } from 'ng2-file-upload';
 import { MdTabsModule } from '@angular2-material/tabs';
 import { BootstrapModalModule } from 'angular2-modal/plugins/bootstrap/index';
@@ -128,6 +130,7 @@ type StoreType = {
     MessageComponent,
     GroupModal,
     GroupCreateModal,
+    EventCreateModal,
     PrivacyComponent,
     ContactComponent,
     TermsComponent,
@@ -151,13 +154,14 @@ type StoreType = {
     FileUploadModule,
     DataTableModule,
     CheckboxModule,
+    CalendarModule,
     DropdownModule,
     ButtonsModule,
     CustomFormsModule,
     BusyModule,
     KSSwiperModule
   ],
-  entryComponents:[GroupCreateModal],
+  entryComponents:[GroupCreateModal,EventCreateModal],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
     APP_PROVIDERS,

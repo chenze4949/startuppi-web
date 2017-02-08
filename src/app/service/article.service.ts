@@ -12,12 +12,23 @@ import { ArticleCategory } from '../model/category';
 @Injectable()
 
 export class ArticleService {
+    private hottestArticlesUrl = Globals.host + '/articles/get_hottest_article';  // URL to web api
     private articlesUrl = Globals.host + '/articles/';  // URL to web api
     private articleCategoriesUrl = Globals.host + '/article_categories';  // URL to web api
     private postCommentUrl = Globals.host + '/articles/comment';  // URL to web api
 
     constructor(private http:Http) {
         
+    }
+
+    getHottestArticles(): Promise<any> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    
+    return this.http.get(this.hottestArticlesUrl,{headers: headers})
+                .toPromise()
+                .then(response => response)
+                .catch(this.handleError);
     }
 
     getArticles(category_id:number, current_page:number): Promise<any> {

@@ -109,10 +109,10 @@ export class HomeComponent {
             "end": "2016-09-13"
         }
     ];
-    this.eventService.getEvents(null,null).then(response => {
+    this.eventService.getHottestEvents().then(response => {
       this.events = this.eventService.mapJSONToEvents(response.json().response);
     })
-    this.articleService.getArticles(null,null).then(response => {
+    this.articleService.getHottestArticles().then(response => {
       this.articles = this.articleService.mapJSONToArticles(response.json().response);
     })
 
@@ -124,7 +124,7 @@ export class HomeComponent {
     //   this.hottestServices = services;
     // })
 
-    this.groupService.getGroups(null, null).then(response => {
+    this.groupService.getHottestGroups().then(response => {
       this.groups = this.groupService.mapJSONToGroups(response.json().response);
     })
   }

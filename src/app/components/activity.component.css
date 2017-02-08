@@ -1,4 +1,5 @@
 .activity-category-container{
+    float: left;
 	width: 70%;
 	height: 50px;
 	border-width: 1px;
@@ -46,6 +47,22 @@
 
 .activity-category-group a:hover{
     color: orange;
+}
+
+.activity-aside{
+    float: right;
+    width: 30%;
+    height: 50px;
+}
+.activity-aside .btn-primary {
+    float: right;
+    background: #ea5514;
+    border-color: #ea5514;
+    color: #fff;
+    width: 200px;
+    font-family: 'Open Sans', sans-serif;
+	font-size: 16px;
+    margin-top: 6px;
 }
 
 
