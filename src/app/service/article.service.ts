@@ -111,7 +111,7 @@ export class ArticleService {
         article.publish_date = new Date(data.publish_date);
         article.publish_date_str = this.convertZHDate(article.publish_date) + " " + article.publish_date.toTimeString().split(' ')[0];
         article.month = this.getMonth(article.publish_date)
-        article.day = article.publish_date.getDay().toString()
+        article.day = article.publish_date.getDate().toString()
         article.content = data.content;
         article.comments = this.mapJSONToComments(data.comments);
         article.relative_articles = this.mapJSONToArticles(data.relative_articles);

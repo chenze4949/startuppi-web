@@ -10,6 +10,7 @@ export class Event {
     detail:string;
     start:Date;
     end:Date;
+    date_str:string;
     icon:string;
     currency:string;
 }

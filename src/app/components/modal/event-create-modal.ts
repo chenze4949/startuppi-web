@@ -341,13 +341,21 @@ export class EventCreateModal implements CloseGuard, ModalComponent<EventCreateM
 
   apiEndPoint = 'https://startuppi.herokuapp.com/api/v1/events/';
   createGroup(){
-    this.evenntService.createEvent(this.title,this.introduction,this.start_time,this.end_time,this.address,this.detail,this.selectedCategory.id).then(event => { 
-        this.uploadService.makeFileRequest(this.apiEndPoint+event.id,"icon",this.file).subscribe(() => {
-            console.log('sent');
-            this.wrongAnswer = 5 != 5;
-            this.dialog.close();
-        });
-    })
+      if (this.title && this.title.length > 0 &&
+        this.introduction && this.introduction.length > 0 &&
+        this.address && this.address.length > 0 &&
+        this.detail && this.detail.length > 0 &&
+        this.start_time && this.end_time && this.selectedCategory){
+            this.evenntService.createEvent(this.title,this.introduction,this.start_time,this.end_time,this.address,this.detail,this.selectedCategory.id).then(event => { 
+                this.uploadService.makeFileRequest(this.apiEndPoint+event.id,"event[icon]",this.file).subscribe(() => {
+                    console.log('sent');
+                    this.wrongAnswer = 5 != 5;
+                    this.dialog.close();
+                });
+            })
+
+        }
+    
   }
 
   onKeyUp(value) {

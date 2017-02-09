@@ -56,7 +56,7 @@ export class EventService {
 
     createEvent(title:string,introduction:string,start_time:Date,end_time:Date,address:string,detail:string,event_category_id:number): Promise<Event>{
     let creds = JSON.stringify({title:title,introduction:introduction,start_time:start_time,end_time:end_time,
-        address:address,detail:detail,event_category_id:event_category_id});
+        address:address,detail:detail,event_category_id:event_category_id, currency:'HKD'});
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('uid', localStorage.getItem('sp_uid'));
@@ -88,6 +88,8 @@ export class EventService {
         event.detail = data.detail;
         event.start = new Date(data.start_time);
         event.end = new Date(data.end_time);
+        event.date_str = this.convertZHDate(event.start) +  " 至 " + 
+            this.convertZHDate(event.end);
         event.currency = data.currency;
         event.icon = data.icon;
         return event;
@@ -108,6 +110,17 @@ export class EventService {
         category.name = data.name;
         
         return category;
+    }
+
+    convertZHDate(date) {
+        var yyyy = date.getFullYear().toString();
+        var mm = (date.getMonth()+1).toString();
+        var dd  = date.getDate().toString();
+
+        var mmChars = mm.split('');
+        var ddChars = dd.split('');
+
+        return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
     }
 
 
