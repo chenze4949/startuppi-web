@@ -5,6 +5,7 @@ import { Article } from '../model/article';
 import { ArticleCategory } from '../model/category';
 import { User } from '../model/user';
 import { Auth } from '../service/auth.service';
+import $ = require("jquery");
 
 @Component({
   selector: 'sp-news-detail',
@@ -31,7 +32,21 @@ export class NewsDetailComponent implements OnInit {
   ngOnInit() {
     this.activcatedRouter.params
     .switchMap((params: Params) => this.articleService.getArticleDetail(+params['id']))
-    .subscribe(article => this.article = article);
+    .subscribe(article => {
+      this.article = article;
+      console.log('preparing to load...')
+      let node = document.createElement('script');
+      node.src = '/assets/social-share.min.js';
+      node.type = 'text/javascript';
+      node.async = true;
+      node.charset = 'utf-8';
+      document.getElementsByTagName('head')[0].appendChild(node);
+      
+    });
+
+
+    
+    
   }
 
   postComment(){
