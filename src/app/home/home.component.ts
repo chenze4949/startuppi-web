@@ -42,6 +42,7 @@ export class HomeComponent {
 
   events: any [];
   eventsSchedule: any [];
+  selectedActivity:Event;
   articles: any [];
   groups: any [];
   selectedGroup:Group;
@@ -136,24 +137,7 @@ export class HomeComponent {
   }
 
   handleEventClick(e) {
-      this.event = new MyEvent();
-      this.event.title = e.calEvent.title;
-      
-      let start = e.calEvent.start;
-      let end = e.calEvent.end;
-      if(e.view.name === 'month') {
-          start.stripTime();
-      }
-      
-      if(end) {
-          end.stripTime();
-          this.event.end = end.format();
-      }
-
-      this.event.id = e.calEvent.id;
-      this.event.start = start.format();
-      this.event.allDay = e.calEvent.allDay;
-      this.dialogVisible = true;
+      this.openActivityDetailModal(e.calEvent);
   }
 
   openGroupDetailModal(group){
@@ -164,6 +148,17 @@ export class HomeComponent {
 
   closeGroupDetailModal(){
     var modal = document.getElementById('groupDetailModal');
+    modal.style.display = "none";
+  }
+
+  openActivityDetailModal(activity){
+    this.selectedActivity = activity;
+    var modal = document.getElementById('activityDetailModal');
+    modal.style.display = "block";
+  }
+
+  closeActivityDetailModal(){
+    var modal = document.getElementById('activityDetailModal');
     modal.style.display = "none";
   }
 

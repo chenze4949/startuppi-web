@@ -15,6 +15,7 @@ import { EventCategory } from '../model/category';
 export class ActivityComponent implements OnInit {
   categories:EventCategory[];
   events:Event[];
+  selectedActivity:Event;
 
   private sub: any;
   category_id:number;
@@ -55,6 +56,18 @@ export class ActivityComponent implements OnInit {
 
   createEvent(){
     return this.modal.open(EventCreateModal,  overlayConfigFactory({ num1: 2, num2: 3, categories:this.categories }, BSModalContext));
+  }
+
+
+  openActivityDetailModal(activity){
+    this.selectedActivity = activity;
+    var modal = document.getElementById('activityDetailModal');
+    modal.style.display = "block";
+  }
+
+  closeActivityDetailModal(){
+    var modal = document.getElementById('activityDetailModal');
+    modal.style.display = "none";
   }
 
   onPreviousPage(){

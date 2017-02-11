@@ -288,6 +288,10 @@ html, body{
     background-color: #ea5514 !important;
 }
 
+.fc-other-month{
+    color: lightgray !important;
+}
+
 .fc-left{
     color: white !important;
 }

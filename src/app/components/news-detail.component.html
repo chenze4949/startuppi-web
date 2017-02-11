@@ -61,8 +61,7 @@
                             <span><i class="fa fa-comments"></i> <a href="#">{{article.comments.length}} 評論</a></span>
                         </div>
 
-                        <p>{{article.content}}</p>
-
+                        <div [innerHTML]="article.content"></div>
 
                         <div class="post-block post-share">
                             <!--<a href="#" class="fa fa-facebook"></a>

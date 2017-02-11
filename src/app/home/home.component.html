@@ -75,7 +75,7 @@
     </div>
 </header>
 <div *ngIf="events" class="activity-list" style="margin:40px 0">
-    <div class="activity-item card" (click)='gotoDetail(product)' *ngFor="let event of events">
+    <div class="activity-item card" (click)='openActivityDetailModal(event)' *ngFor="let event of events">
         <!--<a class="cbp-vm-image" [routerLink]="['/products/1']" routerLinkActive="active">-->
         <div class="item-activity-image">
             <img [src]="event.icon" style="max-width: 100%; max-height: 100%;" alt=""/>
@@ -199,6 +199,74 @@
                     </div>
                 </div>
             </div>
+        </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- The Modal -->
+<div id="activityDetailModal" class="activity-modal">
+    
+  <!-- Modal content -->
+  <div *ngIf="selectedActivity" class="activity-modal-content">
+    <span class="close" (click)="closeActivityDetailModal()">&times;</span>
+    <div style="margin-top: 20px;">
+        <div class="container" style="width: 100%;">
+
+        <div class="row">
+
+            <div class="col-md-12">
+                <aside class="sidebar">
+                
+                    <div class="item-activity-details" style="width: 100%">
+                        <div class="activity">
+                            <div class="item-activity-details-title">
+                                {{selectedActivity.title}}
+                            </div>
+                            <!--<div class="item-activity-details-name">
+                                社群類型：
+                            </div>
+                            <div class="item-activity-details-form">
+                                {{selectedActivity.title}}
+                            </div>-->
+                            <div class="item-activity-details-name">
+                                活动简介：
+                            </div>
+                            <div class="item-activity-details-form">
+                                {{selectedActivity.introduction}}
+                            </div>
+                            <div class="item-activity-details-name">
+                                活動時間
+                            </div>
+                            <div class="item-activity-details-form">
+                                {{selectedActivity.date_str}}
+                            </div>
+                            <div class="item-activity-details-name">
+                                活動地點
+                            </div>
+                            <div class="item-activity-details-form">
+                                {{selectedActivity.address}}
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                
+                
+                    
+                </aside>
+            </div>
+            <!--<div class="col-md-5">
+                <div class="image-upload">
+                    <img [src]="selectedActivity.icon"/>
+                </div>
+                <div class="image-upload-note">
+                    <div class="item-activity-details-name">
+                        活动图片
+                    </div>
+                </div>
+            </div>-->
         </div>
         </div>
     </div>
