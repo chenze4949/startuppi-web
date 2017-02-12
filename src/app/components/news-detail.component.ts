@@ -26,7 +26,7 @@ export class NewsDetailComponent implements OnInit {
       this._auth = _auth;
       this._auth.currentUser().then(user => {
         this.user = user;
-      })
+      }).catch(error =>{})
     }
 
   ngOnInit() {
