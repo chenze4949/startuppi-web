@@ -245,7 +245,14 @@ export class GroupCreateModalContext extends BSModalContext {
                 <button type="submit" class="btn btn-primary btn-h-large" (click)="createGroup()">發佈</button>
                 <button type="submit" class="btn btn-primary btn-h-large" (click)="onKeyUp(5)">取消</button>
             </div>
-        </div>`
+        </div>
+        <kendo-dialog [title]="alertTitle" *ngIf="opened" (close)="closeDialog()">
+            <p>{{ alertDetail }}</p>
+
+            <kendo-dialog-actions>
+                <button kendoButton (click)="closeDialog()" [primary]="true">好</button>
+            </kendo-dialog-actions>
+        </kendo-dialog>`
 })
 export class GroupCreateModal implements CloseGuard, ModalComponent<GroupCreateModalContext> {
   context: GroupCreateModalContext;
@@ -340,16 +347,25 @@ export class GroupCreateModal implements CloseGuard, ModalComponent<GroupCreateM
   }
   apiEndPoint = 'https://startuppi.herokuapp.com/api/v1/groups/';
   createGroup(){
-    this.groupService.createGroup(this.title,'',this.description,this.regulation,this.contact,this.selectedCategory.id).then(group => { 
-        this.uploadService.makeFileRequest(this.apiEndPoint+group.id,"icon",this.file).subscribe(() => {
-            console.log('sent');
-            this.uploadService.makeFileRequest(this.apiEndPoint+group.id,"qr_code",this.file2).subscribe(() => {
+    if (this.title && this.title.length > 0 &&
+        this.description && this.description.length > 0 &&
+        this.regulation && this.regulation.length > 0 &&
+        this.selectedCategory && this.file && this.file2){
+        this.groupService.createGroup(this.title,'',this.description,this.regulation,this.contact,this.selectedCategory.id).then(group => { 
+            this.uploadService.makeFileRequest(this.apiEndPoint+group.id,"icon",this.file).subscribe(() => {
                 console.log('sent');
-                this.wrongAnswer = 5 != 5;
-                this.dialog.close();
+                this.uploadService.makeFileRequest(this.apiEndPoint+group.id,"qr_code",this.file2).subscribe(() => {
+                    console.log('sent');
+                    this.wrongAnswer = 5 != 5;
+                    this.dialog.close();
+                });
             });
-        });
-    })
+        })
+
+    }else{
+        this.open()
+    }
+    
   }
 
   onKeyUp(value) {
@@ -367,5 +383,21 @@ export class GroupCreateModal implements CloseGuard, ModalComponent<GroupCreateM
 
   beforeClose(): boolean {
     return this.wrongAnswer;
+  }
+
+  alertTitle = "信息不完整！";
+  alertDetail = "請填寫完整活動信息。";
+
+  public opened: boolean = false;
+
+
+  public closeDialog() {
+    this.opened = false;
+  }
+
+  public open() {
+    
+    this.opened = true;
+
   }
 }

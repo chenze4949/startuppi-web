@@ -12,6 +12,9 @@ export class LoginComponent implements OnInit {
   email:string = "";
   pwd:string = "";
 
+  alertTitle = "登錄失敗！";
+  alertDetail = "無效郵箱或者密碼！";
+
   constructor(
     private router: Router,
     @Inject(Auth) _auth
@@ -27,7 +30,20 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/'],{queryParams:{}});
     }).catch(error => {
       console.log(error);
+      this.open();
     })
   }
 
+  public opened: boolean = false;
+
+
+  public close() {
+    this.opened = false;
+  }
+
+  public open() {
+    
+    this.opened = true;
+
+  }
 }

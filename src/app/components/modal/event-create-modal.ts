@@ -247,7 +247,16 @@ export class EventCreateModalContext extends BSModalContext {
                 <button type="submit" class="btn btn-primary btn-h-large" (click)="createGroup()">發佈</button>
                 <button type="submit" class="btn btn-primary btn-h-large" (click)="onKeyUp(5)">取消</button>
             </div>
-        </div>`
+        </div>
+        
+
+        <kendo-dialog [title]="alertTitle" *ngIf="opened" (close)="closeDialog()">
+            <p>{{ alertDetail }}</p>
+
+            <kendo-dialog-actions>
+                <button kendoButton (click)="closeDialog()" [primary]="true">好</button>
+            </kendo-dialog-actions>
+        </kendo-dialog>`
 })
 export class EventCreateModal implements CloseGuard, ModalComponent<EventCreateModalContext> {
   context: EventCreateModalContext;
@@ -345,7 +354,7 @@ export class EventCreateModal implements CloseGuard, ModalComponent<EventCreateM
         this.introduction && this.introduction.length > 0 &&
         this.address && this.address.length > 0 &&
         this.detail && this.detail.length > 0 &&
-        this.start_time && this.end_time && this.selectedCategory){
+        this.start_time && this.end_time && this.selectedCategory && this.file){
             this.evenntService.createEvent(this.title,this.introduction,this.start_time,this.end_time,this.address,this.detail,this.selectedCategory.id).then(event => { 
                 this.uploadService.makeFileRequest(this.apiEndPoint+event.id,"event[icon]",this.file).subscribe(() => {
                     console.log('sent');
@@ -354,6 +363,8 @@ export class EventCreateModal implements CloseGuard, ModalComponent<EventCreateM
                 });
             })
 
+        }else{
+            this.open()
         }
     
   }
@@ -373,5 +384,22 @@ export class EventCreateModal implements CloseGuard, ModalComponent<EventCreateM
 
   beforeClose(): boolean {
     return this.wrongAnswer;
+  }
+
+
+  alertTitle = "信息不完整！";
+  alertDetail = "請填寫完整活動信息。";
+
+  public opened: boolean = false;
+
+
+  public closeDialog() {
+    this.opened = false;
+  }
+
+  public open() {
+    
+    this.opened = true;
+
   }
 }

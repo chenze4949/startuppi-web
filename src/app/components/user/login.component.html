@@ -36,3 +36,11 @@
     </div>
     <!-- / layout-inner -->
 </main>
+
+<kendo-dialog [title]="alertTitle" *ngIf="opened" (close)="close()">
+    <p>{{ alertDetail }}</p>
+
+    <kendo-dialog-actions>
+        <button kendoButton (click)="close()" [primary]="true">好</button>
+    </kendo-dialog-actions>
+</kendo-dialog>

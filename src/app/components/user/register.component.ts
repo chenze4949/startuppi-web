@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Auth } from '../../service/auth.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
+import $ = require("jquery");
 
 @Component({
   selector: 'sp-register',
@@ -25,8 +26,10 @@ export class RegisterComponent implements OnInit {
   password:string = "";
   name:string = "";
 
-  elertTitle = "";
-  elertDetail = "";
+  is_accepted = false;
+
+  alertTitle = "";
+  alertDetail = "";
 
   constructor(
     private router: Router,
@@ -46,15 +49,26 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    this.busy = this._auth.signUp(this.email, this.password, this.name).then( user => {
+    if($("#checkTermsAndPrivacy").prop('checked') == false){
+    //do something
+      this.alertTitle = "信息不完整！";
+      this.alertDetail = "請閱讀并同意私隱政策、法律聲明。";
+      this.open();
+    }else{
+      this.busy = this._auth.signUp(this.email, this.password, this.name).then( user => {
           this.busy = this._auth.signIn(this.email, this.password).then( user => {
                 this.router.navigate(['/'],{queryParams:{}});
           }).catch(error => {
             console.log(error);
           })
-    }).catch(error => {
-      console.log(error);
-    })
+      }).catch(error => {
+        console.log(error);
+        this.alertTitle = "注册失败！";
+        this.alertDetail = "该邮箱已被注册。";
+        this.open()
+      })
+    }
+    
     
   }
 
