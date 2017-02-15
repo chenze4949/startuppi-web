@@ -23,8 +23,11 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this._auth.currentUser().then(user => {
       this.user = user;
+    }).catch(error => {
+      this._auth.logout();
+      this.router.navigate(['/'],{queryParams:{}});
     })
-    this.src = this.domSanitizer.bypassSecurityTrustResourceUrl('https://blog.mozilla.org/security/files/2015/05/HTTPS-FAQ.pdf');
+    // this.src = this.domSanitizer.bypassSecurityTrustResourceUrl('https://blog.mozilla.org/security/files/2015/05/HTTPS-FAQ.pdf');
   }
 
 }

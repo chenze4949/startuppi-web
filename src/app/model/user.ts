@@ -4,6 +4,7 @@
 export class User {
     id:number;
     name:string;
+    nickname:string;
     email:string;
     currency:string;
     profile_image_url:string;

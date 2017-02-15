@@ -20,15 +20,15 @@
         <ul class="form_list">
             <li class="item">
                 <span class="tit">原密碼：</span>
-                <input id="passwordInput" type="password" class="W_input" value="" placeholder="请输入原密码">
+                <input [(ngModel)]="old_password" id="passwordInput" type="password" class="W_input" value="" placeholder="请输入原密码">
             </li>
             <li class="item">
                 <span class="tit">新密碼：</span>
-                <input id="passwordInput" type="password" class="W_input" value="" placeholder="请输入原密码">
+                <input [(ngModel)]="password" id="passwordInput" type="password" class="W_input" value="" placeholder="请输入原密码">
             </li>
             <li class="item">
                 <span class="tit">確認新密碼：</span>
-                <input id="passwordInput" type="password" class="W_input" value="" placeholder="请输入原密码">
+                <input [(ngModel)]="password_confirmation" id="passwordInput" type="password" class="W_input" value="" placeholder="请输入原密码">
             </li>
         </ul>        
         <ul class="quesa_mod S_line2">
@@ -37,7 +37,7 @@
                 <a href="https://security.weibo.com/iforgot/loginname?entry=weibo">找回密码 </a>的方式来完成修改密码！</li>
         </ul>
         <div class="form_btn S_line2">
-            <a id="subBtn" href="javascript:;" class="W_btn_a btn_34px">下一步</a>
+            <a (click)="update()" id="subBtn" class="W_btn_a btn_34px">下一步</a>
         </div>
 
     </div>

@@ -116,3 +116,31 @@ address, em, i, optgroup {
 .input-radio{
     float: left;
 }
+
+.image-upload{
+    margin-top:10px;
+}
+
+.image-upload img{
+    cursor: pointer;
+    object-fit: cover;
+    width: 90px;
+    height: 90px;
+    border-width: 1px;
+    border-color: #e8e8e8;
+    border-style: solid;
+}
+
+.image-upload > input
+{
+    display: none;
+}
+
+.image-upload-note{
+    margin-top:5px;
+    margin-bottom:20px;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-family: PingFang SC Bold;
+}

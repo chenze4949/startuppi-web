@@ -19,6 +19,8 @@ export class Auth {
     private signInUrl = Globals.host_v + '/auth/sign_in';  // URL to web api
     private signUpUrl = Globals.host_v + '/auth';  // URL to web api
     private currentUserUrl = Globals.host + "/users/get_current_user";
+    private updateUrl = Globals.host + '/users/update';  // URL to web api
+    private resetPasswordUrl = Globals.host + '/users/reset_password';  // URL to web api
 
     constructor(private http:Http) {
         this.logIn$.asObservable();
@@ -138,11 +140,44 @@ export class Auth {
         let user:User = new User();
         user.id = data.id;
         user.name = data.name;
+        user.nickname = data.nickname;
         user.email = data.email;
         user.currency = data.currency;
         user.profile_image_url = data.profile_image_url;
         user.user_type = data.user_type;
         return user;
+    }
+
+    update(user:User): Promise<boolean> {
+        let creds = JSON.stringify({ user: {name:user.name, email:user.email, nickname:user.nickname}});
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('uid', localStorage.getItem('sp_uid'));
+        headers.append('client', localStorage.getItem('sp_client'));
+        headers.append('access-token', localStorage.getItem('sp_access-token'));
+        console.log("sp_uid" + localStorage.getItem('sp_uid'));
+        console.log("sp_client" + localStorage.getItem('sp_client'));
+        console.log("sp_access-token" + localStorage.getItem('sp_access-token'));
+        return this.http.post(this.updateUrl,creds,{headers: headers})
+                    .toPromise()
+                    .then(response => true)
+                    .catch(this.handleError);
+    }
+    
+    resetPassword(old_password:string, password:string): Promise<boolean> {
+        let creds = JSON.stringify({ user: {old_password:old_password, password:password, password_confirmation:password}});
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('uid', localStorage.getItem('sp_uid'));
+        headers.append('client', localStorage.getItem('sp_client'));
+        headers.append('access-token', localStorage.getItem('sp_access-token'));
+        console.log("sp_uid" + localStorage.getItem('sp_uid'));
+        console.log("sp_client" + localStorage.getItem('sp_client'));
+        console.log("sp_access-token" + localStorage.getItem('sp_access-token'));
+        return this.http.post(this.resetPasswordUrl,creds,{headers: headers})
+                    .toPromise()
+                    .then(response => true)
+                    .catch(this.handleError);
     }
 
     extractCurrentUserData(res){
@@ -155,6 +190,7 @@ export class Auth {
         let user:User = new User();
         user.id = data.id;
         user.name = data.name;
+        user.nickname = data.nickname;
         user.email = data.email;
         user.currency = data.currency;
         user.profile_image_url = data.profile_image_url;

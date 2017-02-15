@@ -22,6 +22,7 @@ export class CenterComponent implements OnInit {
   ngOnInit() {
     this._auth.currentUser().then(user => {
       this.user = user;
+    }).catch(error => {
     })
   }
 
