@@ -38,7 +38,25 @@ export class SecurityComponent implements OnInit {
         this._auth.logout();
         this.router.navigate(['/'],{queryParams:{}});
       })
+    }else{
+      this.open()
     }
+  }
+
+  alertTitle = "信息不完整！";
+  alertDetail = "請填寫完整原密碼和新密碼。";
+
+  public opened: boolean = false;
+
+
+  public closeDialog() {
+    this.opened = false;
+  }
+
+  public open() {
+    
+    this.opened = true;
+
   }
 
 }

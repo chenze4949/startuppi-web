@@ -9,8 +9,7 @@
                 <li class="current">></li>
                 <li class="current">個人資料</li>
             </ol>
-            <span class="cart-tip">帮您完成商品管理，上传更便捷，更简单！
-                <!--<a href="//service.taobao.com/support/help-11746.htm?spm=a1z0d.1.0.0.ogEwpx" target="_blank" data-spm-anchor-id="a1z0d.1.0.0">如何使用购物车</a>-->
+            <span class="cart-tip">上传更便捷，更简单！
             </span>
         </div>
         <div class="W_tips tips_warn clearfix">
@@ -37,9 +36,17 @@
                 <a href="https://security.weibo.com/iforgot/loginname?entry=weibo">找回密码 </a>的方式来完成修改密码！</li>
         </ul>
         <div class="form_btn S_line2">
-            <a (click)="update()" id="subBtn" class="W_btn_a btn_34px">下一步</a>
+            <a (click)="update()" id="subBtn" class="W_btn_a btn_34px" style="cursor: pointer">下一步</a>
         </div>
 
     </div>
     <!-- / content-inner -->
 </div>
+
+<kendo-dialog [title]="alertTitle" *ngIf="opened" (close)="closeDialog()">
+    <p>{{ alertDetail }}</p>
+
+    <kendo-dialog-actions>
+        <button kendoButton (click)="close()" [primary]="true">好</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
