@@ -1,4 +1,4 @@
-import { Component,ViewChild } from '@angular/core';
+import { Component,ViewChild, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AppState } from '../app.service';
@@ -17,6 +17,7 @@ import { Event } from '../model/event';
 import { Group } from '../model/group';
 import { Category, SubCategory } from '../model/category';
 import { KSSwiperContainer, KSSwiperSlide} from 'angular2-swiper';
+import { Auth } from '../service/auth.service';
 
 @Component({
   // The selector is what angular internally uses
@@ -49,6 +50,10 @@ export class HomeComponent {
   resources: any[];
   dialogVisible: boolean = false;
   event: MyEvent;
+
+
+  _auth;
+
   // Set our default values
   localState = { value: '' };
   // TypeScript public modifiers
@@ -57,7 +62,9 @@ export class HomeComponent {
     private serviceService:ServiceService,
     private eventService:EventService,
     private articleService:ArticleService,
-    private groupService:GroupService) {
+    private groupService:GroupService,
+    @Inject(Auth) _auth) {
+      this._auth = _auth;
 
     for (let i = 0; i < 4; i++) {
       this.addSlide();
@@ -141,9 +148,13 @@ export class HomeComponent {
   }
 
   openGroupDetailModal(group){
-    this.selectedGroup = group;
-    var modal = document.getElementById('groupDetailModal');
-    modal.style.display = "block";
+    if (this._auth.isAuthenticated()){
+      this.selectedGroup = group;
+      var modal = document.getElementById('groupDetailModal');
+      modal.style.display = "block";
+    }else{
+      this.router.navigate(['/login'],{queryParams:{}});
+    }
   }
 
   closeGroupDetailModal(){

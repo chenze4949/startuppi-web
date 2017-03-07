@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, ViewEncapsulation, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
@@ -6,6 +6,7 @@ import { GroupCreateModalContext, GroupCreateModal } from '../components/modal/g
 import { GroupService } from '../service/group.service';
 import { Group } from '../model/group';
 import { GroupCategory } from '../model/category';
+import { Auth } from '../service/auth.service';
 
 @Component({
   selector: 'sp-group',
@@ -23,10 +24,15 @@ export class GroupComponent implements OnInit {
   current_page:number = 1;
   pages:number = 1;
 
+  _auth;
+
   constructor(
     private router: Router, public modal: Modal,
-    private groupService:GroupService
-    ) {}
+    private groupService:GroupService,
+    @Inject(Auth) _auth
+    ) {
+      this._auth = _auth;
+    }
 
   ngOnInit() {
     this.sub = this.router
@@ -58,13 +64,22 @@ export class GroupComponent implements OnInit {
 
   createGroup(){
     
-    return this.modal.open(GroupCreateModal,  overlayConfigFactory({ num1: 2, num2: 3, categories:this.categories }, BSModalContext));
+    if (this._auth.isAuthenticated()){
+      return this.modal.open(GroupCreateModal,  overlayConfigFactory({ num1: 2, num2: 3, categories:this.categories }, BSModalContext));
+  
+    }else{
+      this.router.navigate(['/login'],{queryParams:{}});
+    }
   }
 
   openGroupDetailModal(group){
-    this.selectedGroup = group;
-    var modal = document.getElementById('groupDetailModal');
-    modal.style.display = "block";
+    if (this._auth.isAuthenticated()){
+      this.selectedGroup = group;
+      var modal = document.getElementById('groupDetailModal');
+      modal.style.display = "block";
+    }else{
+      this.router.navigate(['/login'],{queryParams:{}});
+    }
   }
 
   closeGroupDetailModal(){

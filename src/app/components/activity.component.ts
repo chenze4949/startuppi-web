@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Modal, BSModalContext } from 'angular2-modal/plugins/bootstrap';
 import { Overlay, overlayConfigFactory } from 'angular2-modal';
@@ -6,6 +6,7 @@ import { EventCreateModalContext, EventCreateModal } from '../components/modal/e
 import { EventService } from '../service/event.service';
 import { Event } from '../model/event';
 import { EventCategory } from '../model/category';
+import { Auth } from '../service/auth.service';
 
 @Component({
   selector: 'sp-activity',
@@ -23,10 +24,16 @@ export class ActivityComponent implements OnInit {
   current_page:number = 1;
   pages:number = 1;
 
+  _auth;
+
   constructor(
     private router: Router, public modal: Modal,
-    private eventService:EventService
-    ) {}
+    private eventService:EventService,
+    @Inject(Auth) _auth
+    ) {
+      this._auth = _auth;
+
+    }
 
   ngOnInit() {
     this.sub = this.router
@@ -55,8 +62,14 @@ export class ActivityComponent implements OnInit {
   }
 
   createEvent(){
-    return this.modal.open(EventCreateModal,  overlayConfigFactory({ num1: 2, num2: 3, categories:this.categories }, BSModalContext));
-  }
+
+    if (this._auth.isAuthenticated()){
+      return this.modal.open(EventCreateModal,  overlayConfigFactory({ num1: 2, num2: 3, categories:this.categories }, BSModalContext));
+  
+    }else{
+      this.router.navigate(['/login'],{queryParams:{}});
+    }
+    }
 
 
   openActivityDetailModal(activity){
