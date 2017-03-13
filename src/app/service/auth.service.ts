@@ -21,6 +21,7 @@ export class Auth {
     private currentUserUrl = Globals.host + "/users/get_current_user";
     private updateUrl = Globals.host + '/users/update';  // URL to web api
     private resetPasswordUrl = Globals.host + '/users/reset_password';  // URL to web api
+    private createBusinessCooperatorUrl = Globals.host + '/business_cooperators';  // URL to web api
 
     constructor(private http:Http) {
         this.logIn$.asObservable();
@@ -175,6 +176,16 @@ export class Auth {
         console.log("sp_client" + localStorage.getItem('sp_client'));
         console.log("sp_access-token" + localStorage.getItem('sp_access-token'));
         return this.http.post(this.resetPasswordUrl,creds,{headers: headers})
+                    .toPromise()
+                    .then(response => true)
+                    .catch(this.handleError);
+    }
+
+    createBusinessCooperator(company_name:string, contact:string, message:string): Promise<boolean> {
+        let creds = JSON.stringify({ business_cooperator: {company_name:company_name, contact:contact, message:message}});
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.post(this.createBusinessCooperatorUrl,creds,{headers: headers})
                     .toPromise()
                     .then(response => true)
                     .catch(this.handleError);

@@ -29,9 +29,12 @@ export class AppComponent {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
-  _auth;
+  _auth:Auth;
   isLoggedIn:boolean;
 
+  company_name = '';
+  contact = '';
+  message = '';
 
   constructor(
     private slimLoader: SlimLoadingBarService,
@@ -80,6 +83,41 @@ export class AppComponent {
   logout(){
     this._auth.logout();
     this.router.navigate(['/'],{queryParams:{}});
+  }
+
+  createBusinessCooperator(){
+    if(this.company_name.length>0&&this.contact.length>0&&this.message.length>0){
+      this._auth.createBusinessCooperator(this.company_name,this.contact,this.message).then(succeed=>{
+        if (succeed){
+          this.alertTitle = "成功";
+          this.alertDetail = "感谢您提交合作意向！我们将会在7个工作日内与您联络。";
+          this.open();
+          this.company_name = '';
+          this.contact = '';
+          this.message = '';
+        }
+      }).catch(error=>{})
+    }else{
+      this.alertTitle = "信息不完整！";
+      this.alertDetail = "請填寫完整合作信息。";
+      this.open();
+    }
+    
+  }
+  alertTitle = "";
+  alertDetail = "";
+
+  public opened: boolean = false;
+
+
+  public close() {
+    this.opened = false;
+  }
+
+  public open() {
+    
+    this.opened = true;
+
   }
 }
 

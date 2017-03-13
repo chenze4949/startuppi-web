@@ -43,40 +43,82 @@
 
 <div class="container">
   <router-outlet></router-outlet>
-  <footer id="footer">
+  <footer id="footer" style="padding: 50px 0 0;">
     <div class="layout-inner">
-        <div class="inner">
-            <!-- qrcode -->
+        <div class="col-md-3">
+            <a [routerLink]="['/']" routerLinkActive="active">
+                <img style="margin-left: 80px" class="img-responsive logo" width="150" src="/assets/images/logo_footer_white.png">
+            </a>
+            <p style="margin-left: 100px">創業立派，始於創派</p>
+        </div>
+        <div class="col-md-4">
+            <div class="links">
+                <a [routerLink]="['/privacy']" routerLinkActive="active">私隱政策</a>
+                <a [routerLink]="['/terms']" routerLinkActive="active">法律聲明</a>
+                <a [routerLink]="['/contact']" routerLinkActive="active">聯繫我們</a>
+                <a [routerLink]="['/about']" routerLinkActive="active">關於我們</a>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <p style="font-size: 20px;color: #ea5514;">創派業務合作</p>
+            <p style="font-size: 12px;color: white">歡迎新聞投稿，市場BD，企業進駐及媒體，品牌，活動，推廣等合作</p>
+
+            <div class="newsletter">
+
+                
+                <div class="input-group" style="float: left;margin-top: 10px;">
+                    <input [(ngModel)]='company_name' class="form-control" placeholder="公司名稱" type="text">
+                </div>
+                <div class="input-group" style="float: left;margin-top: 10px;margin-left: 10px;">
+                    <input [(ngModel)]='contact' class="form-control" placeholder="郵箱/電話" type="text">
+                </div>
+                <div class="input-group" style="float: left;margin-top: 10px;width: 280px;">
+                    <input [(ngModel)]='message' class="form-control" placeholder="留言" type="text">
+                </div>
+                <div class="input-group" style="float: left;margin-top: 10px;margin-left: 10px;">
+                    
+                    <button class="btn btn-primary btn-h-large" (click)="createBusinessCooperator()">提&nbsp;&nbsp;&nbsp;交</button>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="copyright" style="margin: 30px 0; text-align: center">
+                    <span>©2017 STARTUP PI, Inc. All Rights Reserved.</span>
+                </p>
+            </div>
+        </div>
+        <!--<div class="inner">
+
+            
             <div class="footer-qrcode">
                 <a href="/appDownload"><img src="/assets/images/Dragonite.png" alt=""></a>
             </div>
-            <!--/ qrcode -->
-            <!-- footer-info -->
             <div class="footer-info">
                 <div class="contact">
-                    <div class="img-wrap">
-                        <img src="/assets/images/Dragonite.png" alt="">
-                    </div>
-                    <div class="join">
-                        <a href="/booking/create" class="btn-join">我要入駐</a> 400-1188-891
-                    </div>
                 </div>
-                <!-- footer-links -->
                 <div class="links">
                     <a [routerLink]="['/privacy']" routerLinkActive="active">私隱政策</a>
                     <a [routerLink]="['/terms']" routerLinkActive="active">法律聲明</a>
                     <a [routerLink]="['/contact']" routerLinkActive="active">聯繫我們</a>
                     <a [routerLink]="['/about']" routerLinkActive="active">關於我們</a>
                 </div>
-                <!--/ footer-links -->
                 <p class="copyright">
-                    <span>©2016-2017 創派科技有限公司</span>
-                    <span>版權所有</span>
-                    <!--<span>京ICP备15021969号-1</span>-->
+                    <span>©2017 STARTUP PI, Inc. All Rights Reserved.</span>
                 </p>
             </div>
-            <!--/ footer-info -->
-        </div>
+        </div>-->
     </div>
   </footer>
+
 </div>
+
+<kendo-dialog [title]="alertTitle" *ngIf="opened" (close)="close()">
+    <p>{{ alertDetail }}</p>
+
+    <kendo-dialog-actions>
+        <button kendoButton (click)="close()" [primary]="true">好</button>
+    </kendo-dialog-actions>
+</kendo-dialog>
