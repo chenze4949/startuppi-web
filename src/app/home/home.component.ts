@@ -66,9 +66,7 @@ export class HomeComponent {
     @Inject(Auth) _auth) {
       this._auth = _auth;
 
-    for (let i = 0; i < 4; i++) {
-      this.addSlide();
-    }
+    this.addSlide();
 
     this.webSwipeOptions = {
       slidesPerView: 1,
@@ -84,9 +82,28 @@ export class HomeComponent {
   public addSlide():void {
     let newWidth = 1170;
     this.slides.push({
-      image: `//placekitten.com/${newWidth}/960`,
-      text: `${['More', 'Extra', 'Lots of', 'Surplus'][this.slides.length % 4]}
-      ${['Cats', 'Kittys', 'Felines', 'Cutes'][this.slides.length % 4]}`
+      image: `/assets/images/创派sliders-1.jpg`
+    });
+    this.slides.push({
+      image: `/assets/images/创派sliders-2.jpg`
+    });
+    this.slides.push({
+      image: `/assets/images/创派sliders-3.jpg`
+    });
+    this.slides.push({
+      image: `/assets/images/创派sliders-4.jpg`
+    });
+    this.slides.push({
+      image: `/assets/images/创派sliders-5.jpg`
+    });
+    this.slides.push({
+      image: `/assets/images/创派sliders-6.jpg`
+    });
+    this.slides.push({
+      image: `/assets/images/创派sliders-7.jpg`
+    });
+    this.slides.push({
+      image: `/assets/images/创派sliders-8.jpg`
     });
   }
 

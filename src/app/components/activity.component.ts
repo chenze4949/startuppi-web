@@ -64,7 +64,7 @@ export class ActivityComponent implements OnInit {
   createEvent(){
 
     if (this._auth.isAuthenticated()){
-      return this.modal.open(EventCreateModal,  overlayConfigFactory({ num1: 2, num2: 3, categories:this.categories }, BSModalContext));
+      return this.modal.open(EventCreateModal, overlayConfigFactory({ num1: 2, num2: 3, categories:this.categories }, BSModalContext));
   
     }else{
       this.router.navigate(['/login'],{queryParams:{}});

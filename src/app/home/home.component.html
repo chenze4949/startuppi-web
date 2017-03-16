@@ -14,8 +14,8 @@
 </div>-->
 <ks-swiper-container id="web-container" *ngIf="slides" [options]="webSwipeOptions">
     <ks-swiper-slide *ngFor="let slidez of slides">
-        <!--<img *ngIf="slidez.image" [src]="slidez.image">-->
-        <img class="swiper-img" src="/images/facebook.jpg">
+        <img class="swiper-img" *ngIf="slidez.image" [src]="slidez.image">
+        <!--<img class="swiper-img" src="/assets/images/创派sliders-1.jpg">-->
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
     </ks-swiper-slide>
