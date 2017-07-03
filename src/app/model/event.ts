@@ -10,7 +10,12 @@ export class Event {
     detail:string;
     start:Date;
     end:Date;
-    date_str:string;
+    date_long_str:string;
+    date_short_str:string;
     icon:string;
     currency:string;
+    cost:string;
+    cost_str:string;
+    contact:string;
+    is_end:boolean;
 }

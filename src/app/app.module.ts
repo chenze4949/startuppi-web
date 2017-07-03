@@ -1,5 +1,6 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {Location, LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
@@ -141,11 +142,10 @@ type StoreType = {
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     DialogModule,
     SlimLoadingBarModule.forRoot(),
     ScheduleModule,
-    RouterModule.forRoot(ROUTES, { useHash: true }),
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
     RadioButtonModule,
     TabViewModule,
     MdTabsModule,
@@ -172,7 +172,8 @@ type StoreType = {
     EventService,
     GroupService,
     UploadService,
-    ArticleService
+    ArticleService,
+    { provide: LocationStrategy, useClass: PathLocationStrategy }
   ]
 })
 export class AppModule {

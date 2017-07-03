@@ -34,7 +34,7 @@ import { Auth } from '../service/auth.service';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  public slides:Array<any> = [];
+  public slides:Array<any>;
   @ViewChild(KSSwiperContainer) swiperContainer: KSSwiperContainer;
   webSwipeOptions: any;
 
@@ -81,61 +81,50 @@ export class HomeComponent {
 
   public addSlide():void {
     let newWidth = 1170;
-    this.slides.push({
-      image: `/assets/images/创派sliders-1.jpg`
-    });
-    this.slides.push({
-      image: `/assets/images/创派sliders-2.jpg`
-    });
-    this.slides.push({
-      image: `/assets/images/创派sliders-3.jpg`
-    });
-    this.slides.push({
-      image: `/assets/images/创派sliders-4.jpg`
-    });
-    this.slides.push({
-      image: `/assets/images/创派sliders-5.jpg`
-    });
-    this.slides.push({
-      image: `/assets/images/创派sliders-6.jpg`
-    });
-    this.slides.push({
-      image: `/assets/images/创派sliders-7.jpg`
-    });
-    this.slides.push({
-      image: `/assets/images/创派sliders-8.jpg`
-    });
   }
 
   ngOnInit() {
     console.log('hello `Home` component');
     // this.title.getData().subscribe(data => this.data = data);
     this.eventsSchedule = [
-        {
-            "title": "All Day Event",
-            "start": "2016-09-01"
-        },
-        {
-            "title": "Long Event",
-            "start": "2016-09-07",
-            "end": "2016-09-10"
-        },
-        {
-            "title": "Repeating Event",
-            "start": "2016-09-09T16:00:00"
-        },
-        {
-            "title": "Repeating Event",
-            "start": "2016-09-16T16:00:00"
-        },
-        {
-            "title": "Conference",
-            "start": "2016-09-11",
-            "end": "2016-09-13"
-        }
     ];
     this.eventService.getHottestEvents().then(response => {
       this.events = this.eventService.mapJSONToEvents(response.json().response);
+      this.eventsSchedule = [];
+      for (var index = 0; index < this.events.length; index++) {
+        let event:Event = this.events[index];
+        if (event.is_end){
+          this.eventsSchedule.push(
+            {"title":event.title, 
+            "start":this.eventService.convertZHDate(event.start), 
+            "end":this.eventService.convertZHDate(event.end), 
+            "color":"#a9a9a9",
+            "address":event.address,
+            "enroll":event.enroll,
+            "introduction":event.introduction,
+            "date_str":event.date_long_str,
+            "icon":event.icon,
+            "contact":event.contact
+          })
+        }else{
+          this.eventsSchedule.push(
+            {"title":event.title, 
+            "start":this.eventService.convertZHDate(event.start), 
+            "end":this.eventService.convertZHDate(event.end), 
+            "color":"#089E00",
+            "address":event.address,
+            "enroll":event.enroll,
+            "introduction":event.introduction,
+            "date_str":event.date_long_str,
+            "icon":event.icon,
+            "contact":event.contact
+          })
+        }
+        
+      }
+    })
+    this.articleService.getHomeSlides().then(response => {
+      this.slides = this.articleService.mapJSONToHomeSlides(response.json().response);
     })
     this.articleService.getHottestArticles().then(response => {
       this.articles = this.articleService.mapJSONToArticles(response.json().response);

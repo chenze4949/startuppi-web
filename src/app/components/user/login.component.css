@@ -5,7 +5,7 @@
 .passport {
     height: 500px;
     padding: 0!important;
-    background: url(../../../assets/img/passport-bg.jpg) 0 no-repeat #fff;
+    background: url(../../../assets/images/login_page1.jpg) 0 no-repeat #fff;
     background-size: cover;
 }
 
@@ -29,7 +29,7 @@
     padding: 30px 20px;
     background-color: #fff;
     border-radius: 4px;
-    box-shadow: 0 0 4px rgba(0,0,0,.1);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .1);
 }
 
 .passport-form .legend {
@@ -41,6 +41,7 @@
     font-weight: 400;
     line-height: 1;
 }
+
 .form .legend {
     display: block;
     width: 100%;
@@ -59,7 +60,9 @@
     line-height: 26px;
 }
 
-.form .form-cont, .icon, .wrapper {
+.form .form-cont,
+.icon,
+.wrapper {
     position: relative;
 }
 
@@ -71,13 +74,15 @@
     width: 100%;
     font-size: 14px;
 }
+
 .txt.txt-h-xlarge {
     padding: 10px;
     line-height: 18px;
 }
+
 .txt {
     width: 100px;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
     border: 1px solid #ccc;
     color: #666;
     border-radius: 3px;
@@ -91,6 +96,7 @@
     color: #666;
     font-size: 14px;
 }
+
 .passport-form .form-item {
     margin-bottom: 24px;
 }
@@ -102,19 +108,23 @@
 .passport-form input[type=checkbox] {
     margin-right: 6px;
 }
-label input[type=checkbox], label input[type=radio] {
+
+label input[type=checkbox],
+label input[type=radio] {
     position: relative;
     top: -2px;
     left: 0;
     margin-right: 8px;
 }
-input[type=checkbox], input[type=radio] {
+
+input[type=checkbox],
+input[type=radio] {
     width: 13px;
     height: 13px;
     cursor: pointer;
 }
 
-input{
+input {
     color: inherit;
     font-family: inherit;
     font-size: 100%;
@@ -137,9 +147,11 @@ input{
 .form .form-cont>.btn {
     margin-right: 10px;
 }
+
 .passport-form .btn {
     width: 100%;
 }
+
 .passport-wrap .btn-h-large {
     font-size: 14px;
 }

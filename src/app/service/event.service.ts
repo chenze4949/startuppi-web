@@ -88,10 +88,16 @@ export class EventService {
         event.detail = data.detail;
         event.start = new Date(data.start_time);
         event.end = new Date(data.end_time);
-        event.date_str = this.convertZHDate(event.start) +  " 至 " + 
-            this.convertZHDate(event.end);
+        event.date_long_str = this.convertLongZHDate(event.start) +  " 至 " + 
+            this.convertLongZHDate(event.end);
+        event.date_short_str = this.convertShortZHDate(event.start) +  " 至 " + 
+            this.convertShortZHDate(event.end);
         event.currency = data.currency;
+        event.cost = data.cost;
+        event.cost_str = parseInt(data.cost) == 0 ? "免费" : (this.convertZHCurrency(data.currency) + " " + data.cost);
         event.icon = data.icon;
+        event.contact = data.contact;
+        event.is_end = data.is_end;
         return event;
     }
 
@@ -112,6 +118,41 @@ export class EventService {
         return category;
     }
 
+    convertShortZHDate(date) {
+        var yyyy = date.getFullYear().toString();
+        var mm = (date.getMonth()+1).toString();
+        var dd  = date.getDate().toString();
+        var hh  = date.getHours().toString();
+        var mm  = date.getMinutes().toString();
+        var ss  = date.getSeconds().toString();
+
+        var mmChars = mm.split('');
+        var ddChars = dd.split('');
+
+        var options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric' };
+        var utc_date = new Date(Date.UTC(yyyy, mm, dd, hh, mm, ss))
+        var string = utc_date.toLocaleDateString("zh-Hans-CN",options)
+        return string;
+        // return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+    }
+
+    convertLongZHDate(date) {
+        var yyyy = date.getFullYear().toString();
+        var mm = (date.getMonth()+1).toString();
+        var dd  = date.getDate().toString();
+        var hh  = date.getHours().toString();
+        var mm  = date.getMinutes().toString();
+        var ss  = date.getSeconds().toString();
+
+        var mmChars = mm.split('');
+        var ddChars = dd.split('');
+
+        var options = { weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+        var utc_date = new Date(Date.UTC(yyyy, mm, dd, hh, mm, ss))
+        var string = utc_date.toLocaleDateString("zh-Hans-CN",options)
+        return string;
+        // return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+    }
     convertZHDate(date) {
         var yyyy = date.getFullYear().toString();
         var mm = (date.getMonth()+1).toString();
@@ -121,6 +162,16 @@ export class EventService {
         var ddChars = dd.split('');
 
         return yyyy + '-' + (mmChars[1]?mm:"0"+mmChars[0]) + '-' + (ddChars[1]?dd:"0"+ddChars[0]);
+    }
+    convertZHCurrency(currency) {
+        var currency_str = "";
+        switch (currency) {
+            case 'HKD':
+                return "港币"
+        
+            default:
+                return currency
+        }
     }
 
 

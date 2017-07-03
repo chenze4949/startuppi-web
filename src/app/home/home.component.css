@@ -629,7 +629,8 @@
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+    color: #000;
+    opacity: 1;
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -706,7 +707,7 @@
     padding: 20px;
     border: 1px solid #888;
     width: 60%;
-    min-height: 400px;
+    min-height: 500px;
 }
 
 

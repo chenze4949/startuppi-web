@@ -7,6 +7,7 @@ import Globals = require('../globals');
 import { Article, Comment } from '../model/article';
 import { User } from '../model/user';
 import { ArticleCategory } from '../model/category';
+import { HomeSlide } from '../model/homeslide';
 
 
 @Injectable()
@@ -16,10 +17,13 @@ export class ArticleService {
     private articlesUrl = Globals.host + '/articles/';  // URL to web api
     private articleCategoriesUrl = Globals.host + '/article_categories';  // URL to web api
     private postCommentUrl = Globals.host + '/articles/comment';  // URL to web api
+    private homeSlidesUrl = Globals.host + '/home_sliders';  // URL to web api
 
     constructor(private http:Http) {
         
     }
+
+
 
     getHottestArticles(): Promise<any> {
     let headers = new Headers();
@@ -73,6 +77,16 @@ export class ArticleService {
     return this.http.get(this.articleCategoriesUrl,{headers: headers})
                 .toPromise()
                 .then(response => this.mapJSONToArticleCategories(response.json().response))
+                .catch(this.handleError);
+    }
+
+    getHomeSlides(): Promise<any> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    
+    return this.http.get(this.homeSlidesUrl,{headers: headers})
+                .toPromise()
+                .then(response => response)
                 .catch(this.handleError);
     }
 
@@ -210,6 +224,24 @@ export class ArticleService {
         month[11] = "Dec";
         var n = month[d.getMonth()];
         return  n;
+    }
+
+    mapJSONToHomeSlides(data):HomeSlide[]{
+        let slides = new Array<HomeSlide>();
+        for (var index = 0; index < data.length; index++) {
+        var element = data[index];
+        slides.push(this.mapJSONToHomeSlide(element));
+        }
+        return slides;
+    }
+
+    mapJSONToHomeSlide(data):HomeSlide{
+        let slide:HomeSlide = new HomeSlide();
+        slide.id = data.id;
+        slide.url = data.url;
+        slide.icon = data.icon;
+        
+        return slide;
     }
 
     private handleError(error: any) {

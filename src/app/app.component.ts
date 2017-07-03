@@ -41,6 +41,13 @@ export class AppComponent {
     private router: Router,
     public appState: AppState,
     @Inject(Auth) _auth) {
+      var s = document.createElement("script");
+      s.type = "text/javascript";
+      s.src = "http://cdn.rawgit.com/jpillora/xdomain/0.7.5/dist/xdomain.min.js";
+      s.setAttribute("slave", "http://startuppi.herokuapp.com/proxy.html");
+      // Use any selector
+      $("head").append(s);
+
       this._auth = _auth;
       this.sub = this.router.events.subscribe(event => {
           if (event instanceof NavigationStart) {
@@ -59,13 +66,22 @@ export class AppComponent {
     console.log(localStorage.getItem('sp_uid'))
     console.log(localStorage.getItem('sp_client'))
     console.log(localStorage.getItem('sp_access-token'))
+
+
+    this.router.events
+    .subscribe((event) => {
+      // example: NavigationStart, RoutesRecognized, NavigationEnd
+      if (event instanceof NavigationStart) {
+        console.log('NavigationStart:', event);
+        if (event.url.includes("/#")){
+          console.log("contain hash");
+          let link = [event.url.replace("/#", "")];
+          this.router.navigateByUrl(event.url.replace("/#", ""));
+        }
+      }
+      
+    }); 
     
-    var s = document.createElement("script");
-    s.type = "text/javascript";
-    s.src = "http://cdn.rawgit.com/jpillora/xdomain/0.7.5/dist/xdomain.min.js";
-    s.setAttribute("slave", "http://startuppi.herokuapp.com/proxy.html");
-    // Use any selector
-    $("head").append(s);
 
     
     console.log('Initial App State', this.appState.state);
@@ -90,7 +106,8 @@ export class AppComponent {
       this._auth.createBusinessCooperator(this.company_name,this.contact,this.message).then(succeed=>{
         if (succeed){
           this.alertTitle = "成功";
-          this.alertDetail = "感谢您提交合作意向！我们将会在7个工作日内与您联络。";
+          this.alertDetail = "感謝您提交合作意向！我們將會在7個工作日內與您聯絡。";
+          this.closeFormModal();
           this.open();
           this.company_name = '';
           this.contact = '';
@@ -104,6 +121,17 @@ export class AppComponent {
     }
     
   }
+
+  openContactFormModal(activity){
+    var modal = document.getElementById('contactFormModal');
+    modal.style.display = "block";
+  }
+
+  closeFormModal(){
+    var modal = document.getElementById('contactFormModal');
+    modal.style.display = "none";
+  }
+
   alertTitle = "";
   alertDetail = "";
 

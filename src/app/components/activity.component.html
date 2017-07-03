@@ -63,7 +63,7 @@
                 </div>
                 <div class="item-activity-details-intro-title">活动简介：</div>
                 <div class="item-activity-details-intro">{{event.introduction}}</div>
-                <div class="item-activity-details-type">{{event.date_str}}</div>
+                <div class="item-activity-details-type">{{event.date_short_str}}</div>
                 <div class="item-activity-details-address">{{event.address}}</div>
                 <div class="clearfix"></div>
             </div>
@@ -117,13 +117,19 @@
                                 活動時間
                             </div>
                             <div class="item-activity-details-form">
-                                {{selectedActivity.date_str}}
+                                {{selectedActivity.date_long_str}}
                             </div>
                             <div class="item-activity-details-name">
                                 活動地點
                             </div>
                             <div class="item-activity-details-form">
                                 {{selectedActivity.address}}
+                            </div>
+                            <div class="item-activity-details-name">
+                                聯繫方式
+                            </div>
+                            <div class="item-activity-details-form">
+                                {{selectedActivity.contact}} <a href="selectedActivity.enroll">報名鏈接</a>
                             </div>
                             <div class="clearfix"></div>
                         </div>

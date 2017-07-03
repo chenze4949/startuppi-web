@@ -14,7 +14,7 @@
         </div>
         <div class="header-top-right">
             <ul>
-            <li><a href="">商家進駐</a></li>
+            <!--<li><a href="">商家進駐</a></li>-->
             <li><a href="">聯繫客服</a></li>
             <li *ngIf="_auth.isAuthenticated()">
                 <div (click)="$event.preventDefault()">
@@ -43,13 +43,13 @@
 
 <div class="container">
   <router-outlet></router-outlet>
-  <footer id="footer" style="padding: 50px 0 0;">
+  <footer id="footer" style="padding: 50px 0 0;background: #313131;border-top: 4px solid #313131">
     <div class="layout-inner">
         <div class="col-md-3">
             <a [routerLink]="['/']" routerLinkActive="active">
                 <img style="margin-left: 80px" class="img-responsive logo" width="150" src="/assets/images/logo_footer_white.png">
             </a>
-            <p style="margin-left: 100px">創業立派，始於創派</p>
+            <p style="margin-left: 100px;font-size: 13px">創業立派，始於創派</p>
         </div>
         <div class="col-md-4">
             <div class="links">
@@ -66,18 +66,19 @@
             <div class="newsletter">
 
                 
-                <div class="input-group" style="float: left;margin-top: 10px;">
+                <!--<div class="input-group" style="float: left;margin-top: 10px;">
                     <input [(ngModel)]='company_name' class="form-control" placeholder="公司名稱" type="text">
                 </div>
                 <div class="input-group" style="float: left;margin-top: 10px;margin-left: 10px;">
                     <input [(ngModel)]='contact' class="form-control" placeholder="郵箱/電話" type="text">
-                </div>
-                <div class="input-group" style="float: left;margin-top: 10px;width: 280px;">
-                    <input [(ngModel)]='message' class="form-control" placeholder="留言" type="text">
+                </div>-->
+                <div class="input-group" style="float: left;margin-top: 10px;width: 280px;line-height: 34px;">
+                    Email: service@startup-pi.com
+                    <!--<input [(ngModel)]='message' class="form-control" placeholder="留言" type="text">-->
                 </div>
                 <div class="input-group" style="float: left;margin-top: 10px;margin-left: 10px;">
                     
-                    <button class="btn btn-primary btn-h-large" (click)="createBusinessCooperator()">提&nbsp;&nbsp;&nbsp;交</button>
+                    <button class="btn btn-primary btn-h-large" (click)="openContactFormModal()">聯&nbsp;&nbsp;&nbsp;繫</button>
                 </div>
 
             </div>
@@ -122,3 +123,56 @@
         <button kendoButton (click)="close()" [primary]="true">好</button>
     </kendo-dialog-actions>
 </kendo-dialog>
+<!-- The Modal -->
+<div id="contactFormModal" class="form-modal">
+    
+  <!-- Modal content -->
+  <div class="form-modal-content">
+    <span class="close" (click)="closeFormModal()">&times;</span>
+    <div style="margin-top: 20px;">
+        <div class="container" style="width: 100%;">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <aside class="sidebar">
+                    
+                        <div class="item-form-details" style="width: 100%">
+                            <div class="form">
+                            <div class="item-form-details-name">
+                                公司名稱：
+                            </div>
+                            <div class="item-form-details-form">
+                                <input [(ngModel)]="company_name" class="item-form-details-textfield" placeholder="公司名稱"/>
+                            </div>
+                            <div class="item-form-details-name">
+                                郵箱/電話：
+                            </div>
+                            <div class="item-form-details-form">
+                                <input [(ngModel)]="contact" class="item-form-details-textfield" placeholder="郵箱/電話"/>
+                            </div>
+
+                            <div class="item-form-details-name">
+                                留言：
+                            </div>
+                            <div class="item-form-details-form">
+                                <input [(ngModel)]="message" class="item-form-details-textfield" placeholder="留言"/>
+                            </div>
+
+                                
+                            <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    
+                    
+                        
+                    </aside>
+                </div>
+            </div>
+            <div class="custom-modal-footer">
+                <button type="submit" class="btn btn-primary btn-h-large" (click)="createBusinessCooperator()">提&nbsp;&nbsp;&nbsp;交</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
